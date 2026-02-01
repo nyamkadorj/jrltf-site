@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "Jr.LTF",
-  description: "Junior Leadership Task Force – Global Program & Recruitment",
+  description: "Junior Leadership Task Force – Program & Recruitment",
 };
 
 export default function RootLayout({
