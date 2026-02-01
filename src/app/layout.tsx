@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Jr.LTF",
+  title: "Junior.LTF",
   description: "Junior Leadership Task Force – Program & Recruitment",
 };
 
