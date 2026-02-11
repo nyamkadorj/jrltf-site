@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Home", href: "/" },
+  { label: "Why Jr.LTF", href: "/" },
   { label: "Framework", href: "/framework" },
   { label: "Program", href: "/program" },
   { label: "Standards", href: "/standards" },

@@ -54,8 +54,8 @@ export default function HomePage() {
               {...fadeUp(0.16)}
               className="mt-5 text-lg text-white/80 md:text-xl"
             >
-              Raising role-model sons and daughters who take ownership in realizing God’s dream—
-              One God-centered Family.
+              Raising true sons and daughters of Heavenly Father who take ownership in realizing God's dream—
+              One God-centered Family, one family at a time.
             </motion.p>
 
             <motion.div {...fadeUp(0.24)} className="mt-8 flex flex-wrap gap-3">
@@ -63,13 +63,13 @@ export default function HomePage() {
                 href="/recruitment"
                 className="rounded-2xl bg-white px-6 py-3 font-medium text-slate-900 hover:opacity-90"
               >
-                View Recruitment
+                Recruitment process
               </Link>
               <Link
                 href="/apply"
                 className="rounded-2xl border border-white/35 px-6 py-3 text-white hover:bg-white/10"
               >
-                Apply Now
+                Fill application form
               </Link>
             </motion.div>
           </div>
@@ -110,11 +110,11 @@ export default function HomePage() {
         >
           <h2 className="text-xl font-semibold">Program Characteristics</h2>
           <ul className="mt-4 list-disc space-y-2 pl-6 text-slate-700">
-            <li>Year-based training anchored in spiritual life and growth.</li>
-            <li>Parents as primary educators; growth is strengthened in the home.</li>
-            <li>Clear standards: readiness for entrance and visible growth outcomes.</li>
-            <li>Growth-through-challenge: discipline, responsibility, and service.</li>
-            <li>Field-based continuation after kick-off with ongoing evaluation and guidance.</li>
+            <li>Becoming the Owner of God's Providence.</li>
+            <li>Continuous commitment to spiritual growth in the Family.</li>
+            <li>Earn the merit based on their own commitment.</li>
+            <li>Rigorous training & Self-discipline.</li>
+            <li>Integrate to “day-to-day” life.</li>
           </ul>
 
           <div className="mt-6 flex flex-wrap gap-3">
