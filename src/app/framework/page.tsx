@@ -1,6 +1,8 @@
+// src/app/framework/page.tsx
 "use client";
 
-import { motion } from "framer-motion";
+import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -8,51 +10,85 @@ const inView = (delay = 0) => ({
   initial: { opacity: 0, y: 14 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, amount: 0.25 },
-  transition: { duration: 0.55, ease: EASE, delay },
+  transition: { duration: 0.6, ease: EASE, delay },
 });
 
+// Slower + richer accordion motion
+const accordion = {
+  open: {
+    opacity: 1,
+    height: "auto",
+    transition: {
+      height: { duration: 0.95, ease: EASE },
+      opacity: { duration: 0.7, ease: EASE, delay: 0.08 },
+    },
+  },
+  closed: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      height: { duration: 0.85, ease: EASE },
+      opacity: { duration: 0.35, ease: EASE },
+    },
+  },
+};
+
 export default function FrameworkPage() {
+  const [openId, setOpenId] = React.useState<number>(1);
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
       {/* Header */}
       <motion.div {...inView(0)} className="max-w-3xl">
         <h1 className="text-4xl font-bold">Framework</h1>
         <p className="mt-4 text-slate-600">
-          Purpose of having a clear Framework to clarify how Identity, Standards, and Core Values are meant to work together as an integrated framework for the Jr. LTF program. <b>Integrated framework:</b> Identity → Culture Building → Standards → Core Values
+          Purpose of having a clear Framework to clarify how Identity, Standards, and Core Values are meant to work together as an integrated
+          framework for the Jr. LTF program. <b>Integrated framework:</b> Identity → Culture Building → Standards → Core Values
         </p>
       </motion.div>
 
-      {/* Sections */}
-      <div className="mt-10 space-y-10">
+      {/* Sections (Expandable) */}
+      <div className="mt-10 space-y-5">
         {/* 1. Identity / Vertical Alignment */}
-        <motion.section {...inView(0.04)} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <FrameworkCard
+          id={1}
+          openId={openId}
+          setOpenId={setOpenId}
+          title="1. Identity / Vertical Alignment"
+          delay={0.04}
+          leftTitle={`1. Identity / Vertical\nAlignment`}
+        >
           <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
-            <BlueBlock title={`1. Identity / Vertical\nAlignment`} />
-
-            <YellowBlock>
+            <DarkBlock title={`1. Identity / Vertical\nAlignment`} />
+            <AccentBlock>
               <p className="leading-relaxed text-slate-900">
-                <b>At the foundation</b>, our youth should first understand <b>who they are</b> and
-                actively cultivate their relationship with God. By understanding their identity as
-                sons and daughters of God, they can then freely choose to participate in realizing
-                God’s dream of One Family under God, one family at a time.
+                <b>At the foundation</b>, our youth should first understand <b>who they are</b> and actively cultivate their relationship with God.
+                By understanding their identity as sons and daughters of God, they can then freely choose to participate in realizing God’s dream
+                of One Family under God, one family at a time.
               </p>
               <p className="mt-4 font-semibold text-slate-900">
                 Identity is the starting point that gives meaning and direction to everything else.
               </p>
-            </YellowBlock>
+            </AccentBlock>
           </div>
-        </motion.section>
+        </FrameworkCard>
 
         {/* 2. Culture Building */}
-        <motion.section {...inView(0.06)} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <FrameworkCard
+          id={2}
+          openId={openId}
+          setOpenId={setOpenId}
+          title="2. Culture Building (as leader)"
+          delay={0.06}
+        >
           <div className="grid gap-6 lg:grid-cols-[360px_1fr_1.25fr]">
-            <BlueBlock title={`2. Culture Building\n(as leader)`} />
+            <DarkBlock title={`2. Culture Building\n(as leader)`} />
 
-            <YellowBlock className="flex items-center justify-center text-center">
+            <AccentBlock className="flex items-center justify-center text-center">
               <p className="text-base font-medium leading-relaxed text-slate-900">
                 As sons and daughters of God, we are actively <b>participating in creating a shift in culture.</b>
               </p>
-            </YellowBlock>
+            </AccentBlock>
 
             <div className="space-y-4">
               <WhitePill>
@@ -60,34 +96,37 @@ export default function FrameworkPage() {
               </WhitePill>
 
               <WhitePill>
-                <b>A culture</b> where we are motivated to live for the sake of others{" "}
-                <b>(culture of heart)</b> and a culture of excellence (the driver to do and be our
-                best for heavenly father).
+                <b>A culture</b> where we are motivated to live for the sake of others <b>(culture of heart)</b> and a culture of excellence (the
+                driver to do and be our best for heavenly father).
               </WhitePill>
 
               <WhitePill>
-                <b>A culture</b> where we are living to embody God’s truth, righteousness, goodness
-                and True Love in our everyday life.
+                <b>A culture</b> where we are living to embody God’s truth, righteousness, goodness and True Love in our everyday life.
               </WhitePill>
             </div>
           </div>
-        </motion.section>
+        </FrameworkCard>
 
         {/* 3. Standards */}
-        <motion.section {...inView(0.08)} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <FrameworkCard
+          id={3}
+          openId={openId}
+          setOpenId={setOpenId}
+          title="3. Standards"
+          delay={0.08}
+        >
           <div className="grid gap-6 lg:grid-cols-[360px_1fr_1.1fr]">
-            <BlueBlock title="3. Standards" />
+            <DarkBlock title="3. Standards" />
 
-            <YellowBlock className="text-center">
+            <AccentBlock className="text-center">
               <p className="leading-relaxed text-slate-900">
-                The Jr.LTF Program is <b>guided by clear standards</b> that support our youth in
-                growing <b>as true sons and daughters of God.</b>
+                The Jr.LTF Program is <b>guided by clear standards</b> that support our youth in growing <b>as true sons and daughters of God.</b>
               </p>
               <p className="mt-4 leading-relaxed text-slate-900">
-                These standards help them take ownership of God’s will and develop as leaders who
-                are prepared to bring positive transformation to society.
+                These standards help them take ownership of God’s will and develop as leaders who are prepared to bring positive transformation to
+                society.
               </p>
-            </YellowBlock>
+            </AccentBlock>
 
             <div className="space-y-3">
               <WhitePill className="text-center">1. Identity</WhitePill>
@@ -103,28 +142,32 @@ export default function FrameworkPage() {
               <WhitePill className="text-center">6. Parents’ Leadership role</WhitePill>
             </div>
           </div>
-        </motion.section>
+        </FrameworkCard>
 
         {/* 4. Core Values Framework */}
-        <motion.section {...inView(0.1)} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+        <FrameworkCard
+          id={4}
+          openId={openId}
+          setOpenId={setOpenId}
+          title="4. Core Values Framework"
+          delay={0.1}
+        >
           <div className="grid gap-6 lg:grid-cols-[360px_1fr_1.1fr]">
-            <BlueBlock title={`4. Core Values\nFramework`} />
+            <DarkBlock title={`4. Core Values\nFramework`} />
 
-            <YellowBlock className="text-center">
+            <AccentBlock className="text-center">
               <p className="leading-relaxed text-slate-900">
-                <b>The Core Values framework is a simple yet profound way</b> to live out these
-                standards on a daily basis.
+                <b>The Core Values framework is a simple yet profound way</b> to live out these standards on a daily basis.
               </p>
               <p className="mt-4 leading-relaxed text-slate-900">
-                The 4 core values—serve as the framework for both the education we provide
-                (cognitive &amp; experiential) and the culture of heart we seek to build.
+                The 4 core values—serve as the framework for both the education we provide (cognitive &amp; experiential) and the culture of heart we
+                seek to build.
               </p>
               <p className="mt-4 leading-relaxed text-slate-900">
-                <b>Through practicing these values</b>, our youth learn to become change-makers and
-                leaders who embody God’s ideal in their homes, schools, communities, and ultimately
-                in society.
+                <b>Through practicing these values</b>, our youth learn to become change-makers and leaders who embody God’s ideal in their homes,
+                schools, communities, and ultimately in society.
               </p>
-            </YellowBlock>
+            </AccentBlock>
 
             <div className="space-y-3">
               <WhitePill className="text-center text-lg font-semibold">1. Living for the Greater Good</WhitePill>
@@ -133,26 +176,106 @@ export default function FrameworkPage() {
               <WhitePill className="text-center text-lg font-semibold">4. Dream Big</WhitePill>
             </div>
           </div>
-        </motion.section>
+        </FrameworkCard>
       </div>
     </div>
   );
 }
 
+/* ---------- Expandable Card ---------- */
+
+function FrameworkCard({
+  id,
+  openId,
+  setOpenId,
+  title,
+  delay,
+  children,
+}: {
+  id: number;
+  openId: number;
+  setOpenId: (n: number) => void;
+  title: string;
+  delay: number;
+  children: React.ReactNode;
+}) {
+  const isOpen = openId === id;
+
+  return (
+    <motion.section
+      {...inView(delay)}
+      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+    >
+      {/* Clickable header */}
+      <button
+        type="button"
+        onClick={() => setOpenId(isOpen ? 0 : id)}
+        className="w-full"
+        aria-expanded={isOpen}
+      >
+        <div className="flex items-center justify-between gap-4">
+          <h2 className="text-left text-lg font-semibold text-slate-900 md:text-xl">
+            {title}
+          </h2>
+
+          {/* Plus icon */}
+          <span className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-700 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
+            <span className={`text-xl leading-none transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "rotate-45" : ""}`}>
+              +
+            </span>
+          </span>
+        </div>
+
+        {/* subtle helper line */}
+        <div className="mt-3 h-px w-full bg-slate-100" />
+      </button>
+
+      {/* Expand area */}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key={`content-${id}`}
+            variants={accordion}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="overflow-hidden"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE, delay: 0.12 } }}
+              exit={{ opacity: 0, y: 8, transition: { duration: 0.25, ease: EASE } }}
+              className="pt-6"
+            >
+              {children}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.section>
+  );
+}
+
 /* ---------- UI blocks ---------- */
 
-function BlueBlock({ title }: { title: string }) {
+// 1) Big block: change to dark “home page-ish” tone (deep slate gradient)
+function DarkBlock({ title }: { title: string }) {
   return (
     <motion.div
       {...inView(0)}
-      className="flex min-h-[140px] items-center justify-center rounded-3xl bg-blue-800 px-6 py-10 text-center text-2xl font-bold leading-snug text-white shadow-sm"
+      className={[
+        "flex min-h-[140px] items-center justify-center rounded-3xl px-6 py-10 text-center text-2xl font-bold leading-snug text-white shadow-sm",
+        // dark + modern, consistent with many “home hero” palettes
+        "bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800",
+      ].join(" ")}
     >
       <span className="whitespace-pre-line">{title}</span>
     </motion.div>
   );
 }
 
-function YellowBlock({
+// 2) Accent block: closer to the dark palette, still distinguishable (muted warm / stone)
+function AccentBlock({
   children,
   className = "",
 }: {
@@ -163,7 +286,9 @@ function YellowBlock({
     <motion.div
       {...inView(0)}
       className={[
-        "rounded-3xl border border-amber-200 bg-amber-100/80 px-6 py-6 shadow-sm",
+        "rounded-3xl border px-6 py-6 shadow-sm",
+        // warm but subdued + “paired” with dark block
+        "border-slate-200 bg-gradient-to-br from-amber-50/70 via-slate-50 to-white",
         className,
       ].join(" ")}
     >

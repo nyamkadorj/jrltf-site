@@ -121,22 +121,12 @@ function List({ items }: { items: string[] }) {
   );
 }
 
-/**
- * Motion:
- * - Uses a grid + transition on grid-rows for smooth expand/collapse without JS.
- * - Adds soft fade/slide for content.
- * Icon:
- * - Uses a "+" that rotates into an "×" when open.
- */
 export default function StandardsPage() {
   return (
     <div className="bg-white">
-      {/* Top header (white background, like other pages) */}
+      {/* Header (white, clean, no JR.LTF STANDARDS label) */}
       <section className="mx-auto max-w-6xl px-6 pt-14 pb-8">
-        <p className="text-xs uppercase tracking-[0.25em] text-slate-500">
-          Jr.LTF Standards
-        </p>
-        <h1 className="mt-3 text-3xl font-bold text-slate-900 md:text-5xl">
+        <h1 className="text-3xl font-bold text-slate-900 md:text-5xl">
           Program Standards
         </h1>
         <p className="mt-4 max-w-3xl text-slate-600">
@@ -145,13 +135,13 @@ export default function StandardsPage() {
         </p>
       </section>
 
-      {/* Accordion cards */}
-      <section className="mx-auto max-w-6xl px-6 pb-14">
-        <div className="space-y-4">
+      {/* Accordion */}
+      <section className="mx-auto max-w-6xl px-6 pb-16">
+        <div className="space-y-5">
           {STANDARDS.map((s, idx) => (
             <details
               key={s.title}
-              className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+              className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-500"
               open={idx === 0}
             >
               <summary className="cursor-pointer list-none">
@@ -160,22 +150,19 @@ export default function StandardsPage() {
                     {s.title}
                   </h2>
 
-                  {/* Plus icon that rotates when open */}
-                  <span
-                    aria-hidden
-                    className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-700 transition-all duration-500 ease-out group-open:bg-white group-open:shadow-sm"
-                  >
-                    <span className="text-xl leading-none transition-transform duration-500 ease-out group-open:rotate-45">
+                  {/* Plus icon with slower rotation */}
+                  <span className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-700 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-open:bg-white group-open:shadow-sm">
+                    <span className="text-xl leading-none transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-open:rotate-45">
                       +
                     </span>
                   </span>
                 </div>
               </summary>
 
-              {/* Smooth expand/collapse (slower, richer motion) */}
-              <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-700 ease-in-out group-open:grid-rows-[1fr]">
+              {/* Slower, smoother expand animation */}
+              <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-open:grid-rows-[1fr]">
                 <div className="overflow-hidden">
-                  <div className="mt-6 grid translate-y-1 gap-6 opacity-0 transition-all duration-700 ease-in-out group-open:translate-y-0 group-open:opacity-100 md:grid-cols-2">
+                  <div className="mt-6 grid translate-y-4 gap-6 opacity-0 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-open:translate-y-0 group-open:opacity-100 md:grid-cols-2">
                     {/* Entrance */}
                     <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
                       <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
@@ -198,9 +185,6 @@ export default function StandardsPage() {
                       <List items={s.objectives} />
                     </div>
                   </div>
-
-                  {/* subtle divider space */}
-                  <div className="h-1" />
                 </div>
               </div>
             </details>
