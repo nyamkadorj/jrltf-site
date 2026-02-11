@@ -1,74 +1,238 @@
-import FlowSteps from "../../components/FlowSteps";
+// src/app/recruitment/page.tsx
+"use client";
 
-import Timeline, { TimelineItem } from "../../components/Timeline";
-<div className="mt-12">
-  <FlowSteps />
-</div>
+import React from "react";
+import { motion } from "framer-motion";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 14 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.25 },
+  transition: { duration: 0.7, ease: EASE, delay },
+});
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+};
+
+type Step = {
+  title: string;
+  date: string;
+  note?: string;
+};
+
+const TIMELINE: Step[] = [
+  { title: "HQ announcement of Jr.LTF Program", date: "By end of Feb" },
+  {
+    title:
+      "HQ introduces the program to families in each chapter with chapter leader/representative",
+    date: "From March 1st to March 10th",
+  },
+  {
+    title: "Chapter leader/representative meets with parents/families",
+    date: "Mar 1–24",
+  },
+  {
+    title: "Families submit the application form",
+    date: "Before March 25",
+    note: "Note: start saving and raising funds",
+  },
+  { title: "Deadline for the application form", date: "By March 25" },
+  {
+    title: "Start and complete the 70-day track",
+    date: "Start before April 1st, end by June 9th",
+  },
+  {
+    title: "On 60th days, complete interview with Chapter leader/representative",
+    date: "May",
+    note: "Interview conducted based on Evaluation sheet",
+  },
+  {
+    title:
+      "Chapter leader/representative finalize the evaluation and select challengers",
+    date: "By June 15th",
+  },
+  {
+    title: "Jr. LTF’s International Challenger’s Course",
+    date: "Tentative date July 27th – Aug 10th",
+  },
+  { title: "Selection of Jr.LTF members", date: "At the end of WS" },
+];
 
 export default function RecruitmentPage() {
-  const items: TimelineItem[] = [
-    {
-      title: "HQ Alignment & Local Orientation",
-      dateLabel: "March",
-      body: "HQ meets with Chapter Representatives to align on the purpose, standards, and flow. Chapter representatives then meet with parents and youth to explain expectations and support readiness.",
-      bullets: [
-        "HQ briefing with chapter reps",
-        "Local orientation for parents and candidates",
-      ],
-    },
-    {
-      title: "Recommendations & Evidence Submission",
-      dateLabel: "By April 15",
-      body: "Chapter Representatives submit recommendation letters for potential candidates, along with required application materials that show readiness to grow through the program.",
-      bullets: [
-        "Recommendation letter + supporting evidence",
-        "Application form (parent & candidate sections)",
-      ],
-    },
-    {
-      title: "Interviews & Growth-through-Challenge Checks",
-      dateLabel: "From April 16",
-      body: "Interviews are conducted with candidates and parents (separately). Physical challenge and goal-setting activities are completed and reported through the chapter representative.",
-      bullets: [
-        "Candidate interview (separate)",
-        "Parent interview (separate)",
-        "Running challenge + goal extension after interview",
-      ],
-    },
-    {
-      title: "Final Assessment & Announcement",
-      dateLabel: "By May 15",
-      body: "HQ and Chapter Representatives hold a final assessment meeting. Final candidates are selected and announced. Parents complete the agreement process for participation.",
-      bullets: [
-        "Final assessment meeting (HQ + chapters)",
-        "Announcement of selected candidates",
-        "Parent agreement form completed",
-      ],
-    },
-  ];
-
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
-      <div className="max-w-3xl">
-        <h1 className="text-4xl font-bold">Recruitment & Selection Process</h1>
-        <p className="mt-4 text-slate-600">
-          This process is designed to support each candidate’s spiritual growth
-          and help families and chapters confirm readiness to join Jr.LTF.
-        </p>
-      </div>
+    <div className="bg-white">
+      <div className="mx-auto max-w-6xl px-6 py-16">
+        {/* Header */}
+        <motion.div {...fadeUp(0)} className="max-w-3xl">
+          <h1 className="text-4xl font-bold text-slate-900">Recruitment</h1>
+          <p className="mt-4 text-slate-600">
+            The recruitment process is designed to support candidates’ spiritual
+            growth, clarify readiness, and confirm alignment with the program
+            standards.
+          </p>
+        </motion.div>
 
-      <div className="mt-12">
-        <Timeline items={items} />
-      </div>
+        {/* Top cards */}
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <InfoCard title="Objectives" delay={0.05}>
+            <ul className="list-disc space-y-2 pl-5 text-slate-700">
+              <li>
+                Select Jr.LTF members according to the fulfillment of the
+                joining requirements
+              </li>
+              <li>
+                Allow candidates to reflect on their readiness (not simply pass
+                or fail them)
+              </li>
+            </ul>
+          </InfoCard>
 
-      <div className="mt-12 rounded-3xl border border-slate-200 bg-slate-50 p-6">
-        <h2 className="text-lg font-semibold">If a candidate is not selected</h2>
-        <p className="mt-2 text-slate-600">
-          Not being selected is not the end. It can become a guided growth path.
-          Chapters and Jr.LTF members can help candidates continue building
-          spiritual habits, discipline, and readiness for the next opportunity.
-        </p>
+          <InfoCard title="Mindset" delay={0.08}>
+            <ul className="list-disc space-y-2 pl-5 text-slate-700">
+              <li>
+                This is for members(candidates)’ spiritual growth, their family,
+                and their community
+              </li>
+              <li>Avoid personal bias and pursue fairness and objectivity</li>
+            </ul>
+          </InfoCard>
+
+          <InfoCard title="Method" delay={0.11}>
+            <p className="text-slate-700">
+              Use two assessment steps to confirm whether candidates are
+              qualified to join.
+            </p>
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
+              <li>1st assessment - Screening process</li>
+              <li>
+                2nd assessment - Summer WS, direct input on motivation and
+                behavior
+              </li>
+            </ul>
+          </InfoCard>
+        </div>
+
+        {/* Timeline */}
+        <motion.div
+          {...fadeUp(0.14)}
+          className="mt-14 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+        >
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-semibold text-slate-900">
+                Recruitment Timeline
+              </h2>
+              <p className="mt-2 text-slate-600">
+                Follow the steps in order. Each step builds on the previous one.
+              </p>
+            </div>
+
+            <span className="hidden rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-600 md:inline">
+              Timeline Order
+            </span>
+          </div>
+
+          <div className="mt-8">
+            <VerticalTimeline steps={TIMELINE} />
+          </div>
+        </motion.div>
       </div>
     </div>
+  );
+}
+
+/* ---------------- UI Components ---------------- */
+
+function InfoCard({
+  title,
+  delay,
+  children,
+}: {
+  title: string;
+  delay: number;
+  children: React.ReactNode;
+}) {
+  return (
+    <motion.section
+      {...fadeUp(delay)}
+      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+    >
+      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+        {title}
+      </p>
+      <div className="mt-3">{children}</div>
+    </motion.section>
+  );
+}
+
+function VerticalTimeline({ steps }: { steps: Step[] }) {
+  return (
+    <motion.ol
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      className="relative space-y-6"
+    >
+      {/* vertical line */}
+      <div className="absolute left-[16px] top-0 h-full w-px bg-slate-200" />
+
+      {steps.map((s, i) => (
+        <motion.li key={`${i}-${s.title}`} variants={item} className="relative">
+          <div className="flex gap-5">
+            {/* step number */}
+            <div className="relative z-10 mt-1 h-8 w-8 shrink-0">
+              <motion.div
+                initial={{ scale: 0.85, opacity: 0.6 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.8, ease: EASE }}
+                className="grid h-8 w-8 place-items-center rounded-2xl border border-slate-200 bg-white shadow-sm"
+              >
+                <span className="text-sm font-semibold text-slate-700">
+                  {i + 1}
+                </span>
+              </motion.div>
+            </div>
+
+            {/* content card */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.75, ease: EASE }}
+              className="w-full rounded-3xl border border-slate-200 bg-white p-5 shadow-sm"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h3 className="text-base font-semibold text-slate-900 md:text-lg">
+                  {s.title}
+                </h3>
+                <span className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-1 text-sm text-slate-700">
+                  {s.date}
+                </span>
+              </div>
+
+              {s.note ? (
+                <p className="mt-3 text-sm text-slate-600">{s.note}</p>
+              ) : null}
+            </motion.div>
+          </div>
+        </motion.li>
+      ))}
+    </motion.ol>
   );
 }
