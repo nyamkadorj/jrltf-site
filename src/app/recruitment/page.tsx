@@ -2,7 +2,7 @@
 "use client";
 
 import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -39,36 +39,37 @@ const TIMELINE: Step[] = [
   {
     title:
       "HQ introduces the program to families in each chapter with chapter leader/representative",
-    date: "March 1 – March 10",
+    date: "From March 1st to March 10th",
   },
   {
     title: "Chapter leader/representative meets with parents/families",
-    date: "March 1 – March 24",
+    date: "Mar 1–24",
   },
   {
     title: "Families submit the application form",
     date: "Before March 25",
-    note: "Start saving and raising funds",
+    note: "Note: start saving and raising funds",
   },
   { title: "Deadline for the application form", date: "By March 25" },
   {
     title: "Start and complete the 70-day track",
-    date: "April 1 – June 9",
+    date: "Start before April 1st, end by June 9th",
   },
   {
-    title: "Complete interview with Chapter leader/representative",
+    title: "On 60th days, complete interview with Chapter leader/representative",
     date: "May",
     note: "Interview conducted based on Evaluation sheet",
   },
   {
-    title: "Finalize evaluation and select challengers",
-    date: "By June 15",
+    title:
+      "Chapter leader/representative finalize the evaluation and select challengers",
+    date: "By June 15th",
   },
   {
-    title: "Jr. LTF International Challenger’s Course",
-    date: "July 27 – Aug 10 (Tentative)",
+    title: "Jr. LTF’s International Challenger’s Course",
+    date: "Tentative date July 27th – Aug 10th",
   },
-  { title: "Selection of Jr.LTF members", date: "End of Workshop" },
+  { title: "Selection of Jr.LTF members", date: "At the end of WS" },
 ];
 
 export default function RecruitmentPage() {
@@ -77,7 +78,7 @@ export default function RecruitmentPage() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         {/* Header */}
         <motion.div {...fadeUp(0)} className="max-w-3xl">
-          <h1 className="text-4xl font-bold text-slate-900">Recruitment Process</h1>
+          <h1 className="text-4xl font-bold text-slate-900">Recruitment</h1>
           <p className="mt-4 text-slate-600">
             The recruitment process is designed to support candidates’ spiritual
             growth, clarify readiness, and confirm alignment with the program
@@ -85,19 +86,67 @@ export default function RecruitmentPage() {
           </p>
         </motion.div>
 
+        {/* Top cards */}
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <InfoCard title="Objectives" delay={0.05}>
+            <ul className="list-disc space-y-2 pl-5 text-slate-700">
+              <li>
+                Select Jr.LTF members according to the fulfillment of the
+                joining requirements
+              </li>
+              <li>
+                Allow candidates to reflect on their readiness (not simply pass
+                or fail them)
+              </li>
+            </ul>
+          </InfoCard>
+
+          <InfoCard title="Mindset" delay={0.08}>
+            <ul className="list-disc space-y-2 pl-5 text-slate-700">
+              <li>
+                This is for members(candidates)’ spiritual growth, their family,
+                and their community
+              </li>
+              <li>Avoid personal bias and pursue fairness and objectivity</li>
+            </ul>
+          </InfoCard>
+
+          <InfoCard title="Method" delay={0.11}>
+            <p className="text-slate-700">
+              Use two assessment steps to confirm whether candidates are
+              qualified to join.
+            </p>
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
+              <li>1st assessment - Screening process</li>
+              <li>
+                2nd assessment - Summer WS, direct input on motivation and
+                behavior
+              </li>
+            </ul>
+          </InfoCard>
+        </div>
+
         {/* Timeline */}
         <motion.div
-          {...fadeUp(0.1)}
+          {...fadeUp(0.14)}
           className="mt-14 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
         >
-          <h2 className="text-xl font-semibold text-slate-900">
-            Recruitment Steps
-          </h2>
-          <p className="mt-2 text-slate-600">
-            Follow the steps in order. Each step builds on the previous one.
-          </p>
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-semibold text-slate-900">
+                Recruitment Timeline
+              </h2>
+              <p className="mt-2 text-slate-600">
+                Follow the steps in order. Each step builds on the previous one.
+              </p>
+            </div>
 
-          <div className="mt-10">
+            <span className="hidden rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm text-slate-600 md:inline">
+              Timeline Order
+            </span>
+          </div>
+
+          <div className="mt-8">
             <VerticalTimeline steps={TIMELINE} />
           </div>
         </motion.div>
@@ -106,89 +155,84 @@ export default function RecruitmentPage() {
   );
 }
 
-/* ---------------- Timeline ---------------- */
+/* ---------------- UI Components ---------------- */
+
+function InfoCard({
+  title,
+  delay,
+  children,
+}: {
+  title: string;
+  delay: number;
+  children: React.ReactNode;
+}) {
+  return (
+    <motion.section
+      {...fadeUp(delay)}
+      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+    >
+      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+        {title}
+      </p>
+      <div className="mt-3">{children}</div>
+    </motion.section>
+  );
+}
 
 function VerticalTimeline({ steps }: { steps: Step[] }) {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-
-  // Progress based on scrolling through the timeline container
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 0.85", "end 0.2"],
-  });
-
-  // Line height grows as you scroll
-  const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
   return (
-    <div ref={ref} className="relative">
-      {/* Base line */}
-      <div className="absolute left-[20px] top-0 h-full w-px bg-slate-200" />
+    <motion.ol
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      className="relative space-y-6"
+    >
+      {/* vertical line */}
+      <div className="absolute left-[16px] top-0 h-full w-px bg-slate-200" />
 
-      {/* Glowing progress line (animated) */}
-      <motion.div
-        style={{ scaleY: lineScaleY, transformOrigin: "top" }}
-        className="absolute left-[20px] top-0 w-px bg-slate-900"
-      />
-      {/* Glow layer */}
-      <motion.div
-        style={{ scaleY: lineScaleY, transformOrigin: "top" }}
-        className="absolute left-[20px] top-0 w-[3px] bg-slate-900/70 blur-[3px]"
-      />
-
-      {/* Soft moving glow “pulse” */}
-      <motion.div
-        className="absolute left-[16px] top-0 h-10 w-2 rounded-full bg-slate-900/30 blur-md"
-        animate={{ y: [0, 24, 0] }}
-        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <motion.ol
-        variants={container}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        className="relative space-y-8"
-      >
-        {steps.map((s, i) => (
-          <motion.li key={`${i}-${s.title}`} variants={item} className="relative">
-            <div className="flex gap-6">
-              {/* Step number */}
-              <div className="relative z-10 mt-1 h-10 w-10 shrink-0">
-                <div className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-300 bg-white shadow-sm">
-                  <span className="text-sm font-semibold text-slate-800">
-                    {i + 1}
-                  </span>
-                </div>
-              </div>
-
-              {/* Card */}
+      {steps.map((s, i) => (
+        <motion.li key={`${i}-${s.title}`} variants={item} className="relative">
+          <div className="flex gap-5">
+            {/* step number */}
+            <div className="relative z-10 mt-1 h-8 w-8 shrink-0">
               <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
+                initial={{ scale: 0.85, opacity: 0.6 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.8, ease: EASE }}
-                className="w-full rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-500 hover:shadow-md"
+                className="grid h-8 w-8 place-items-center rounded-2xl border border-slate-200 bg-white shadow-sm"
               >
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                  <h3 className="text-lg font-semibold text-slate-900">
-                    {s.title}
-                  </h3>
-
-                  {/* Emphasized Date */}
-                  <div className="rounded-2xl bg-slate-900 px-5 py-2 text-base font-semibold text-white shadow-md">
-                    {s.date}
-                  </div>
-                </div>
-
-                {s.note && (
-                  <p className="mt-4 text-sm text-slate-600">{s.note}</p>
-                )}
+                <span className="text-sm font-semibold text-slate-700">
+                  {i + 1}
+                </span>
               </motion.div>
             </div>
-          </motion.li>
-        ))}
-      </motion.ol>
-    </div>
+
+            {/* content card */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{ duration: 0.75, ease: EASE }}
+              className="w-full rounded-3xl border border-slate-200 bg-white p-5 shadow-sm"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h3 className="text-base font-semibold text-slate-900 md:text-lg">
+                  {s.title}
+                </h3>
+                <span className="rounded-2xl border border-slate-200 bg-slate-50 px-3 py-1 text-sm text-slate-700">
+                  {s.date}
+                </span>
+              </div>
+
+              {s.note ? (
+                <p className="mt-3 text-sm text-slate-600">{s.note}</p>
+              ) : null}
+            </motion.div>
+          </div>
+        </motion.li>
+      ))}
+    </motion.ol>
   );
 }
