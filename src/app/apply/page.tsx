@@ -36,85 +36,92 @@ export default function ApplyPage() {
 
             <p className="mt-5 text-base leading-relaxed text-slate-600">
               Sending the application form is a required first step to begin the recruitment
-              process. Submitting the form does not affect assessment results—it simply
-              initiates the process.
+              process. Submitting the form does not affect assessment results—it simply initiates
+              the process.
             </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <motion.a
-                href={APPLY_URL}
-                whileHover={{ y: -2, scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.25, ease: EASE }}
-                className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-7 py-3.5 text-sm font-semibold text-white shadow-sm hover:opacity-95"
-              >
-                Start Application Form →
-              </motion.a>
-
-              <Link
-                href="/recruitment"
-                className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 hover:bg-slate-50"
-              >
-                Review Recruitment Timeline
-              </Link>
-            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* APPLICATION CONTENT */}
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <div className="grid gap-6 lg:grid-cols-2">
-          {/* Application Info */}
-          <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
-            <h2 className="text-xl font-semibold text-slate-900">
-              What the Application Collects
-            </h2>
+      {/* FOR PARENTS / CANDIDATES */}
+      <section className="mx-auto max-w-6xl px-6 pb-10">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"
+        >
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">
+            For Parents / Candidates
+          </p>
 
-            <ul className="mt-6 list-disc space-y-2 pl-5 text-slate-700">
-              <li>Birth information</li>
-              <li>Blood type</li>
-              <li>Health information (allergies)</li>
-              <li>Academic information (impact before and after)</li>
-              <li>Number of siblings</li>
-              <li>Regular & emergency contacts</li>
-            </ul>
+          <h2 className="mt-3 text-2xl font-bold text-slate-900">
+            Sections Included in the Application Form
+          </h2>
 
-            <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-              <p className="text-sm text-slate-700">
-                Submitting the form indicates the candidate and family’s intention
-                to begin the Jr.LTF assessment process.
+          <p className="mt-4 text-slate-600">
+            Please review what is included before submitting the application.
+          </p>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
+              <p className="text-sm font-semibold text-slate-900">Parents section</p>
+              <p className="mt-1 text-sm text-slate-600">
+                Parent information and contacts
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
+              <p className="text-sm font-semibold text-slate-900">Family members section</p>
+              <p className="mt-1 text-sm text-slate-600">
+                Basic family profile
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
+              <p className="text-sm font-semibold text-slate-900">Candidate’s section</p>
+              <p className="mt-1 text-sm text-slate-600">
+                Candidate background
               </p>
             </div>
           </div>
 
-          {/* Form Sections */}
-          <div className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm">
-            <h2 className="text-xl font-semibold text-slate-900">
-              Sections Included
-            </h2>
+          {/* Buttons (placed after reading sections) */}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <motion.a
+              href={APPLY_URL}
+              whileHover={{ y: -2, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.25, ease: EASE }}
+              className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-7 py-3.5 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+            >
+              Start Application Form →
+            </motion.a>
 
-            <ul className="mt-6 space-y-3 text-slate-800">
-              <li className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                Parents section
-              </li>
-              <li className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                Family members section
-              </li>
-              <li className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
-                Candidate’s section
-              </li>
-            </ul>
+            <Link
+              href="/recruitment"
+              className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 hover:bg-slate-50"
+            >
+              Review Recruitment Timeline
+            </Link>
           </div>
-        </div>
 
-        {/* DARK CHAPTER LEADER SECTION */}
+          <p className="mt-3 text-xs text-slate-500">
+            (Later you can replace <span className="font-mono">APPLY_URL</span> with your Google
+            Forms link.)
+          </p>
+        </motion.div>
+      </section>
+
+      {/* DARK CHAPTER LEADER SECTION (keep as is) */}
+      <section className="mx-auto max-w-6xl px-6 pb-16">
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="mt-16 rounded-3xl bg-slate-900 px-8 py-12 text-white shadow-xl"
+          className="rounded-3xl bg-slate-900 px-8 py-12 text-white shadow-xl"
         >
           <div className="max-w-4xl">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/60">
@@ -144,14 +151,14 @@ export default function ApplyPage() {
             </div>
 
             <p className="mt-6 leading-relaxed text-white/80">
-              All official Jr.LTF updates, recruitment announcements, selection process
-              guidelines, shared materials, related files, and important communications
-              will be posted in the Announcement Room.
+              All official Jr.LTF updates, recruitment announcements, selection process guidelines,
+              shared materials, related files, and important communications will be posted in the
+              Announcement Room.
             </p>
 
             <p className="mt-4 leading-relaxed text-white/80">
-              Chapter leaders are strongly encouraged to join to stay aligned
-              with HQ direction and ensure proper communication with families.
+              Chapter leaders are strongly encouraged to join to stay aligned with HQ direction and
+              ensure proper communication with families.
             </p>
 
             <motion.a
