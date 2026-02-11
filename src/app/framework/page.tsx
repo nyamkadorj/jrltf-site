@@ -18,8 +18,7 @@ export default function FrameworkPage() {
       <motion.div {...inView(0)} className="max-w-3xl">
         <h1 className="text-4xl font-bold">Framework</h1>
         <p className="mt-4 text-slate-600">
-          Purpose of having a clear Framework: It is to clarify how Identity, Standards, and Core Values are meant to work together as an integrated framework for the Jr. LTF program.
-          Integrated framework: Identity → Culture Building → Standards → Core Values
+          Purpose of having a clear Framework to clarify how Identity, Standards, and Core Values are meant to work together as an integrated framework for the Jr. LTF program. <b>Integrated framework:</b> Identity → Culture Building → Standards → Core Values
         </p>
       </motion.div>
 

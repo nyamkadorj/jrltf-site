@@ -1,101 +1,173 @@
-import Accordion from "../../components/Accordion";
-
-function pretty(text: string) {
-  // formatting only (no wording changes): make the table text readable
-  return text
-    .replace(/ \-/g, "\n-") // " -" -> newline bullet
-    .replace(/:\-/g, ":\n-") // ":-" -> ":\n-"
-    .replace(/\)\-/g, ")\n-"); // ")-" -> ")\n-"
-}
-
-const standards = [
-  {
-    category: "Identity",
-    entrance:
-      "Spiritually awake to one’s identity: -Have a clear awareness of identity as a son or daughter of God, nurtured through a solid family and spiritual foundation-Have a clear awareness of what is God's Dream. (Note: Jr.LTF isn't a place to “find God”; it needs to happen in the home). -Seeks to deepen the relationship with Heavenly Father dentity: -Have a solid family and spiritual foundation, rooted in understanding one's identity as God's son/daughter, and understanding of God’s Dream (*Jr.LTF isn't a place to “begin” faith; it needs to happen in the home).",
-    objectives:
-      "Owning Identity: -Deepen the vertical relationship with Heavenly Father built upon filial piety toward one's own parents.  -Live as a true son/daughter of God by embodying His character of living for the greater good (culture of heart). -Committed to take responsibility in one’s providential role, aligning with the centrality of God’s providence, and advancing it through oneself and one’s family as His instrument. e.g, Identity: I am True son/daugther of God, a member of the Blessed family who is an extended member of the True Family, I am a continuation of the Providential figures, God's work of Providence will move through my family and me, so I am the owner: -Establishing a direct and sincere relationship with Heavenly Father, built upon filial piety toward one´s parents. -Live as True son/daughter of God embodying His character by taking initiative and responsibility as providential figure, aligning to the central figure, and advancing God’s providence through one’s family and using one's fullest capacity as His instrument. (e.g., I am True son/daugther of God, member of Blessed family who is an extended member of the True Family, I am a continuation of the Providential figures, God's work of Providence will move through my family and me, so I am the owner)",
-  },
-  {
-    category: "Right Motivation driven by Filial Piety and True Love",
-    entrance:
-      "Has a filial heart towards parents -Seek to understand their parents’ expectations-Shows respect towards siblings and elders (uncles, aunts)",
-    objectives:
-      "Desire to contribute to God's Providence:-Seek to become a leader for God’s Providence-Desires to expand one's capabilities as God’s instrument.Motivation happens \"Inside-Out\": -Their biggest motivation is rooted in developing a heart-centered relationship with Heavenly Father and their parents. Being guided by that relationship they cultivate a breakthrough mindsetLiving by God’s and parents’ expectations:-Understand God's expectation for humanity and what is their parents' expectation for them while taking responsibility to embody these expectations in daily life.-Recognize their own strength and based on that lead initiatives that strengthen families, inspiring others to strive for higher standards -Cultivates filial heart by actions such as: reporting, reflecting and reviewing one's growth with parents. Always keeping parental guidance.",
-  },
-  {
-    category: "Practice of True Love",
-    entrance:
-      "Initial motivation based on True love:-Uplifts others by practicing “living for the sake of others” (e.g. Helping at home; serving, supporting or leading activities in their school, blessed families or local communities)",
-    objectives:
-      "Embodies True Love-Understands that True Love is the motivation behind God’s actions and seeks to embody it through their own thoughts, attitudes and actions-Actively lives for the greater good by acting selflessly and inspiring others to create a positive impact",
-  },
-  {
-    category: "Self-discipline (Self-mastery)",
-    entrance:
-      "Has basic God-centered life habits:-Should have basic spiritual practices established at home, such as the habit of praying/reporting to God, reflecting key moments of the day, sharing to family members, journaling, and understanding the importance of heart of jungsung in every action.-Demonstrates a sense of integrity, expressed through honesty and right motivation",
-    objectives:
-      "Attain self-mastery and lives with Integrity maintaining a God-centered lifestyle:-Self-mastery requires honest self-reflection which is achieved through the cultivation of gratitude and humility. Gratitude helps recognize and use the strengths properly, and humility allows one to identify areas of growth, understanding that there is always more to offer to Heavenly Father. -Demonstrate God-centered lifestyle and habits in daily practices (e.g., keeping the right motivation and honesty even when no one is watching; being responsible for their surrounding areas, keep their space, environment and clothes clean, wake up early, etc; practice of self-mastery; recognize and practice HDH with family as a key component of their spiritual lifestyle; setting daily schedules (proper use of time) aligned to their goals to live with purpose and consistent growth; maintaining purity of mind and heart by preparing themselves to be best for their future spouses; being disciplined in areas such as horizontal relationships, phone use and internet use.)",
-  },
-  {
-    category: "Growth through Challenge",
-    entrance:
-      "Willing to be challenged:-Seeks to deepen relationship with God-Self-motivated to grow spiritually",
-    objectives:
-      "Pursuing spiritual excellence:-By prioritizing spiritual life they develop a strong inner foundation aligning with God that gives them the strength to overcome personal challenges. With this foundation they can excel in other areas, such as sports, academics, etc. -Understands the necessity to be excellent in all aspects in order to properly serve Heavenly Father",
-  },
-  {
-    category: "Role Model",
-    entrance:
-      "Motivation to set the bar high:-Do not bring a self-centered mindset; instead focus on \"It is not about me.\" Sense of responsibility towards younger siblings:-Aim to set a good example for younger siblings",
-    objectives:
-      "Being a Self-motivated engine:-Have a self-motivated mindset in order keep on challenging themselves, seeking growth to actively contribute to God’s Dream-Strive to fulfill the roles towards their siblings, based first on the proper vertical relationship with parents-Showing good examples for younger siblings. (e.g., leading the younger generation’s program: high->middle-> elementary->pre-school with responsibility and commitment)",
-  },
-  {
-    category: "Parents' involvement",
-    entrance:
-      "Parents as the main educators of children’s spiritual growth: -Family involvement, including parents who are willing to walk together with their children in this leadership course.-Parents are focused in children’s spiritual life, in other words a child who has strong parents’ guidance and support for becoming a public leader",
-    objectives:
-      "Has Parental guidance:- Parents continuously provide feedback based on daily reports, reflect together, and guide for continuous spiritual growth. (e.g., when children report their day to parents, parents shall reflect together and guide spiritually for their growth through daily activities, challenges, life habits, school activities etc.)-Parents set the examples of leadership through daily life as their main educators.",
-  },
-];
-
 export default function StandardsPage() {
+  const standards = [
+    {
+      key: "Identity",
+      entranceTitle: "Spiritually awake to one’s identity:",
+      entranceBullets: [
+        "Have a clear awareness of identity as a son or daughter of God, nurtured through a solid family and spiritual foundation",
+        "Have a clear awareness of what is God’s Dream.",
+        "(Note: Jr.LTF isn't a place to “find God”; it needs to happen in the home).",
+        "Seeks to deepen the relationship with Heavenly Father",
+      ],
+      objectiveTitle: "Owning Identity:",
+      objectiveBullets: [
+        "Deepen the vertical relationship with Heavenly Father built upon filial piety toward one's own parents.",
+        "Live as a true son/daughter of God by embodying His character of living for the greater good (culture of heart).",
+        "Committed to take responsibility in one’s providential role, aligning with the centrality of God’s providence, and advancing it through oneself and one’s family as His instrument.",
+        "e.g, Identity: I am True son/daugther of God, a member of the Blessed family who is an extended member of the True Family, I am a continuation of the Providential figures, God's work of Providence will move through my family and me, so I am the owner",
+      ],
+    },
+    {
+      key: "Right Motivation driven by True Love and Filial Piety",
+      entranceTitle: "Has a filial heart towards parents",
+      entranceBullets: [
+        "Demonstrates a filial heart toward parents, expressed through respect, openness to guidance and seek to understand parents’ expectations.",
+        "Shows respect towards siblings and elders (uncles, aunts)",
+        "Desire to contribute to God's Providence:",
+        "Desires to become a true leader who could represent God",
+        "Desires to expand one's capabilities as God’s instrument.",
+        "Practice of True Love:",
+        "Practicing “living for the sake of others” at home, school and communities, uplifting others using God given strengths (e.g. serving, supporting or leading activities in their school, blessed family community or local community)",
+      ],
+      objectiveTitle: `Owning "Inside-Out":`,
+      objectiveBullets: [
+        "Owning the motivation that grows from “inside-out”, rooted first in connecting one’s heart with Heavenly Father and their Parents, as the greatest source of motivation.",
+        "(e.g., relationships that are guided by heart rather than intellect or physical desire, cultivating a breakthrough mindset)",
+        "Deepen filial heart by establishing proper vertical order in the family, seeking parental guidance through daily practices such as reporting, reflecting on the day, and reviewing one's growth together with parents.",
+        "Living up every day to God and one’s parents’ expectations by clearly understanding God's expectations for humanity and one’s parents' expectations for them.",
+        "Embodies True Love",
+        "One’s thoughts, actions, behaviours, and attitude are grounded in the culture of the heart",
+        "Living for the greater good through selfless motivations and actions in everyday life in the home, community, and in the school, and for the society (e.g., through supporting parents, siblings, and community members without being asked, and doing public services)",
+        "Use of God-given strengths to live for the greater good (e.g., proper use of men’s strength not to show up but for those who needed, use of talent for greater purposes that benefit others)",
+      ],
+    },
+    {
+      key: "Self-discipline (Self-mastery)",
+      entranceTitle: "Basic God-centered life habits:",
+      entranceBullets: [
+        "Have basic spiritual practices established at home, such as the habit of praying/reporting to God, reflect key moments of the day, sharing it to family members, journal, and understand the importance of doing every action with jungsung.",
+        "Demonstrates a sense of integrity, expressed through honesty and right motivation.",
+      ],
+      objectiveTitle: "Uphold the lifestyle of integrity and self-mastery",
+      objectiveBullets: [
+        "Carry out self-mastery and live with Integrity by strengthening a God-centered lifestyle through a vertical relationship with Heavenly Father and one’s Parents",
+        "Demonstrate self-mastery through honest self-reflection of having gratitude and humility before Heavenly Father.",
+        "Demonstrate God-centered lifestyle and habits in daily practices",
+        "(e.g., keeping the right motivation and honesty even when no one is watching; being responsible for their surrounding areas, keep their space, environment and clothes clean, wake up early, etc; recognize and practice HDH with family as a key component of their spiritual lifestyle; setting daily schedules (proper use of time) aligned to their goals to live with purpose and consistent growth; maintaining purity of mind and heart by preparing themselves to be best for their future spouses; being disciplined in areas such as horizontal relationships, phone use and internet use.)",
+      ],
+    },
+    {
+      key: "Growth through Challenge",
+      entranceTitle: "Willing to be challenged:",
+      entranceBullets: [
+        "Self-motivated to grow spiritually and in all dimensions—physical, mental, and emotional—beyond their comfort zone.",
+      ],
+      objectiveTitle: "Culture of excellence:",
+      objectiveBullets: [
+        "By prioritizing spiritual excellence, one's mind, body, and actions are all built on a spiritual foundation, committing to face and overcome one’s weaknesses/improvement points (as a result, excellence is shown in academics, sports, and community activities)",
+        "(e.g., with the motivation of - to do and to be best for Heavenly Father)",
+        "Challenge one’s limitations as an opportunity to grow as filial sons/daughters of God",
+      ],
+    },
+    {
+      key: "Role model/Excellence",
+      entranceTitle: "Motivation to set the bar high:",
+      entranceBullets: [
+        "Practice thinking and acting beyond oneself, embracing the mindset that “It is not about me.”",
+        "Sense of responsibility towards younger siblings:",
+        "Aim to set a good example for younger siblings",
+      ],
+      objectiveTitle: "Leader has to be a self-motivated engine",
+      objectiveBullets: [
+        "Stand and serve as a role model through living for the greater good with a vertical relationship with Heavenly Father and one’s parents.",
+        "Self-motivated to set the bar higher for God and His dream by living with the mindset of “It is not about me”",
+        "Takes responsibility and initiatives, and shows best exemplary practices for one's younger siblings and takes accountability for their growth. (e.g., leading the younger generation’s program: high->middle-> elementary->pre-school with responsibility and commitment)",
+        "Continuously invest in others to develop their potential to fulfill God's and parents' expectations.",
+      ],
+    },
+    {
+      key: "Parents’ Leadership Role",
+      entranceTitle: "Parents as the main educators of children’s spiritual growth:",
+      entranceBullets: [
+        "Parents and family, are willing to walk together with their children through this leadership course.",
+        "Parents are focused on children’s spiritual life; in other words, a child who has strong parents’ support for becoming a public leader",
+      ],
+      objectiveTitle: "Has Parental guidance:",
+      objectiveBullets: [
+        "Parents teach and guide their children for spiritual growth by first aligning themselves to God’s Dream, Values, and Goals",
+        "Parents proactively provide feedback based on daily reports, reflect together  for continuous spiritual growth, and teach them to embrace challenges (e.g., when children report their day to parents, parents shall reflect together and guide spiritually for their growth through daily activities, challenges, life habits, school activities etc.)",
+        "Parents set the examples of leadership through daily life as their main educators.",
+      ],
+    },
+  ];
+
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
-      <div className="max-w-3xl">
-        <h1 className="text-4xl font-bold">Standards</h1>
-        <p className="mt-4 text-slate-600">
-          Entrance standards clarify who this program is for, and Objectives
-          describe who members are expected to become and achieve through the program.
-        </p>
-      </div>
+    <div className="bg-white">
+      {/* Top band (keeps your website look) */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-white" />
+        <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-16 text-white">
+          <p className="text-xs uppercase tracking-[0.25em] text-white/70">
+            Jr.LTF Standards
+          </p>
+          <h1 className="mt-4 text-3xl font-bold md:text-5xl">Standards</h1>
+          <p className="mt-4 max-w-3xl text-white/80">
+            Entrance standards clarify who this program is for, and Objectives describe who members are expected to become and achieve through the program.
+          </p>
+        </div>
+      </section>
 
-      <div className="mt-10 space-y-4">
-        {standards.map((s, i) => (
-          <Accordion key={s.category} title={s.category} defaultOpen={i === 0}>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-600">
-                  Entrance Standard
-                </p>
-                <p className="mt-3 whitespace-pre-line text-sm text-slate-700">
-                  {pretty(s.entrance)}
-                </p>
-              </div>
+      {/* Content */}
+      <section className="mx-auto max-w-6xl px-6 py-14">
+        <div className="space-y-10">
+          {standards.map((s) => (
+            <div
+              key={s.key}
+              className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+            >
+              <h2 className="text-xl font-semibold md:text-2xl">{s.key}</h2>
 
-              <div className="rounded-2xl border border-slate-200 bg-white p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-600">
-                  Objectives on Program standard
-                </p>
-                <p className="mt-3 whitespace-pre-line text-sm text-slate-700">
-                  {pretty(s.objectives)}
-                </p>
+              <div className="mt-6 grid gap-6 md:grid-cols-2">
+                {/* Entrance Standard */}
+                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    Entrance Standard
+                  </p>
+                  <h3 className="mt-2 text-lg font-semibold text-slate-900">
+                    {s.entranceTitle}
+                  </h3>
+                  <ul className="mt-4 list-disc space-y-2 pl-5 text-slate-700">
+                    {s.entranceBullets.map((b, idx) => (
+                      <li key={idx}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Objectives */}
+                <div className="rounded-2xl border border-slate-200 bg-white p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    Objectives on Program Standard
+                  </p>
+                  <h3 className="mt-2 text-lg font-semibold text-slate-900">
+                    {s.objectiveTitle}
+                  </h3>
+                  <ul className="mt-4 list-disc space-y-2 pl-5 text-slate-700">
+                    {s.objectiveBullets.map((b, idx) => (
+                      <li key={idx}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
-          </Accordion>
-        ))}
-      </div>
+          ))}
+        </div>
+
+        <div className="mt-10 rounded-3xl border border-slate-200 bg-slate-50 p-6 text-slate-700">
+          <p className="text-sm">
+            *Text source is taken directly from the project “Standards.docx”.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }

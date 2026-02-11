@@ -7,7 +7,7 @@ export default function Footer() {
         </p>
         <p className="mt-2 max-w-3xl">
           A program for spiritual growth and leadership training—raising young leaders who
-          take ownership in building God-centered families.
+          take ownership in realizing God's dream— One Family under God, one family at a time.
         </p>
         <p className="mt-6">© {new Date().getFullYear()} Jr.LTF</p>
       </div>

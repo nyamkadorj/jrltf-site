@@ -55,7 +55,7 @@ export default function HomePage() {
               className="mt-5 text-lg text-white/80 md:text-xl"
             >
               Raising true sons and daughters of Heavenly Father who take ownership in realizing God's dream—
-              One God-centered Family, one family at a time.
+              One Family under God, one family at a time.
             </motion.p>
 
             <motion.div {...fadeUp(0.24)} className="mt-8 flex flex-wrap gap-3">
