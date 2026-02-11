@@ -10,14 +10,14 @@ function pretty(text: string) {
 
 const standards = [
   {
-    category: "Spiritual Identity",
+    category: "Identity",
     entrance:
-      "Spiritually awake to their identity: -Have a solid family and spiritual foundation, rooted in understanding one’s identity as God’s son/daughter, and understanding of God’s Dream (*Jr.LTF isn't a place to “begin” faith; it needs to happen in the home).",
+      "Spiritually awake to one’s identity: -Have a clear awareness of identity as a son or daughter of God, nurtured through a solid family and spiritual foundation-Have a clear awareness of what is God's Dream. (Note: Jr.LTF isn't a place to “find God”; it needs to happen in the home). -Seeks to deepen the relationship with Heavenly Father dentity: -Have a solid family and spiritual foundation, rooted in understanding one's identity as God's son/daughter, and understanding of God’s Dream (*Jr.LTF isn't a place to “begin” faith; it needs to happen in the home).",
     objectives:
-      "Owning Spiritual Identity:-Establishing a direct and sincere relationship with Heavenly Father, built upon filial piety toward one´s parents. -Live as True son/daughter of God embodying His character by taking initiative and responsibility as providential figure, aligning to the central figure, and advancing God’s providence through one’s family and using one's fullest capacity as His instrument. (e.g., I am True son/daugther of God, member of Blessed family who is an extended member of the True Family, I am a continuation of the Providential figures, God's work of Providence will move through my family and me, so I am the owner)",
+      "Owning Identity: -Deepen the vertical relationship with Heavenly Father built upon filial piety toward one's own parents.  -Live as a true son/daughter of God by embodying His character of living for the greater good (culture of heart). -Committed to take responsibility in one’s providential role, aligning with the centrality of God’s providence, and advancing it through oneself and one’s family as His instrument. e.g, Identity: I am True son/daugther of God, a member of the Blessed family who is an extended member of the True Family, I am a continuation of the Providential figures, God's work of Providence will move through my family and me, so I am the owner: -Establishing a direct and sincere relationship with Heavenly Father, built upon filial piety toward one´s parents. -Live as True son/daughter of God embodying His character by taking initiative and responsibility as providential figure, aligning to the central figure, and advancing God’s providence through one’s family and using one's fullest capacity as His instrument. (e.g., I am True son/daugther of God, member of Blessed family who is an extended member of the True Family, I am a continuation of the Providential figures, God's work of Providence will move through my family and me, so I am the owner)",
   },
   {
-    category: "Motivation based on Filial Piety",
+    category: "Right Motivation driven by Filial Piety and True Love",
     entrance:
       "Has a filial heart towards parents -Seek to understand their parents’ expectations-Shows respect towards siblings and elders (uncles, aunts)",
     objectives:
