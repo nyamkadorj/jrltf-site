@@ -78,7 +78,7 @@ export default function RecruitmentPage() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         {/* Header */}
         <motion.div {...fadeUp(0)} className="max-w-3xl">
-          <h1 className="text-4xl font-bold text-slate-900">Recruitment</h1>
+          <h1 className="text-4xl font-bold text-slate-900">Recruitment Process</h1>
           <p className="mt-4 text-slate-600">
             The recruitment process is designed to support candidates’ spiritual
             growth, clarify readiness, and confirm alignment with the program
@@ -133,7 +133,7 @@ export default function RecruitmentPage() {
         >
           <div>
             <h2 className="text-xl font-semibold text-slate-900">
-              Recruitment Timeline
+              Recruitment Steps
             </h2>
             <p className="mt-2 text-slate-600">
               Follow the steps in order. Each step builds on the previous one.
