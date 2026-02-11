@@ -18,7 +18,8 @@ export default function FrameworkPage() {
       <motion.div {...inView(0)} className="max-w-3xl">
         <h1 className="text-4xl font-bold">Framework</h1>
         <p className="mt-4 text-slate-600">
-          Integrated Framework: Identity → Culture Building → Standards → Core Values
+          Purpose of having a clear Framework: It is to clarify how Identity, Standards, and Core Values are meant to work together as an integrated framework for the Jr. LTF program.
+          Integrated framework: Identity → Culture Building → Standards → Core Values
         </p>
       </motion.div>
 
@@ -127,10 +128,7 @@ export default function FrameworkPage() {
             </YellowBlock>
 
             <div className="space-y-3">
-              <WhitePill className="text-center text-lg font-semibold">
-                1. Living for the <br />
-                Greater Good
-              </WhitePill>
+              <WhitePill className="text-center text-lg font-semibold">1. Living for the Greater Good</WhitePill>
               <WhitePill className="text-center text-lg font-semibold">2. Ownership</WhitePill>
               <WhitePill className="text-center text-lg font-semibold">3. Teamwork</WhitePill>
               <WhitePill className="text-center text-lg font-semibold">4. Dream Big</WhitePill>
