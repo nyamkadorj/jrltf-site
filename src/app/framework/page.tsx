@@ -42,8 +42,9 @@ export default function FrameworkPage() {
       <motion.div {...inView(0)} className="max-w-3xl">
         <h1 className="text-4xl font-bold">Framework</h1>
         <p className="mt-4 text-slate-600">
-          Purpose of having a clear Framework to clarify how Identity, Standards, and Core Values are meant to work together as an integrated
-          framework for the Jr. LTF program. <b>Integrated framework:</b> Identity → Culture Building → Standards → Core Values
+          Purpose of having a clear Framework to clarify how Identity, Standards, and Core Values are
+          meant to work together as an integrated framework for the Jr. LTF program.{" "}
+          <b>Integrated framework:</b> Identity → Culture Building → Standards → Core Values
         </p>
       </motion.div>
 
@@ -56,15 +57,16 @@ export default function FrameworkPage() {
           setOpenId={setOpenId}
           title="1. Identity / Vertical Alignment"
           delay={0.04}
-          leftTitle={`1. Identity / Vertical\nAlignment`}
         >
           <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
             <DarkBlock title={`1. Identity / Vertical\nAlignment`} />
+
             <AccentBlock>
               <p className="leading-relaxed text-slate-900">
-                <b>At the foundation</b>, our youth should first understand <b>who they are</b> and actively cultivate their relationship with God.
-                By understanding their identity as sons and daughters of God, they can then freely choose to participate in realizing God’s dream
-                of One Family under God, one family at a time.
+                <b>At the foundation</b>, our youth should first understand <b>who they are</b> and
+                actively cultivate their relationship with God. By understanding their identity as
+                sons and daughters of God, they can then freely choose to participate in realizing
+                God’s dream of One Family under God, one family at a time.
               </p>
               <p className="mt-4 font-semibold text-slate-900">
                 Identity is the starting point that gives meaning and direction to everything else.
@@ -86,7 +88,8 @@ export default function FrameworkPage() {
 
             <AccentBlock className="flex items-center justify-center text-center">
               <p className="text-base font-medium leading-relaxed text-slate-900">
-                As sons and daughters of God, we are actively <b>participating in creating a shift in culture.</b>
+                As sons and daughters of God, we are actively{" "}
+                <b>participating in creating a shift in culture.</b>
               </p>
             </AccentBlock>
 
@@ -96,12 +99,14 @@ export default function FrameworkPage() {
               </WhitePill>
 
               <WhitePill>
-                <b>A culture</b> where we are motivated to live for the sake of others <b>(culture of heart)</b> and a culture of excellence (the
-                driver to do and be our best for heavenly father).
+                <b>A culture</b> where we are motivated to live for the sake of others{" "}
+                <b>(culture of heart)</b> and a culture of excellence (the driver to do and be our
+                best for heavenly father).
               </WhitePill>
 
               <WhitePill>
-                <b>A culture</b> where we are living to embody God’s truth, righteousness, goodness and True Love in our everyday life.
+                <b>A culture</b> where we are living to embody God’s truth, righteousness, goodness
+                and True Love in our everyday life.
               </WhitePill>
             </div>
           </div>
@@ -120,11 +125,12 @@ export default function FrameworkPage() {
 
             <AccentBlock className="text-center">
               <p className="leading-relaxed text-slate-900">
-                The Jr.LTF Program is <b>guided by clear standards</b> that support our youth in growing <b>as true sons and daughters of God.</b>
+                The Jr.LTF Program is <b>guided by clear standards</b> that support our youth in
+                growing <b>as true sons and daughters of God.</b>
               </p>
               <p className="mt-4 leading-relaxed text-slate-900">
-                These standards help them take ownership of God’s will and develop as leaders who are prepared to bring positive transformation to
-                society.
+                These standards help them take ownership of God’s will and develop as leaders who
+                are prepared to bring positive transformation to society.
               </p>
             </AccentBlock>
 
@@ -157,20 +163,24 @@ export default function FrameworkPage() {
 
             <AccentBlock className="text-center">
               <p className="leading-relaxed text-slate-900">
-                <b>The Core Values framework is a simple yet profound way</b> to live out these standards on a daily basis.
+                <b>The Core Values framework is a simple yet profound way</b> to live out these
+                standards on a daily basis.
               </p>
               <p className="mt-4 leading-relaxed text-slate-900">
-                The 4 core values—serve as the framework for both the education we provide (cognitive &amp; experiential) and the culture of heart we
-                seek to build.
+                The 4 core values—serve as the framework for both the education we provide
+                (cognitive &amp; experiential) and the culture of heart we seek to build.
               </p>
               <p className="mt-4 leading-relaxed text-slate-900">
-                <b>Through practicing these values</b>, our youth learn to become change-makers and leaders who embody God’s ideal in their homes,
-                schools, communities, and ultimately in society.
+                <b>Through practicing these values</b>, our youth learn to become change-makers and
+                leaders who embody God’s ideal in their homes, schools, communities, and ultimately
+                in society.
               </p>
             </AccentBlock>
 
             <div className="space-y-3">
-              <WhitePill className="text-center text-lg font-semibold">1. Living for the Greater Good</WhitePill>
+              <WhitePill className="text-center text-lg font-semibold">
+                1. Living for the Greater Good
+              </WhitePill>
               <WhitePill className="text-center text-lg font-semibold">2. Ownership</WhitePill>
               <WhitePill className="text-center text-lg font-semibold">3. Teamwork</WhitePill>
               <WhitePill className="text-center text-lg font-semibold">4. Dream Big</WhitePill>
@@ -220,7 +230,12 @@ function FrameworkCard({
 
           {/* Plus icon */}
           <span className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-700 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
-            <span className={`text-xl leading-none transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? "rotate-45" : ""}`}>
+            <span
+              className={[
+                "text-xl leading-none transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+                isOpen ? "rotate-45" : "",
+              ].join(" ")}
+            >
               +
             </span>
           </span>
@@ -243,7 +258,11 @@ function FrameworkCard({
           >
             <motion.div
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE, delay: 0.12 } }}
+              animate={{
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.65, ease: EASE, delay: 0.12 },
+              }}
               exit={{ opacity: 0, y: 8, transition: { duration: 0.25, ease: EASE } }}
               className="pt-6"
             >
@@ -258,14 +277,13 @@ function FrameworkCard({
 
 /* ---------- UI blocks ---------- */
 
-// 1) Big block: change to dark “home page-ish” tone (deep slate gradient)
+// Big block: dark, consistent with a modern home hero style
 function DarkBlock({ title }: { title: string }) {
   return (
     <motion.div
       {...inView(0)}
       className={[
         "flex min-h-[140px] items-center justify-center rounded-3xl px-6 py-10 text-center text-2xl font-bold leading-snug text-white shadow-sm",
-        // dark + modern, consistent with many “home hero” palettes
         "bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800",
       ].join(" ")}
     >
@@ -274,7 +292,7 @@ function DarkBlock({ title }: { title: string }) {
   );
 }
 
-// 2) Accent block: closer to the dark palette, still distinguishable (muted warm / stone)
+// Accent block: closer to the dark palette, still distinguishable
 function AccentBlock({
   children,
   className = "",
@@ -287,7 +305,6 @@ function AccentBlock({
       {...inView(0)}
       className={[
         "rounded-3xl border px-6 py-6 shadow-sm",
-        // warm but subdued + “paired” with dark block
         "border-slate-200 bg-gradient-to-br from-amber-50/70 via-slate-50 to-white",
         className,
       ].join(" ")}
