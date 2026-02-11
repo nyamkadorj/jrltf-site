@@ -121,26 +121,32 @@ function List({ items }: { items: string[] }) {
   );
 }
 
+/**
+ * Motion:
+ * - Uses a grid + transition on grid-rows for smooth expand/collapse without JS.
+ * - Adds soft fade/slide for content.
+ * Icon:
+ * - Uses a "+" that rotates into an "×" when open.
+ */
 export default function StandardsPage() {
   return (
     <div className="bg-white">
-      {/* Top band (same as your site style) */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-white" />
-        <div className="relative mx-auto max-w-6xl px-6 pt-16 pb-16 text-white">
-          <p className="text-xs uppercase tracking-[0.25em] text-white/70">
-            Jr.LTF Standards
-          </p>
-          <h1 className="mt-4 text-3xl font-bold md:text-5xl">Standards</h1>
-          <p className="mt-4 max-w-3xl text-white/80">
-            Entrance standards clarify who this program is for, and Objectives describe who members
-            are expected to become and achieve through the program.
-          </p>
-        </div>
+      {/* Top header (white background, like other pages) */}
+      <section className="mx-auto max-w-6xl px-6 pt-14 pb-8">
+        <p className="text-xs uppercase tracking-[0.25em] text-slate-500">
+          Jr.LTF Standards
+        </p>
+        <h1 className="mt-3 text-3xl font-bold text-slate-900 md:text-5xl">
+          Program Standards
+        </h1>
+        <p className="mt-4 max-w-3xl text-slate-600">
+          Entrance standards clarify who this program is for, and Objectives describe who
+          members are expected to become and achieve through the program.
+        </p>
       </section>
 
       {/* Accordion cards */}
-      <section className="mx-auto max-w-6xl px-6 py-14">
+      <section className="mx-auto max-w-6xl px-6 pb-14">
         <div className="space-y-4">
           {STANDARDS.map((s, idx) => (
             <details
@@ -154,35 +160,47 @@ export default function StandardsPage() {
                     {s.title}
                   </h2>
 
-                  {/* simple chevron */}
-                  <span className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-1 text-sm text-slate-600 group-open:bg-white">
-                    <span className="group-open:hidden">Open</span>
-                    <span className="hidden group-open:inline">Close</span>
+                  {/* Plus icon that rotates when open */}
+                  <span
+                    aria-hidden
+                    className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-700 transition-all duration-500 ease-out group-open:bg-white group-open:shadow-sm"
+                  >
+                    <span className="text-xl leading-none transition-transform duration-500 ease-out group-open:rotate-45">
+                      +
+                    </span>
                   </span>
                 </div>
               </summary>
 
-              <div className="mt-6 grid gap-6 md:grid-cols-2">
-                {/* Entrance */}
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Entrance Standard
-                  </p>
-                  <h3 className="mt-2 text-base font-semibold text-slate-900">
-                    {s.entranceTitle}
-                  </h3>
-                  <List items={s.entrance} />
-                </div>
+              {/* Smooth expand/collapse (slower, richer motion) */}
+              <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-700 ease-in-out group-open:grid-rows-[1fr]">
+                <div className="overflow-hidden">
+                  <div className="mt-6 grid translate-y-1 gap-6 opacity-0 transition-all duration-700 ease-in-out group-open:translate-y-0 group-open:opacity-100 md:grid-cols-2">
+                    {/* Entrance */}
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        Entrance Standard
+                      </p>
+                      <h3 className="mt-2 text-base font-semibold text-slate-900">
+                        {s.entranceTitle}
+                      </h3>
+                      <List items={s.entrance} />
+                    </div>
 
-                {/* Objectives */}
-                <div className="rounded-2xl border border-slate-200 bg-white p-5">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Objectives on Program Standard
-                  </p>
-                  <h3 className="mt-2 text-base font-semibold text-slate-900">
-                    {s.objectiveTitle}
-                  </h3>
-                  <List items={s.objectives} />
+                    {/* Objectives */}
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        Objectives on Program Standard
+                      </p>
+                      <h3 className="mt-2 text-base font-semibold text-slate-900">
+                        {s.objectiveTitle}
+                      </h3>
+                      <List items={s.objectives} />
+                    </div>
+                  </div>
+
+                  {/* subtle divider space */}
+                  <div className="h-1" />
                 </div>
               </div>
             </details>
