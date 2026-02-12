@@ -13,6 +13,79 @@ const navItems = [
   { label: "FAQ", href: "/faq" },
 ];
 
+const LANGS = [
+  { code: "ko", flag: "🇰🇷", title: "한국어 (Korean)" },
+  { code: "ja", flag: "🇯🇵", title: "日本語 (Japanese)" },
+  { code: "mn", flag: "🇲🇳", title: "Монгол (Mongolian)" },
+];
+
+function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18" />
+      <path d="M12 3a14 14 0 0 1 0 18" />
+      <path d="M12 3a14 14 0 0 0 0 18" />
+    </svg>
+  );
+}
+
+function buildTranslateUrl(code: string, origin: string, pathname: string) {
+  const currentUrl = `${origin}${pathname || "/"}`;
+  return `https://translate.google.com/translate?sl=auto&tl=${code}&u=${encodeURIComponent(
+    currentUrl
+  )}`;
+}
+
+function FlagLanguageSwitch({
+  variant = "desktop",
+  pathname,
+}: {
+  variant?: "desktop" | "mobile";
+  pathname: string;
+}) {
+  const [origin, setOrigin] = React.useState("");
+
+  React.useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
+
+  const btnClass =
+    variant === "desktop"
+      ? "grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-[16px] leading-none shadow-sm transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-slate-950 dark:hover:bg-white/5"
+      : "grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-[18px] leading-none shadow-sm transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-slate-950 dark:hover:bg-white/5";
+
+  return (
+    <div className="flex items-center gap-2">
+      {LANGS.map((l) => (
+        <a
+          key={l.code}
+          href={origin ? buildTranslateUrl(l.code, origin, pathname) : "#"}
+          target="_blank"
+          rel="noreferrer"
+          title={l.title}
+          aria-label={`Translate this page to ${l.title}`}
+          className={btnClass}
+          onClick={(e) => {
+            if (!origin) e.preventDefault();
+          }}
+        >
+          <span aria-hidden="true">{l.flag}</span>
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = React.useState(false);
@@ -44,9 +117,7 @@ export default function Navbar() {
               >
                 <span
                   className={
-                    active
-                      ? "font-semibold text-slate-900 dark:text-white"
-                      : ""
+                    active ? "font-semibold text-slate-900 dark:text-white" : ""
                   }
                 >
                   {item.label}
@@ -70,6 +141,16 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          {/* Desktop flags */}
+          <div className="hidden md:flex items-center gap-2">
+            <span className="hidden lg:flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+              <span className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
+                <GlobeIcon className="h-4 w-4" />
+              </span>
+            </span>
+            <FlagLanguageSwitch variant="desktop" pathname={pathname} />
+          </div>
+
           <Link
             href="/apply"
             className="rounded-xl bg-slate-900 px-4 py-2 text-sm text-white transition-opacity duration-200 hover:opacity-90 dark:bg-white dark:text-slate-900"
@@ -109,12 +190,26 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="mx-auto max-w-6xl px-6 pb-5">
           <div className="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-slate-950">
-            <nav className="flex flex-col p-2">
+            <div className="p-3 pb-2">
+              {/* Mobile flags row */}
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
+                    <GlobeIcon className="h-4 w-4" />
+                  </span>
+                  <span className="font-medium">Translate</span>
+                </div>
+
+                <FlagLanguageSwitch variant="mobile" pathname={pathname} />
+              </div>
+            </div>
+
+            <nav className="flex flex-col p-2 pt-1">
               {navItems.map((item) => {
                 const active = pathname === item.href;
 
@@ -148,6 +243,13 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+
+              <Link
+                href="/apply"
+                className="mt-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white hover:opacity-90 dark:bg-white dark:text-slate-900"
+              >
+                Apply
+              </Link>
             </nav>
           </div>
         </div>
