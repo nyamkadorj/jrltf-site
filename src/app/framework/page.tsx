@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -32,6 +33,22 @@ const accordion = {
     },
   },
 };
+
+// Map “standards pills” -> Standards page anchors
+const STANDARDS_LINKS = [
+  { label: "1. Identity", href: "/standards#identity" },
+  {
+    label: "2. Motivation (driven by Filial Piety \n& True Love)",
+    href: "/standards#right-motivation-driven-by-true-love-and-filial-piety",
+  },
+  {
+    label: "3. Self-Discipline (Self-mastery; \ncultivation of gratitude, humility)",
+    href: "/standards#self-discipline-self-mastery",
+  },
+  { label: "4. Growth through Challenge", href: "/standards#growth-through-challenge" },
+  { label: "5. Role Model / Excellence", href: "/standards#role-model-excellence" },
+  { label: "6. Parents’ Leadership role", href: "/standards#parents-leadership-role" },
+];
 
 export default function FrameworkPage() {
   const [openId, setOpenId] = React.useState<number>(1);
@@ -134,18 +151,13 @@ export default function FrameworkPage() {
               </p>
             </AccentBlock>
 
+            {/* ✅ Clickable standards pills (links to Standards page anchors) */}
             <div className="space-y-3">
-              <WhitePill className="text-center">1. Identity</WhitePill>
-              <WhitePill className="text-center">
-                2. Motivation (driven by Filial Piety <br />&amp; True Love)
-              </WhitePill>
-              <WhitePill className="text-center">
-                3. Self-Discipline (Self-mastery; <br />
-                cultivation of gratitude, humility)
-              </WhitePill>
-              <WhitePill className="text-center">4. Growth through Challenge</WhitePill>
-              <WhitePill className="text-center">5. Role Model / Excellence</WhitePill>
-              <WhitePill className="text-center">6. Parents’ Leadership role</WhitePill>
+              {STANDARDS_LINKS.map((s) => (
+                <WhitePillLink key={s.href} href={s.href} className="text-center">
+                  <span className="whitespace-pre-line">{s.label}</span>
+                </WhitePillLink>
+              ))}
             </div>
           </div>
         </FrameworkCard>
@@ -277,7 +289,6 @@ function FrameworkCard({
 
 /* ---------- UI blocks ---------- */
 
-// Big block: dark, consistent with a modern home hero style
 function DarkBlock({ title }: { title: string }) {
   return (
     <motion.div
@@ -292,7 +303,6 @@ function DarkBlock({ title }: { title: string }) {
   );
 }
 
-// Accent block: closer to the dark palette, still distinguishable
 function AccentBlock({
   children,
   className = "",
@@ -331,5 +341,30 @@ function WhitePill({
     >
       {children}
     </motion.div>
+  );
+}
+
+/* ✅ Clickable pill variant (keeps same look) */
+function WhitePillLink({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className={[
+        "block rounded-2xl border border-slate-200 bg-white px-6 py-4 text-sm leading-relaxed text-slate-900 shadow-sm",
+        "transition-all duration-200 hover:-translate-y-[1px] hover:bg-slate-50 hover:shadow-md",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2",
+        className,
+      ].join(" ")}
+    >
+      {children}
+    </Link>
   );
 }
