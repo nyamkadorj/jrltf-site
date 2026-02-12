@@ -337,7 +337,7 @@ export default function HomePage() {
             </div>
 
             {/* NOTE: increased left padding so bullet text aligns to title */}
-            <ul className="mt-4 space-y-3 pl-[52px] text-slate-700">
+            <ul className="mt-4 space-y-3 pl-[40px] text-slate-700">
               <Bullet icon={<IconOwner className="h-4 w-4" />}>
                 Becoming the Owner of God's Providence.
               </Bullet>

@@ -13,6 +13,13 @@ const navItems = [
   { label: "FAQ", href: "/faq" },
 ];
 
+const LANGS = [
+  { code: "en", flag: "🇺🇸", title: "English (Reset)" }, // reset
+  { code: "ko", flag: "🇰🇷", title: "한국어 (Korean)" },
+  { code: "ja", flag: "🇯🇵", title: "日本語 (Japanese)" },
+  { code: "mn", flag: "🇲🇳", title: "Монгол (Mongolian)" },
+];
+
 function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -30,6 +37,86 @@ function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
       <path d="M12 3a14 14 0 0 1 0 18" />
       <path d="M12 3a14 14 0 0 0 0 18" />
     </svg>
+  );
+}
+
+/**
+ * Google Translate stores language choice in cookies like:
+ * - googtrans=/en/ko
+ * We "reset" by setting it back to /en/en and reloading.
+ */
+function setCookie(name: string, value: string, days = 365) {
+  const d = new Date();
+  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+  const expires = `expires=${d.toUTCString()}`;
+  document.cookie = `${name}=${value};${expires};path=/`;
+}
+
+function deleteCookie(name: string) {
+  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
+}
+
+function resetTranslateToEnglish() {
+  // most reliable approach: set googtrans to /en/en and reload
+  setCookie("googtrans", "/en/en");
+  // sometimes Google uses this variant too
+  setCookie("googtrans", "/en/en", 365);
+  // also clear possible host-specific cookie (best effort)
+  deleteCookie("googtrans");
+
+  // Re-set after delete to ensure correct final value
+  setCookie("googtrans", "/en/en", 365);
+
+  // Reload to fully revert injected translations
+  window.location.reload();
+}
+
+/**
+ * Triggers the hidden Google Translate widget.
+ * It looks for the <select class="goog-te-combo"> and sets its value.
+ */
+function setGoogleTranslateLanguage(lang: string) {
+  const select =
+    document.querySelector<HTMLSelectElement>("select.goog-te-combo");
+  if (!select) return false;
+
+  select.value = lang;
+  select.dispatchEvent(new Event("change"));
+  return true;
+}
+
+function FlagsRow({ size = "md" }: { size?: "md" | "lg" }) {
+  const btnClass =
+    size === "md"
+      ? "grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-[16px] leading-none shadow-sm transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-slate-950 dark:hover:bg-white/5"
+      : "grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-[18px] leading-none shadow-sm transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-slate-950 dark:hover:bg-white/5";
+
+  return (
+    <div className="flex items-center gap-2">
+      {LANGS.map((l) => (
+        <button
+          key={l.code}
+          type="button"
+          title={l.title}
+          aria-label={
+            l.code === "en"
+              ? "Reset language to English"
+              : `Translate this page to ${l.title}`
+          }
+          className={btnClass}
+          onClick={() => {
+            if (l.code === "en") {
+              resetTranslateToEnglish();
+              return;
+            }
+            // If widget isn't ready yet, we silently do nothing.
+            setGoogleTranslateLanguage(l.code);
+          }}
+        >
+          <span aria-hidden="true">{l.flag}</span>
+        </button>
+      ))}
+    </div>
   );
 }
 
@@ -70,16 +157,11 @@ export default function Navbar() {
                   {item.label}
                 </span>
 
-                {/* Sliding underline */}
                 {active && (
                   <motion.span
                     layoutId="nav-underline"
                     className="absolute left-0 -bottom-1 h-[2px] w-full bg-slate-900 dark:bg-white"
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 35,
-                    }}
+                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
                   />
                 )}
               </Link>
@@ -88,19 +170,12 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* Desktop Google Translate container (Step 2) */}
+          {/* Desktop: flags in one row */}
           <div className="hidden md:flex items-center gap-2">
-            <span className="hidden lg:flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-              <span className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
-                <GlobeIcon className="h-4 w-4" />
-              </span>
+            <span className="hidden lg:grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-slate-900 dark:border-white/10 dark:bg-slate-950 dark:text-white">
+              <GlobeIcon className="h-4 w-4" />
             </span>
-
-            {/* Step 2: Add language switch container */}
-            <div
-              id="google_translate_element"
-              className="origin-right scale-[0.92]"
-            />
+            <FlagsRow size="md" />
           </div>
 
           <Link
@@ -148,7 +223,7 @@ export default function Navbar() {
         <div className="mx-auto max-w-6xl px-6 pb-5">
           <div className="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-slate-950">
             <div className="p-3 pb-2">
-              {/* Mobile translate row (Step 2) */}
+              {/* Mobile: flags in one row */}
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                   <span className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
@@ -157,11 +232,7 @@ export default function Navbar() {
                   <span className="font-medium">Translate</span>
                 </div>
 
-                {/* Step 2: Add language switch container */}
-                <div
-                  id="google_translate_element_mobile"
-                  className="origin-right scale-[0.95]"
-                />
+                <FlagsRow size="lg" />
               </div>
             </div>
 
@@ -211,59 +282,21 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Minimal styling overrides for the Google Translate dropdown */}
+      {/* Hidden Google Translate mount (required by layout script) */}
+      <div id="google_translate_element" className="hidden" />
+
+      {/* Minimal global overrides (optional) */}
       <style jsx global>{`
-        /* Hide the top banner space shifts as much as possible */
         .goog-te-banner-frame.skiptranslate {
           display: none !important;
         }
         body {
           top: 0 !important;
         }
-
-        /* Make the dropdown look minimal */
-        #google_translate_element .goog-te-gadget,
-        #google_translate_element_mobile .goog-te-gadget {
-          font-family: inherit !important;
-          color: transparent !important;
-        }
-
-        #google_translate_element select,
-        #google_translate_element_mobile select {
-          appearance: none;
-          -webkit-appearance: none;
-          -moz-appearance: none;
-          border: 1px solid rgba(148, 163, 184, 0.55);
-          background: rgba(255, 255, 255, 0.9);
-          padding: 8px 10px;
-          border-radius: 12px;
-          font-size: 12px;
-          font-weight: 600;
-          color: rgb(30, 41, 59);
-          outline: none;
-          cursor: pointer;
-        }
-
-        .dark #google_translate_element select,
-        .dark #google_translate_element_mobile select {
-          border: 1px solid rgba(255, 255, 255, 0.12);
-          background: rgba(2, 6, 23, 0.7);
-          color: rgba(226, 232, 240, 0.95);
-        }
-
-        /* Hide the small Google branding text while keeping dropdown usable */
-        #google_translate_element .goog-logo-link,
-        #google_translate_element_mobile .goog-logo-link,
-        #google_translate_element .goog-te-gadget span,
-        #google_translate_element_mobile .goog-te-gadget span {
+        /* Hide the widget UI; we only use it as an engine */
+        .goog-te-gadget,
+        .goog-te-gadget * {
           display: none !important;
-        }
-
-        /* Keep widget inline */
-        #google_translate_element,
-        #google_translate_element_mobile {
-          display: inline-flex;
-          align-items: center;
         }
       `}</style>
     </header>
