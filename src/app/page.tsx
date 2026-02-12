@@ -131,7 +131,8 @@ function IconOwner(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function IconFamily(props: React.SVGProps<SVGSVGElement>) {
+/** Parents icon (for Family growth bullet) */
+function IconParents(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -142,9 +143,12 @@ function IconFamily(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <circle cx="9" cy="8" r="3" />
-      <circle cx="17" cy="8" r="2" />
-      <path d="M2 21c0-4 4-6 7-6s7 2 7 6" />
+      {/* left parent */}
+      <circle cx="8" cy="8" r="2.5" />
+      <path d="M3.5 20c0-3.2 2.4-5.7 5.5-5.7s5.5 2.5 5.5 5.7" />
+      {/* right parent */}
+      <circle cx="17" cy="8.5" r="2.2" />
+      <path d="M14.4 20c.2-2.6 1.9-4.6 4.6-4.6 1.3 0 2.4.4 3.2 1.2" />
     </svg>
   );
 }
@@ -182,7 +186,8 @@ function IconDiscipline(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function IconDaily(props: React.SVGProps<SVGSVGElement>) {
+/** Day-to-day life icon (calendar) */
+function IconCalendar(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -193,8 +198,12 @@ function IconDaily(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M3 12h18" />
-      <path d="M12 3v18" />
+      <path d="M7 3v2" />
+      <path d="M17 3v2" />
+      <path d="M4 7h16" />
+      <path d="M6 5h12a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" />
+      <path d="M8 11h4" />
+      <path d="M8 15h8" />
     </svg>
   );
 }
@@ -279,7 +288,7 @@ export default function HomePage() {
           </p>
         </motion.div>
 
-        {/* ✨ Refined divider with micro fade-in + slight scale */}
+        {/* divider unchanged */}
         <motion.div
           initial={{ opacity: 0, y: 6 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -327,11 +336,12 @@ export default function HomePage() {
               <h2 className="text-xl font-semibold">Program Characteristics</h2>
             </div>
 
-            <ul className="mt-4 space-y-3 text-slate-700">
+            {/* NOTE: increased left padding so bullet text aligns to title */}
+            <ul className="mt-4 space-y-3 pl-[52px] text-slate-700">
               <Bullet icon={<IconOwner className="h-4 w-4" />}>
                 Becoming the Owner of God's Providence.
               </Bullet>
-              <Bullet icon={<IconFamily className="h-4 w-4" />}>
+              <Bullet icon={<IconParents className="h-4 w-4" />}>
                 Continuous commitment to spiritual growth in the Family.
               </Bullet>
               <Bullet icon={<IconMerit className="h-4 w-4" />}>
@@ -340,7 +350,7 @@ export default function HomePage() {
               <Bullet icon={<IconDiscipline className="h-4 w-4" />}>
                 Rigorous training &amp; Self-discipline.
               </Bullet>
-              <Bullet icon={<IconDaily className="h-4 w-4" />}>
+              <Bullet icon={<IconCalendar className="h-4 w-4" />}>
                 Integrate to “day-to-day” life.
               </Bullet>
             </ul>
@@ -387,7 +397,7 @@ function Bullet({
   children: React.ReactNode;
 }) {
   return (
-    <li className="flex gap-3">
+    <li className="flex items-start gap-3">
       <span className="mt-0.5 grid h-7 w-7 place-items-center rounded-xl border border-slate-200 bg-slate-50 text-slate-900">
         {icon}
       </span>
