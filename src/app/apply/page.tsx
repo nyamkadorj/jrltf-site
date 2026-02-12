@@ -8,12 +8,12 @@ import { motion } from "framer-motion";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function ApplyPage() {
-  const APPLY_URL = "#"; // Replace with Google Forms
-  const ANNOUNCEMENT_URL = "#"; // Replace with announcement room link
+  const APPLY_URL = "#";
+  const ANNOUNCEMENT_URL = "#";
 
   return (
     <div className="bg-white">
-      {/* HERO SECTION */}
+      {/* HERO SECTION (unchanged) */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-slate-200/50 blur-3xl" />
@@ -43,122 +43,132 @@ export default function ApplyPage() {
         </div>
       </section>
 
-      {/* FOR PARENTS / CANDIDATES */}
+      {/* FOR PARENTS / CANDIDATES (NOW DARK) */}
       <section className="mx-auto max-w-6xl px-6 pb-10">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm"
+          className="rounded-3xl bg-slate-900 p-8 text-white shadow-xl"
         >
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/60">
             For Parents / Candidates
           </p>
 
-          <h2 className="mt-3 text-2xl font-bold text-slate-900">
-            Sections Included in the Application Form
-          </h2>
+          <div className="mt-4 flex items-center gap-3">
+            {/* Application Form Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.8}
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M7 4h10a2 2 0 012 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 012-2z" />
+            </svg>
 
-          <p className="mt-4 text-slate-600">
+            <h2 className="text-2xl font-bold">
+              Sections Included in the Application Form
+            </h2>
+          </div>
+
+          <p className="mt-4 text-white/80">
             Please review what is included before submitting the application.
           </p>
 
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
-              <p className="text-sm font-semibold text-slate-900">Parents section</p>
-              <p className="mt-1 text-sm text-slate-600">
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            <div className="rounded-2xl bg-white/10 px-5 py-4">
+              <div className="flex items-center gap-2">
+                {/* Parents Icon */}
+                <span className="text-lg">👨‍👩‍👧</span>
+                <p className="text-sm font-semibold">Parents section</p>
+              </div>
+              <p className="mt-1 text-sm text-white/70">
                 Parent information and contacts
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
-              <p className="text-sm font-semibold text-slate-900">Family members section</p>
-              <p className="mt-1 text-sm text-slate-600">
+            <div className="rounded-2xl bg-white/10 px-5 py-4">
+              <div className="flex items-center gap-2">
+                {/* Family Icon */}
+                <span className="text-lg">🏠</span>
+                <p className="text-sm font-semibold">Family members section</p>
+              </div>
+              <p className="mt-1 text-sm text-white/70">
                 Basic family profile
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-5 py-4">
-              <p className="text-sm font-semibold text-slate-900">Candidate’s section</p>
-              <p className="mt-1 text-sm text-slate-600">
+            <div className="rounded-2xl bg-white/10 px-5 py-4">
+              <div className="flex items-center gap-2">
+                {/* Candidate Icon */}
+                <span className="text-lg">🧑</span>
+                <p className="text-sm font-semibold">Candidate’s section</p>
+              </div>
+              <p className="mt-1 text-sm text-white/70">
                 Candidate background
               </p>
             </div>
           </div>
 
-          {/* Buttons (placed after reading sections) */}
           <div className="mt-8 flex flex-wrap gap-3">
             <motion.a
               href={APPLY_URL}
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.25, ease: EASE }}
-              className="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-7 py-3.5 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+              className="inline-flex items-center justify-center rounded-2xl bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-md hover:bg-slate-100"
             >
               Start Application Form →
             </motion.a>
 
             <Link
               href="/recruitment"
-              className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 hover:bg-slate-50"
+              className="inline-flex items-center justify-center rounded-2xl border border-white/30 bg-transparent px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10"
             >
               Review Recruitment Timeline
             </Link>
           </div>
-
-          <p className="mt-3 text-xs text-slate-500">
-            (Later you can replace <span className="font-mono">APPLY_URL</span> with your Google
-            Forms link.)
-          </p>
         </motion.div>
       </section>
 
-      {/* DARK CHAPTER LEADER SECTION (keep as is) */}
+      {/* CHAPTER LEADER SECTION (NOW LIGHT) */}
       <section className="mx-auto max-w-6xl px-6 pb-16">
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="rounded-3xl bg-slate-900 px-8 py-12 text-white shadow-xl"
+          className="rounded-3xl border border-slate-200 bg-white px-8 py-12 shadow-sm"
         >
           <div className="max-w-4xl">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/60">
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">
               For Chapter Leaders/Representatives
             </p>
 
             <div className="mt-4 flex items-center gap-3">
-              {/* Megaphone Icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-7 w-7 text-white"
+                className="h-7 w-7 text-slate-900"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={1.8}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 11v2a2 2 0 002 2h2l4 4V5L7 9H5a2 2 0 00-2 2zM16 8v8m4-6v4"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 11v2a2 2 0 002 2h2l4 4V5L7 9H5a2 2 0 00-2 2zM16 8v8m4-6v4" />
               </svg>
 
-              <h2 className="text-3xl font-bold">
+              <h2 className="text-3xl font-bold text-slate-900">
                 Join the Jr.LTF Announcement Room
               </h2>
             </div>
 
-            <p className="mt-6 leading-relaxed text-white/80">
+            <p className="mt-6 leading-relaxed text-slate-600">
               All official Jr.LTF updates, recruitment announcements, selection process guidelines,
               shared materials, files, and important communications will be posted in the
               Announcement Room.
-            </p>
-
-            <p className="mt-4 leading-relaxed text-white/80">
-              Chapter leaders are strongly encouraged to join to stay aligned with HQ updates and
-              ensure proper communication with parents and families.
             </p>
 
             <motion.a
@@ -166,7 +176,7 @@ export default function ApplyPage() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.25 }}
-              className="mt-8 inline-block rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-md hover:bg-slate-100"
+              className="mt-8 inline-block rounded-2xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-md hover:opacity-90"
             >
               Join Announcement Room
             </motion.a>
