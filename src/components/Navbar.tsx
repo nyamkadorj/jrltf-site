@@ -14,7 +14,7 @@ const navItems = [
 ];
 
 const LANGS = [
-  { code: "en", flag: "🇺🇸", title: "English (Reset)" }, // reset
+  { code: "en", flag: "globe", title: "English (Reset)" },
   { code: "ko", flag: "🇰🇷", title: "한국어 (Korean)" },
   { code: "ja", flag: "🇯🇵", title: "日本語 (Japanese)" },
   { code: "mn", flag: "🇲🇳", title: "Монгол (Mongolian)" },
@@ -40,49 +40,20 @@ function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-/**
- * Google Translate stores language choice in cookies like:
- * - googtrans=/en/ko
- * We "reset" by setting it back to /en/en and reloading.
- */
-function setCookie(name: string, value: string, days = 365) {
-  const d = new Date();
-  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
-  const expires = `expires=${d.toUTCString()}`;
-  document.cookie = `${name}=${value};${expires};path=/`;
-}
-
-function deleteCookie(name: string) {
-  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
-}
-
+/* Reset to original English */
 function resetTranslateToEnglish() {
-  // most reliable approach: set googtrans to /en/en and reload
-  setCookie("googtrans", "/en/en");
-  // sometimes Google uses this variant too
-  setCookie("googtrans", "/en/en", 365);
-  // also clear possible host-specific cookie (best effort)
-  deleteCookie("googtrans");
-
-  // Re-set after delete to ensure correct final value
-  setCookie("googtrans", "/en/en", 365);
-
-  // Reload to fully revert injected translations
+  document.cookie = "googtrans=/en/en;path=/";
   window.location.reload();
 }
 
-/**
- * Triggers the hidden Google Translate widget.
- * It looks for the <select class="goog-te-combo"> and sets its value.
- */
+/* Trigger Google widget */
 function setGoogleTranslateLanguage(lang: string) {
   const select =
     document.querySelector<HTMLSelectElement>("select.goog-te-combo");
-  if (!select) return false;
+  if (!select) return;
 
   select.value = lang;
   select.dispatchEvent(new Event("change"));
-  return true;
 }
 
 function FlagsRow({ size = "md" }: { size?: "md" | "lg" }) {
@@ -107,13 +78,16 @@ function FlagsRow({ size = "md" }: { size?: "md" | "lg" }) {
           onClick={() => {
             if (l.code === "en") {
               resetTranslateToEnglish();
-              return;
+            } else {
+              setGoogleTranslateLanguage(l.code);
             }
-            // If widget isn't ready yet, we silently do nothing.
-            setGoogleTranslateLanguage(l.code);
           }}
         >
-          <span aria-hidden="true">{l.flag}</span>
+          {l.flag === "globe" ? (
+            <GlobeIcon className="h-4 w-4" />
+          ) : (
+            <span aria-hidden="true">{l.flag}</span>
+          )}
         </button>
       ))}
     </div>
@@ -170,11 +144,8 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* Desktop: flags in one row */}
+          {/* Desktop Flags Row */}
           <div className="hidden md:flex items-center gap-2">
-            <span className="hidden lg:grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-slate-900 dark:border-white/10 dark:bg-slate-950 dark:text-white">
-              <GlobeIcon className="h-4 w-4" />
-            </span>
             <FlagsRow size="md" />
           </div>
 
@@ -222,18 +193,8 @@ export default function Navbar() {
       >
         <div className="mx-auto max-w-6xl px-6 pb-5">
           <div className="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-slate-950">
-            <div className="p-3 pb-2">
-              {/* Mobile: flags in one row */}
-              <div className="flex items-center justify-between gap-3">
-                <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-                  <span className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
-                    <GlobeIcon className="h-4 w-4" />
-                  </span>
-                  <span className="font-medium">Translate</span>
-                </div>
-
-                <FlagsRow size="lg" />
-              </div>
+            <div className="p-3 pb-2 flex justify-end">
+              <FlagsRow size="lg" />
             </div>
 
             <nav className="flex flex-col p-2 pt-1">
@@ -282,10 +243,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Hidden Google Translate mount (required by layout script) */}
+      {/* Hidden Google mount */}
       <div id="google_translate_element" className="hidden" />
 
-      {/* Minimal global overrides (optional) */}
       <style jsx global>{`
         .goog-te-banner-frame.skiptranslate {
           display: none !important;
@@ -293,7 +253,6 @@ export default function Navbar() {
         body {
           top: 0 !important;
         }
-        /* Hide the widget UI; we only use it as an engine */
         .goog-te-gadget,
         .goog-te-gadget * {
           display: none !important;
