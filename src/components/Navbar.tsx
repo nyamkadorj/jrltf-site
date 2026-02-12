@@ -13,12 +13,6 @@ const navItems = [
   { label: "FAQ", href: "/faq" },
 ];
 
-const LANGS = [
-  { code: "ko", flag: "🇰🇷", title: "한국어 (Korean)" },
-  { code: "ja", flag: "🇯🇵", title: "日本語 (Japanese)" },
-  { code: "mn", flag: "🇲🇳", title: "Монгол (Mongolian)" },
-];
-
 function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -36,53 +30,6 @@ function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
       <path d="M12 3a14 14 0 0 1 0 18" />
       <path d="M12 3a14 14 0 0 0 0 18" />
     </svg>
-  );
-}
-
-function buildTranslateUrl(code: string, origin: string, pathname: string) {
-  const currentUrl = `${origin}${pathname || "/"}`;
-  return `https://translate.google.com/translate?sl=auto&tl=${code}&u=${encodeURIComponent(
-    currentUrl
-  )}`;
-}
-
-function FlagLanguageSwitch({
-  variant = "desktop",
-  pathname,
-}: {
-  variant?: "desktop" | "mobile";
-  pathname: string;
-}) {
-  const [origin, setOrigin] = React.useState("");
-
-  React.useEffect(() => {
-    setOrigin(window.location.origin);
-  }, []);
-
-  const btnClass =
-    variant === "desktop"
-      ? "grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-[16px] leading-none shadow-sm transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-slate-950 dark:hover:bg-white/5"
-      : "grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-[18px] leading-none shadow-sm transition-colors hover:bg-slate-50 dark:border-white/10 dark:bg-slate-950 dark:hover:bg-white/5";
-
-  return (
-    <div className="flex items-center gap-2">
-      {LANGS.map((l) => (
-        <a
-          key={l.code}
-          href={origin ? buildTranslateUrl(l.code, origin, pathname) : "#"}
-          target="_blank"
-          rel="noreferrer"
-          title={l.title}
-          aria-label={`Translate this page to ${l.title}`}
-          className={btnClass}
-          onClick={(e) => {
-            if (!origin) e.preventDefault();
-          }}
-        >
-          <span aria-hidden="true">{l.flag}</span>
-        </a>
-      ))}
-    </div>
   );
 }
 
@@ -141,14 +88,19 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* Desktop flags */}
+          {/* Desktop Google Translate container (Step 2) */}
           <div className="hidden md:flex items-center gap-2">
             <span className="hidden lg:flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
               <span className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
                 <GlobeIcon className="h-4 w-4" />
               </span>
             </span>
-            <FlagLanguageSwitch variant="desktop" pathname={pathname} />
+
+            {/* Step 2: Add language switch container */}
+            <div
+              id="google_translate_element"
+              className="origin-right scale-[0.92]"
+            />
           </div>
 
           <Link
@@ -190,13 +142,13 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          open ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-[560px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="mx-auto max-w-6xl px-6 pb-5">
           <div className="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/10 dark:bg-slate-950">
             <div className="p-3 pb-2">
-              {/* Mobile flags row */}
+              {/* Mobile translate row (Step 2) */}
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
                   <span className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950">
@@ -205,7 +157,11 @@ export default function Navbar() {
                   <span className="font-medium">Translate</span>
                 </div>
 
-                <FlagLanguageSwitch variant="mobile" pathname={pathname} />
+                {/* Step 2: Add language switch container */}
+                <div
+                  id="google_translate_element_mobile"
+                  className="origin-right scale-[0.95]"
+                />
               </div>
             </div>
 
@@ -254,6 +210,62 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
+      {/* Minimal styling overrides for the Google Translate dropdown */}
+      <style jsx global>{`
+        /* Hide the top banner space shifts as much as possible */
+        .goog-te-banner-frame.skiptranslate {
+          display: none !important;
+        }
+        body {
+          top: 0 !important;
+        }
+
+        /* Make the dropdown look minimal */
+        #google_translate_element .goog-te-gadget,
+        #google_translate_element_mobile .goog-te-gadget {
+          font-family: inherit !important;
+          color: transparent !important;
+        }
+
+        #google_translate_element select,
+        #google_translate_element_mobile select {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          border: 1px solid rgba(148, 163, 184, 0.55);
+          background: rgba(255, 255, 255, 0.9);
+          padding: 8px 10px;
+          border-radius: 12px;
+          font-size: 12px;
+          font-weight: 600;
+          color: rgb(30, 41, 59);
+          outline: none;
+          cursor: pointer;
+        }
+
+        .dark #google_translate_element select,
+        .dark #google_translate_element_mobile select {
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: rgba(2, 6, 23, 0.7);
+          color: rgba(226, 232, 240, 0.95);
+        }
+
+        /* Hide the small Google branding text while keeping dropdown usable */
+        #google_translate_element .goog-logo-link,
+        #google_translate_element_mobile .goog-logo-link,
+        #google_translate_element .goog-te-gadget span,
+        #google_translate_element_mobile .goog-te-gadget span {
+          display: none !important;
+        }
+
+        /* Keep widget inline */
+        #google_translate_element,
+        #google_translate_element_mobile {
+          display: inline-flex;
+          align-items: center;
+        }
+      `}</style>
     </header>
   );
 }
