@@ -23,8 +23,15 @@ const fadeUpView = (delay = 0) => ({
 
 function IconDefinition(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
       <path d="M9 7h6" />
       <path d="M8 11h8" />
@@ -35,8 +42,15 @@ function IconDefinition(props: React.SVGProps<SVGSVGElement>) {
 
 function IconVision(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <circle cx="12" cy="12" r="3" />
       <path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z" />
     </svg>
@@ -45,8 +59,15 @@ function IconVision(props: React.SVGProps<SVGSVGElement>) {
 
 function IconMission(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <circle cx="12" cy="12" r="9" />
       <circle cx="12" cy="12" r="5" />
       <circle cx="12" cy="12" r="2" />
@@ -56,8 +77,15 @@ function IconMission(props: React.SVGProps<SVGSVGElement>) {
 
 function IconGoal(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M12 2v6" />
       <path d="M12 22v-6" />
       <path d="M4.9 4.9l4.2 4.2" />
@@ -71,19 +99,33 @@ function IconGoal(props: React.SVGProps<SVGSVGElement>) {
 
 function IconCharacteristics(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M12 3l2.2 4.5L19 8.3l-3.5 3.4.8 4.9L12 14.8 7.7 16.6l.8-4.9L5 8.3l4.8-.8L12 3z" />
     </svg>
   );
 }
 
-/* --- Characteristic Icons --- */
+/* --- Characteristic Icons (meaningful) --- */
 
 function IconOwner(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M12 3l7 4v5c0 5-7 9-7 9s-7-4-7-9V7l7-4z" />
     </svg>
   );
@@ -91,8 +133,15 @@ function IconOwner(props: React.SVGProps<SVGSVGElement>) {
 
 function IconFamily(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <circle cx="9" cy="8" r="3" />
       <circle cx="17" cy="8" r="2" />
       <path d="M2 21c0-4 4-6 7-6s7 2 7 6" />
@@ -102,8 +151,15 @@ function IconFamily(props: React.SVGProps<SVGSVGElement>) {
 
 function IconMerit(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z" />
     </svg>
   );
@@ -111,8 +167,15 @@ function IconMerit(props: React.SVGProps<SVGSVGElement>) {
 
 function IconDiscipline(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <circle cx="12" cy="12" r="9" />
       <path d="M12 7v5l3 3" />
     </svg>
@@ -121,8 +184,15 @@ function IconDiscipline(props: React.SVGProps<SVGSVGElement>) {
 
 function IconDaily(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M3 12h18" />
       <path d="M12 3v18" />
     </svg>
@@ -148,24 +218,39 @@ export default function HomePage() {
 
         <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-36">
           <div className="max-w-3xl text-white">
-            <motion.p {...fadeUp(0)} className="text-xs uppercase tracking-[0.25em] text-white/70">
+            <motion.p
+              {...fadeUp(0)}
+              className="text-xs uppercase tracking-[0.25em] text-white/70"
+            >
               Spiritual Growth • Leadership • Ownership
             </motion.p>
 
-            <motion.h1 {...fadeUp(0.08)} className="mt-4 text-4xl font-bold leading-tight md:text-6xl">
+            <motion.h1
+              {...fadeUp(0.08)}
+              className="mt-4 text-4xl font-bold leading-tight md:text-6xl"
+            >
               Junior Leadership Task Force (Jr.LTF)
             </motion.h1>
 
-            <motion.p {...fadeUp(0.16)} className="mt-5 text-lg text-white/80 md:text-xl">
-              Raising true sons and daughters of Heavenly Father who take ownership in realizing God's dream—
-              One Family under God, one family at a time.
+            <motion.p
+              {...fadeUp(0.16)}
+              className="mt-5 text-lg text-white/80 md:text-xl"
+            >
+              Raising true sons and daughters of Heavenly Father who take ownership in realizing
+              God's dream— One Family under God, one family at a time.
             </motion.p>
 
             <motion.div {...fadeUp(0.24)} className="mt-8 flex flex-wrap gap-3">
-              <Link href="/recruitment" className="rounded-2xl bg-white px-6 py-3 font-medium text-slate-900 hover:opacity-90">
+              <Link
+                href="/recruitment"
+                className="rounded-2xl bg-white px-6 py-3 font-medium text-slate-900 hover:opacity-90"
+              >
                 Recruitment process
               </Link>
-              <Link href="/apply" className="rounded-2xl border border-white/35 px-6 py-3 text-white hover:bg-white/10">
+              <Link
+                href="/apply"
+                className="rounded-2xl border border-white/35 px-6 py-3 text-white hover:bg-white/10"
+              >
                 Fill application form
               </Link>
             </motion.div>
@@ -175,9 +260,11 @@ export default function HomePage() {
 
       {/* CONTENT */}
       <section className="mx-auto max-w-6xl px-6 py-16">
-
         {/* Program Definition unchanged */}
-        <motion.div {...fadeUpView(0)} className="rounded-3xl bg-slate-900 p-8 text-white shadow-sm">
+        <motion.div
+          {...fadeUpView(0)}
+          className="rounded-3xl bg-slate-900 p-8 text-white shadow-sm ring-1 ring-white/10"
+        >
           <div className="flex items-center gap-3">
             <span className="grid h-9 w-9 place-items-center rounded-2xl border border-white/20 bg-white/10">
               <IconDefinition className="h-5 w-5" />
@@ -212,20 +299,33 @@ export default function HomePage() {
           </Card>
 
           {/* Program Characteristics */}
-          <motion.div {...fadeUpView(0)} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <motion.div
+            {...fadeUpView(0)}
+            className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
+          >
             <div className="flex items-center gap-3">
-              <span className="grid h-9 w-9 place-items-center rounded-2xl border border-slate-200 bg-slate-50">
-                <IconCharacteristics className="h-5 w-5 text-slate-900" />
+              <span className="grid h-9 w-9 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-900">
+                <IconCharacteristics className="h-5 w-5" />
               </span>
               <h2 className="text-xl font-semibold">Program Characteristics</h2>
             </div>
 
             <ul className="mt-4 space-y-3 text-slate-700">
-              <Bullet icon={<IconOwner className="h-4 w-4 mt-1" />}>Becoming the Owner of God's Providence.</Bullet>
-              <Bullet icon={<IconFamily className="h-4 w-4 mt-1" />}>Continuous commitment to spiritual growth in the Family.</Bullet>
-              <Bullet icon={<IconMerit className="h-4 w-4 mt-1" />}>Earn the merit based on their own commitment.</Bullet>
-              <Bullet icon={<IconDiscipline className="h-4 w-4 mt-1" />}>Rigorous training & Self-discipline.</Bullet>
-              <Bullet icon={<IconDaily className="h-4 w-4 mt-1" />}>Integrate to “day-to-day” life.</Bullet>
+              <Bullet icon={<IconOwner className="h-4 w-4" />}>
+                Becoming the Owner of God's Providence.
+              </Bullet>
+              <Bullet icon={<IconFamily className="h-4 w-4" />}>
+                Continuous commitment to spiritual growth in the Family.
+              </Bullet>
+              <Bullet icon={<IconMerit className="h-4 w-4" />}>
+                Earn the merit based on their own commitment.
+              </Bullet>
+              <Bullet icon={<IconDiscipline className="h-4 w-4" />}>
+                Rigorous training &amp; Self-discipline.
+              </Bullet>
+              <Bullet icon={<IconDaily className="h-4 w-4" />}>
+                Integrate to “day-to-day” life.
+              </Bullet>
             </ul>
           </motion.div>
         </div>
@@ -233,6 +333,8 @@ export default function HomePage() {
     </div>
   );
 }
+
+/* ---------------- Components ---------------- */
 
 function Card({
   title,
@@ -244,13 +346,17 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <motion.div {...fadeUpView(0)} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <motion.div
+      {...fadeUpView(0)}
+      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
+    >
       <div className="flex items-center gap-3">
-        <span className="grid h-9 w-9 place-items-center rounded-2xl border border-slate-200 bg-slate-50">
+        <span className="grid h-9 w-9 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-900">
           {icon}
         </span>
         <h2 className="text-xl font-semibold">{title}</h2>
       </div>
+
       <p className="mt-3 text-slate-700">{children}</p>
     </motion.div>
   );
@@ -259,8 +365,10 @@ function Card({
 function Bullet({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
     <li className="flex gap-3">
-      {icon}
-      <span>{children}</span>
+      <span className="mt-0.5 grid h-7 w-7 place-items-center rounded-xl border border-slate-200 bg-slate-50 text-slate-900">
+        {icon}
+      </span>
+      <span className="leading-relaxed">{children}</span>
     </li>
   );
 }
