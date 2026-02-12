@@ -125,7 +125,7 @@ export default function ApplyPage() {
         >
           <div className="max-w-4xl">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/60">
-              For Chapter Leaders
+              For Chapter Leaders/Representatives
             </p>
 
             <div className="mt-4 flex items-center gap-3">
@@ -152,13 +152,13 @@ export default function ApplyPage() {
 
             <p className="mt-6 leading-relaxed text-white/80">
               All official Jr.LTF updates, recruitment announcements, selection process guidelines,
-              shared materials, related files, and important communications will be posted in the
+              shared materials, files, and important communications will be posted in the
               Announcement Room.
             </p>
 
             <p className="mt-4 leading-relaxed text-white/80">
-              Chapter leaders are strongly encouraged to join to stay aligned with HQ direction and
-              ensure proper communication with families.
+              Chapter leaders are strongly encouraged to join to stay aligned with HQ updates and
+              ensure proper communication with parents and families.
             </p>
 
             <motion.a
