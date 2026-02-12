@@ -42,35 +42,6 @@ function IconCharacteristics(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function IconVision(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  );
-}
-
-function IconMission(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <path d="M12 2l7 7-7 13L5 9l7-7z" />
-    </svg>
-  );
-}
-
-function IconGoal(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <circle cx="12" cy="12" r="9" />
-      <circle cx="12" cy="12" r="5" />
-    </svg>
-  );
-}
-
 function IconBullet(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -81,27 +52,77 @@ function IconBullet(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+/* ---------------- Page ---------------- */
+
 export default function HomePage() {
   return (
     <div>
       {/* HERO (unchanged) */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-white" />
-        <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-36 text-white">
-          <motion.h1 {...fadeUp(0)} className="text-4xl font-bold md:text-6xl">
-            Junior Leadership Task Force (Jr.LTF)
-          </motion.h1>
+
+        <motion.div
+          aria-hidden
+          className="absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-white/10 blur-3xl"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: EASE }}
+        />
+
+        <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-36">
+          <div className="max-w-3xl text-white">
+            <motion.p
+              {...fadeUp(0)}
+              className="text-xs uppercase tracking-[0.25em] text-white/70"
+            >
+              Spiritual Growth • Leadership • Ownership
+            </motion.p>
+
+            <motion.h1
+              {...fadeUp(0.08)}
+              className="mt-4 text-4xl font-bold leading-tight md:text-6xl"
+            >
+              Junior Leadership Task Force (Jr.LTF)
+            </motion.h1>
+
+            <motion.p
+              {...fadeUp(0.16)}
+              className="mt-5 text-lg text-white/80 md:text-xl"
+            >
+              Raising true sons and daughters of Heavenly Father who take ownership in realizing God's dream—
+              One Family under God, one family at a time.
+            </motion.p>
+
+            <motion.div {...fadeUp(0.24)} className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/recruitment"
+                className="rounded-2xl bg-white px-6 py-3 font-medium text-slate-900 hover:opacity-90"
+              >
+                Recruitment process
+              </Link>
+              <Link
+                href="/apply"
+                className="rounded-2xl border border-white/35 px-6 py-3 text-white hover:bg-white/10"
+              >
+                Fill application form
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
 
+      {/* CONTENT BLOCKS */}
       <section className="mx-auto max-w-6xl px-6 py-16">
-        {/* Program Definition FIRST */}
+
+        {/* Program Definition (moved to top, text unchanged) */}
         <motion.div
           {...fadeUpView(0)}
           className="rounded-3xl bg-slate-900 p-8 text-white shadow-sm"
         >
           <div className="flex items-center gap-3">
-            <IconDefinition className="h-6 w-6" />
+            <span className="grid h-9 w-9 place-items-center rounded-2xl border border-white/20 bg-white/10">
+              <IconDefinition className="h-5 w-5" />
+            </span>
             <h2 className="text-xl font-semibold">
               Program Definition
             </h2>
@@ -109,32 +130,42 @@ export default function HomePage() {
 
           <p className="mt-3 text-white/80">
             Jr.LTF is an ongoing, yearly-based spiritual leadership training program for middle and
-            high school students. It begins with an international summer workshop (kick-off)
-            and continues through structured growth in the home and local field.
+            high school students. It begins with an international summer workshop (kick-off) and
+            continues through structured growth in the home and local field.
           </p>
         </motion.div>
 
-        {/* Vision / Mission / Goal */}
         <div className="mt-10 grid gap-6 md:grid-cols-2">
-          <Card title="Vision" icon={<IconVision className="h-5 w-5" />}>
-            We envision a generation of true sons and daughters of God who embody and spread a culture of heart.
+          {/* Vision */}
+          <Card title="Vision">
+            We envision a generation of true sons and daughters of God who embody and spread a
+            culture of heart, taking ownership in realizing God’s dream of One God-centered Family,
+            building a world filled with peace and true love.
           </Card>
 
-          <Card title="Purpose / Mission" icon={<IconMission className="h-5 w-5" />}>
-            Jr.LTF guides and raises young leaders to become role models for God’s Providence.
+          {/* Mission */}
+          <Card title="Purpose / Mission">
+            Jr.LTF guides and raises young leaders (ages 12–17) to become role models for God’s
+            Providence—young people who represent God’s Ideal and set the standard of true
+            leadership.
           </Card>
 
-          <Card title="Educational Goal" icon={<IconGoal className="h-5 w-5" />}>
-            To enhance and deepen true leadership through a rigorous training program.
+          {/* Educational Goal */}
+          <Card title="Educational Goal">
+            To enhance and deepen true leadership through a rigorous training program that
+            challenges participants in all dimensions to become young leaders who are owners in
+            fulfilling God’s dream.
           </Card>
 
-          {/* Program Characteristics */}
+          {/* Program Characteristics (moved into grid, icon added) */}
           <motion.div
             {...fadeUpView(0)}
             className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
           >
             <div className="flex items-center gap-3">
-              <IconCharacteristics className="h-5 w-5 text-slate-900" />
+              <span className="grid h-9 w-9 place-items-center rounded-2xl border border-slate-200 bg-slate-50">
+                <IconCharacteristics className="h-5 w-5 text-slate-900" />
+              </span>
               <h2 className="text-xl font-semibold">Program Characteristics</h2>
             </div>
 
@@ -152,13 +183,13 @@ export default function HomePage() {
   );
 }
 
+/* ---------------- Components ---------------- */
+
 function Card({
   title,
-  icon,
   children,
 }: {
   title: string;
-  icon: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -166,13 +197,7 @@ function Card({
       {...fadeUpView(0)}
       className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
     >
-      <div className="flex items-center gap-3">
-        <span className="grid h-9 w-9 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-900 shadow-sm">
-          {icon}
-        </span>
-        <h2 className="text-xl font-semibold">{title}</h2>
-      </div>
-
+      <h2 className="text-xl font-semibold">{title}</h2>
       <p className="mt-3 text-slate-700">{children}</p>
     </motion.div>
   );
