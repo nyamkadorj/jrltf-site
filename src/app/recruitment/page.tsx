@@ -78,7 +78,9 @@ export default function RecruitmentPage() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         {/* Header */}
         <motion.div {...fadeUp(0)} className="max-w-3xl">
-          <h1 className="text-4xl font-bold text-slate-900">Recruitment Process</h1>
+          <h1 className="text-4xl font-bold text-slate-900">
+            Recruitment Process
+          </h1>
           <p className="mt-4 text-slate-600">
             The recruitment process is designed to support candidates’ spiritual
             growth, clarify readiness, and confirm alignment with the program
@@ -87,8 +89,12 @@ export default function RecruitmentPage() {
         </motion.div>
 
         {/* Top cards */}
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          <InfoCard title="Objectives" delay={0.05}>
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+          <InfoCard
+            title="Objectives"
+            delay={0.05}
+            icon={<TargetIcon />}
+          >
             <ul className="list-disc space-y-2 pl-5 text-slate-700">
               <li>
                 Select Jr.LTF members according to the fulfillment of the
@@ -101,17 +107,11 @@ export default function RecruitmentPage() {
             </ul>
           </InfoCard>
 
-          <InfoCard title="Mindset" delay={0.08}>
-            <ul className="list-disc space-y-2 pl-5 text-slate-700">
-              <li>
-                This is for members(candidates)’ spiritual growth, their family,
-                and their community
-              </li>
-              <li>Avoid personal bias and pursue fairness and objectivity</li>
-            </ul>
-          </InfoCard>
-
-          <InfoCard title="Method" delay={0.11}>
+          <InfoCard
+            title="Method"
+            delay={0.08}
+            icon={<ClipboardIcon />}
+          >
             <p className="text-slate-700">
               Use two assessment steps to confirm whether candidates are
               qualified to join.
@@ -154,10 +154,12 @@ export default function RecruitmentPage() {
 function InfoCard({
   title,
   delay,
+  icon,
   children,
 }: {
   title: string;
   delay: number;
+  icon: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
@@ -165,14 +167,58 @@ function InfoCard({
       {...fadeUp(delay)}
       className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
     >
-      {/* Make title bold */}
-      <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
-        {title}
-      </p>
-      <div className="mt-3">{children}</div>
+      <div className="flex items-center gap-3">
+        <div className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-slate-50 text-slate-700">
+          {icon}
+        </div>
+        <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+          {title}
+        </p>
+      </div>
+
+      <div className="mt-4">{children}</div>
     </motion.section>
   );
 }
+
+/* ---------------- Icons ---------------- */
+
+function TargetIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-4 w-4"
+    >
+      <circle cx="12" cy="12" r="9" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="12" cy="12" r="1.5" />
+    </svg>
+  );
+}
+
+function ClipboardIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-4 w-4"
+    >
+      <rect x="9" y="3" width="6" height="4" rx="1" />
+      <rect x="5" y="5" width="14" height="16" rx="2" />
+    </svg>
+  );
+}
+
+/* ---------------- Timeline (unchanged) ---------------- */
 
 function VerticalTimeline({ steps }: { steps: Step[] }) {
   return (
@@ -183,13 +229,11 @@ function VerticalTimeline({ steps }: { steps: Step[] }) {
       viewport={{ once: true, amount: 0.2 }}
       className="relative space-y-6"
     >
-      {/* vertical line (aligned to the center of the step circle) */}
       <div className="absolute left-5 top-0 h-full w-px bg-slate-200" />
 
       {steps.map((s, i) => (
         <motion.li key={`${i}-${s.title}`} variants={item} className="relative">
           <div className="flex items-start gap-5">
-            {/* step number (clean center alignment) */}
             <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center">
               <motion.div
                 initial={{ scale: 0.9, opacity: 0.75 }}
@@ -204,7 +248,6 @@ function VerticalTimeline({ steps }: { steps: Step[] }) {
               </motion.div>
             </div>
 
-            {/* content card */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -217,7 +260,6 @@ function VerticalTimeline({ steps }: { steps: Step[] }) {
                   {s.title}
                 </h3>
 
-                {/* Date badge: stronger emphasis + bold */}
                 <span className="inline-flex items-center rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-800 shadow-sm">
                   {s.date}
                 </span>
