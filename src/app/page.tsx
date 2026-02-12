@@ -279,7 +279,24 @@ export default function HomePage() {
           </p>
         </motion.div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {/* ✨ Refined divider with micro fade-in + slight scale */}
+        <motion.div
+          initial={{ opacity: 0, y: 6 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="relative my-12"
+        >
+          <motion.div
+            initial={{ scaleX: 0.92, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.8, ease: EASE, delay: 0.05 }}
+            className="origin-center h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent"
+          />
+        </motion.div>
+
+        <div className="grid gap-6 md:grid-cols-2">
           <Card title="Vision" icon={<IconVision className="h-5 w-5" />}>
             We envision a generation of true sons and daughters of God who embody and spread a
             culture of heart, taking ownership in realizing God’s dream of One God-centered Family,
@@ -362,7 +379,13 @@ function Card({
   );
 }
 
-function Bullet({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
+function Bullet({
+  icon,
+  children,
+}: {
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
   return (
     <li className="flex gap-3">
       <span className="mt-0.5 grid h-7 w-7 place-items-center rounded-xl border border-slate-200 bg-slate-50 text-slate-900">
