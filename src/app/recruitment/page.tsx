@@ -48,7 +48,7 @@ const TIMELINE: Step[] = [
   {
     title: "Families submit the application form",
     date: "Before March 25",
-    note: "Note: start saving and raising funds for summer program",
+    note: "Note: start saving and raising funds for summer course",
   },
   { title: "Deadline for the application form", date: "By March 25" },
   {

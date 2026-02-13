@@ -178,7 +178,7 @@ export default function ApplyPage() {
               transition={{ duration: 0.25 }}
               className="mt-8 inline-block rounded-2xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-md hover:opacity-90"
             >
-              Join Announcement Room
+              Leaders' Room
             </motion.a>
           </div>
         </motion.section>
