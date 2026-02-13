@@ -11,7 +11,7 @@ type StandardItem = {
 
 const STANDARDS: StandardItem[] = [
   {
-    title: "Identity",
+    title: "1. Identity",
     entranceTitle: "Spiritually awake to one’s identity:",
     entrance: [
       "Have a clear awareness of identity as a son or daughter of God, nurtured through a solid family and spiritual foundation",
@@ -28,7 +28,7 @@ const STANDARDS: StandardItem[] = [
     ],
   },
   {
-    title: "Right Motivation driven by True Love and Filial Piety",
+    title: "2. Right Motivation (driven by Filial Piety & True Love)",
     entranceTitle: "Has a filial heart towards parents",
     entrance: [
       "Demonstrates a filial heart toward parents, expressed through respect, openness to guidance and seek to understand parents’ expectations.",
@@ -52,7 +52,7 @@ const STANDARDS: StandardItem[] = [
     ],
   },
   {
-    title: "Self-discipline (Self-mastery)",
+    title: "3. Self-discipline (Self-mastery)",
     entranceTitle: "Basic God-centered life habits:",
     entrance: [
       "Have basic spiritual practices established at home, such as the habit of praying/reporting to God, reflect key moments of the day, sharing it to family members, journal, and understand the importance of doing every action with jungsung.",
@@ -67,7 +67,7 @@ const STANDARDS: StandardItem[] = [
     ],
   },
   {
-    title: "Growth through Challenge",
+    title: "4. Growth through Challenge",
     entranceTitle: "Willing to be challenged:",
     entrance: [
       "Self-motivated to grow spiritually and in all dimensions—physical, mental, and emotional—beyond their comfort zone.",
@@ -80,7 +80,7 @@ const STANDARDS: StandardItem[] = [
     ],
   },
   {
-    title: "Role model/Excellence",
+    title: "5. Role model/Excellence",
     entranceTitle: "Motivation to set the bar high:",
     entrance: [
       "Practice thinking and acting beyond oneself, embracing the mindset that “It is not about me.”",
@@ -96,7 +96,7 @@ const STANDARDS: StandardItem[] = [
     ],
   },
   {
-    title: "Parents’ Leadership Role",
+    title: "6. Parents’ Leadership Role",
     entranceTitle: "Parents as the main educators of children’s spiritual growth:",
     entrance: [
       "Parents and family, are willing to walk together with their children through this leadership course.",

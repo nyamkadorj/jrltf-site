@@ -10,7 +10,7 @@ const navItems = [
   { label: "Framework", href: "/framework" },
   { label: "Standards", href: "/standards" },
   { label: "Recruitment", href: "/recruitment" },
-  { label: "FAQ", href: "/faq" },
+  { label: "Q&A", href: "/faq" },
 ];
 
 const LANGS = [
