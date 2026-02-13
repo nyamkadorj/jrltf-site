@@ -108,9 +108,8 @@ export default function FrameworkPage() {
         </p>
       </motion.div>
 
-      {/* Sections (Expandable) */}
       <div className="mt-10 space-y-5">
-        {/* 1. Identity / Vertical Alignment */}
+        {/* 1 */}
         <FrameworkCard
           id={1}
           openId={openId}
@@ -120,7 +119,6 @@ export default function FrameworkPage() {
         >
           <div className="grid gap-6 lg:grid-cols-[360px_1fr]">
             <DarkBlock title={`1. Identity / Vertical\nAlignment`} />
-
             <AccentBlock>
               <p className="leading-relaxed text-slate-900">
                 <b>At the foundation</b>, our youth should first understand <b>who they are</b> and
@@ -135,7 +133,7 @@ export default function FrameworkPage() {
           </div>
         </FrameworkCard>
 
-        {/* 2. Culture Building */}
+        {/* 2 */}
         <FrameworkCard
           id={2}
           openId={openId}
@@ -157,13 +155,11 @@ export default function FrameworkPage() {
               <WhitePill>
                 <b>A culture</b> where God is at the center
               </WhitePill>
-
               <WhitePill>
                 <b>A culture</b> where we are motivated to live for the sake of others{" "}
                 <b>(culture of heart)</b> and a culture of excellence (the driver to do and be our
                 best for heavenly father).
               </WhitePill>
-
               <WhitePill>
                 <b>A culture</b> where we are living to embody God’s truth, righteousness, goodness
                 and True Love in our everyday life.
@@ -172,7 +168,7 @@ export default function FrameworkPage() {
           </div>
         </FrameworkCard>
 
-        {/* 3. Standards */}
+        {/* 3 */}
         <FrameworkCard
           id={3}
           openId={openId}
@@ -204,7 +200,7 @@ export default function FrameworkPage() {
           </div>
         </FrameworkCard>
 
-        {/* 4. Core Values Framework */}
+        {/* 4 */}
         <FrameworkCard
           id={4}
           openId={openId}
@@ -231,8 +227,11 @@ export default function FrameworkPage() {
               </p>
             </AccentBlock>
 
-            {/* Hover-reveal detail on each block */}
-            <div className="space-y-2">
+            {/* ✅ RESIZE FOR WEB:
+                - Match the height of the right column to the left column visually
+                - Use an even 4-row layout on lg screens (fills space)
+                - Reduce padding a bit so everything fits “inside the big block” area */}
+            <div className="grid gap-2 lg:h-full lg:grid-rows-4">
               {CORE_VALUES.map((v) => (
                 <CoreValueHoverCard key={v.label} label={v.label} bullets={v.bullets} />
               ))}
@@ -408,7 +407,7 @@ function ClickableMiniPill({
   );
 }
 
-/* ✅ Hover-reveal panel for Core Values */
+/* ✅ UPDATED sizing so the 4 blocks “fit” nicely on web (desktop) */
 function CoreValueHoverCard({
   label,
   bullets,
@@ -417,12 +416,14 @@ function CoreValueHoverCard({
   bullets: string[];
 }) {
   return (
-    <div className="group relative">
-      {/* clickable-look header */}
+    <div className="group relative lg:h-full">
       <button
         type="button"
         className={[
-          "w-full rounded-2xl border border-slate-200 bg-white px-5 py-3.5 text-left shadow-sm",
+          "w-full lg:h-full rounded-2xl border border-slate-200 bg-white",
+          // tighter padding on desktop
+          "px-4 py-3 md:px-5 md:py-3.5 lg:px-4 lg:py-3",
+          "text-left shadow-sm",
           "transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]",
           "hover:-translate-y-[1px] hover:border-slate-300 hover:bg-slate-50 hover:shadow-md",
           "active:translate-y-0 active:shadow-sm",
@@ -430,8 +431,8 @@ function CoreValueHoverCard({
         ].join(" ")}
         aria-label={label}
       >
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-[15px] font-semibold leading-snug text-slate-900">
+        <div className="flex h-full items-center justify-between gap-3">
+          <span className="text-[14px] font-semibold leading-snug text-slate-900 md:text-[15px]">
             {label}
           </span>
           <span className="shrink-0 text-slate-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-slate-600">
@@ -440,7 +441,7 @@ function CoreValueHoverCard({
         </div>
       </button>
 
-      {/* Hover tooltip/panel (desktop hover + keyboard focus) */}
+      {/* Desktop hover panel */}
       <div
         className={[
           "pointer-events-none absolute right-0 top-1/2 z-20 hidden w-[520px] -translate-y-1/2 lg:block",
@@ -460,7 +461,7 @@ function CoreValueHoverCard({
         </div>
       </div>
 
-      {/* Mobile-friendly: show details under card on small screens */}
+      {/* Mobile details (unchanged) */}
       <div className="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 lg:hidden">
         <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">
           {label}
