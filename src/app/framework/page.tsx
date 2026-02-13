@@ -14,6 +14,7 @@ const inView = (delay = 0) => ({
   transition: { duration: 0.6, ease: EASE, delay },
 });
 
+// Slower + richer accordion motion
 const accordion = {
   open: {
     opacity: 1,
@@ -33,7 +34,6 @@ const accordion = {
   },
 };
 
-// Keep links as-is (same behavior), only visuals will change to “clickable small blocks”.
 const STANDARDS_LINKS = [
   { label: "1. Identity", href: "/standards#identity" },
   {
@@ -47,6 +47,14 @@ const STANDARDS_LINKS = [
   { label: "4. Growth through Challenge", href: "/standards#growth-through-challenge" },
   { label: "5. Role Model / Excellence", href: "/standards#role-model-excellence" },
   { label: "6. Parents’ Leadership role", href: "/standards#parents-leadership-role" },
+];
+
+// Core Values “clickable blocks” (no navigation needed right now, so use buttons)
+const CORE_VALUES = [
+  "1. Living for the Greater Good",
+  "2. Ownership",
+  "3. Teamwork",
+  "4. Dream Big",
 ];
 
 export default function FrameworkPage() {
@@ -150,7 +158,6 @@ export default function FrameworkPage() {
               </p>
             </AccentBlock>
 
-            {/* ✅ Only change: make the 6 blocks feel clearly “clickable” */}
             <div className="space-y-3">
               {STANDARDS_LINKS.map((s) => (
                 <ClickableMiniPill key={s.href} href={s.href}>
@@ -188,13 +195,12 @@ export default function FrameworkPage() {
               </p>
             </AccentBlock>
 
-            <div className="space-y-3">
-              <WhitePill className="text-center text-lg font-semibold">
-                1. Living for the Greater Good
-              </WhitePill>
-              <WhitePill className="text-center text-lg font-semibold">2. Ownership</WhitePill>
-              <WhitePill className="text-center text-lg font-semibold">3. Teamwork</WhitePill>
-              <WhitePill className="text-center text-lg font-semibold">4. Dream Big</WhitePill>
+            {/* ✅ Change: Core Value blocks now match “clickable mini blocks” look
+                ✅ Change: tighter padding + slightly smaller text so it “fits” (no extra bottom space on desktop) */}
+            <div className="space-y-2">
+              {CORE_VALUES.map((label) => (
+                <ClickableMiniBlock key={label} label={label} />
+              ))}
             </div>
           </div>
         </FrameworkCard>
@@ -227,6 +233,7 @@ function FrameworkCard({
       {...inView(delay)}
       className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
     >
+      {/* Clickable header */}
       <button
         type="button"
         onClick={() => setOpenId(isOpen ? 0 : id)}
@@ -238,6 +245,7 @@ function FrameworkCard({
             {title}
           </h2>
 
+          {/* Plus icon */}
           <span className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-700 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
             <span
               className={[
@@ -250,9 +258,11 @@ function FrameworkCard({
           </span>
         </div>
 
+        {/* subtle helper line */}
         <div className="mt-3 h-px w-full bg-slate-100" />
       </button>
 
+      {/* Expand area */}
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
@@ -339,7 +349,7 @@ function WhitePill({
   );
 }
 
-/* ✅ “Clickable small blocks” look (same content, just stronger affordance) */
+/* ✅ Clickable standards links (unchanged behavior) */
 function ClickableMiniPill({
   href,
   children,
@@ -365,5 +375,32 @@ function ClickableMiniPill({
         </span>
       </div>
     </Link>
+  );
+}
+
+/* ✅ Core values: same clickable visual, but no navigation yet (button) */
+function ClickableMiniBlock({ label }: { label: string }) {
+  return (
+    <button
+      type="button"
+      className={[
+        "group w-full rounded-2xl border border-slate-200 bg-white px-5 py-3.5 text-left shadow-sm",
+        "transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "hover:-translate-y-[1px] hover:border-slate-300 hover:bg-slate-50 hover:shadow-md",
+        "active:translate-y-0 active:shadow-sm",
+        "focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2",
+      ].join(" ")}
+      aria-label={label}
+    >
+      <div className="flex items-center justify-between gap-3">
+        {/* Slightly smaller text than before so the 4 items “fit” (no extra bottom space on desktop) */}
+        <span className="text-[15px] font-semibold leading-snug text-slate-900">
+          {label}
+        </span>
+        <span className="shrink-0 text-slate-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-slate-600">
+          →
+        </span>
+      </div>
+    </button>
   );
 }
