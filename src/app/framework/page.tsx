@@ -14,7 +14,6 @@ const inView = (delay = 0) => ({
   transition: { duration: 0.6, ease: EASE, delay },
 });
 
-// Slower + richer accordion motion
 const accordion = {
   open: {
     opacity: 1,
@@ -49,12 +48,49 @@ const STANDARDS_LINKS = [
   { label: "6. Parents’ Leadership role", href: "/standards#parents-leadership-role" },
 ];
 
-// Core Values “clickable blocks” (no navigation needed right now, so use buttons)
-const CORE_VALUES = [
-  "1. Living for the Greater Good",
-  "2. Ownership",
-  "3. Teamwork",
-  "4. Dream Big",
+type CoreValue = {
+  label: string;
+  bullets: string[];
+};
+
+const CORE_VALUES: CoreValue[] = [
+  {
+    label: "1. Living for the Greater Good",
+    bullets: [
+      "I Align myself to God’s Vision, Values and Goals",
+      "I continuously Invest in others to develop their potential",
+      "I Multiply the vision and value by taking creative action",
+      "I Share best practices to many people",
+    ],
+  },
+  {
+    label: "2. Ownership",
+    bullets: [
+      "I am entrusted to take Responsibility for stated and expected goals given by the organization",
+      "I am Accountable for the execution and outcomes of stated and expected goals.",
+      "I take Initiative by being proactive and solving problem.",
+      "I Strive for excellence with passion and commitment.",
+      "I Execute the goals that I set out to achieve.",
+    ],
+  },
+  {
+    label: "3. Teamwork",
+    bullets: [
+      "I Mentor team members from God’s perspective to personally guide their growth and development.",
+      "I keep Open-mindedness to give and receive feedback and new ideas.",
+      "I Respect team member by trusting them and recognizing the merit they bring.",
+      "I Energize team members with my conviction in the common vision and goals.",
+    ],
+  },
+  {
+    label: "4. Dream Big",
+    bullets: [
+      "I have absolute Conviction in the fulfillment of One Family under God.",
+      "I Aspire to challenge limitations by looking for possibilities and seizing the opportunities.",
+      "I am Result-oriented, learning from both victories and failures with the end goal in mind.",
+      "I am Expertise-driven to be an effective part of realizing One Family under God.",
+    ],
+  },
 ];
 
 export default function FrameworkPage() {
@@ -195,11 +231,10 @@ export default function FrameworkPage() {
               </p>
             </AccentBlock>
 
-            {/* ✅ Change: Core Value blocks now match “clickable mini blocks” look
-                ✅ Change: tighter padding + slightly smaller text so it “fits” (no extra bottom space on desktop) */}
+            {/* Hover-reveal detail on each block */}
             <div className="space-y-2">
-              {CORE_VALUES.map((label) => (
-                <ClickableMiniBlock key={label} label={label} />
+              {CORE_VALUES.map((v) => (
+                <CoreValueHoverCard key={v.label} label={v.label} bullets={v.bullets} />
               ))}
             </div>
           </div>
@@ -233,7 +268,6 @@ function FrameworkCard({
       {...inView(delay)}
       className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
     >
-      {/* Clickable header */}
       <button
         type="button"
         onClick={() => setOpenId(isOpen ? 0 : id)}
@@ -245,7 +279,6 @@ function FrameworkCard({
             {title}
           </h2>
 
-          {/* Plus icon */}
           <span className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-700 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]">
             <span
               className={[
@@ -258,11 +291,9 @@ function FrameworkCard({
           </span>
         </div>
 
-        {/* subtle helper line */}
         <div className="mt-3 h-px w-full bg-slate-100" />
       </button>
 
-      {/* Expand area */}
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
@@ -349,7 +380,6 @@ function WhitePill({
   );
 }
 
-/* ✅ Clickable standards links (unchanged behavior) */
 function ClickableMiniPill({
   href,
   children,
@@ -378,29 +408,69 @@ function ClickableMiniPill({
   );
 }
 
-/* ✅ Core values: same clickable visual, but no navigation yet (button) */
-function ClickableMiniBlock({ label }: { label: string }) {
+/* ✅ Hover-reveal panel for Core Values */
+function CoreValueHoverCard({
+  label,
+  bullets,
+}: {
+  label: string;
+  bullets: string[];
+}) {
   return (
-    <button
-      type="button"
-      className={[
-        "group w-full rounded-2xl border border-slate-200 bg-white px-5 py-3.5 text-left shadow-sm",
-        "transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]",
-        "hover:-translate-y-[1px] hover:border-slate-300 hover:bg-slate-50 hover:shadow-md",
-        "active:translate-y-0 active:shadow-sm",
-        "focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2",
-      ].join(" ")}
-      aria-label={label}
-    >
-      <div className="flex items-center justify-between gap-3">
-        {/* Slightly smaller text than before so the 4 items “fit” (no extra bottom space on desktop) */}
-        <span className="text-[15px] font-semibold leading-snug text-slate-900">
-          {label}
-        </span>
-        <span className="shrink-0 text-slate-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-slate-600">
-          →
-        </span>
+    <div className="group relative">
+      {/* clickable-look header */}
+      <button
+        type="button"
+        className={[
+          "w-full rounded-2xl border border-slate-200 bg-white px-5 py-3.5 text-left shadow-sm",
+          "transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "hover:-translate-y-[1px] hover:border-slate-300 hover:bg-slate-50 hover:shadow-md",
+          "active:translate-y-0 active:shadow-sm",
+          "focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2",
+        ].join(" ")}
+        aria-label={label}
+      >
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-[15px] font-semibold leading-snug text-slate-900">
+            {label}
+          </span>
+          <span className="shrink-0 text-slate-400 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-slate-600">
+            ↗
+          </span>
+        </div>
+      </button>
+
+      {/* Hover tooltip/panel (desktop hover + keyboard focus) */}
+      <div
+        className={[
+          "pointer-events-none absolute right-0 top-1/2 z-20 hidden w-[520px] -translate-y-1/2 lg:block",
+          "opacity-0 transition-opacity duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "group-hover:opacity-100 group-focus-within:opacity-100",
+        ].join(" ")}
+      >
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xl">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">
+            {label}
+          </p>
+          <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-700">
+            {bullets.map((b, idx) => (
+              <li key={idx}>{b}</li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </button>
+
+      {/* Mobile-friendly: show details under card on small screens */}
+      <div className="mt-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 lg:hidden">
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">
+          {label}
+        </p>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-700">
+          {bullets.map((b, idx) => (
+            <li key={idx}>{b}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }
