@@ -4,7 +4,7 @@ export default function FAQPage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-16">
       <div className="max-w-3xl">
-        <h1 className="text-4xl font-bold">Frequently Asked Questions</h1>
+        <h1 className="text-4xl font-bold">Common asked questions</h1>
         <p className="mt-4 text-slate-600">
           This section addresses common questions from parents and youth
           regarding Jr.LTF and the recruitment process.

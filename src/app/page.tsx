@@ -282,9 +282,7 @@ export default function HomePage() {
           </div>
 
           <p className="mt-3 text-white/80">
-            Jr.LTF is an ongoing, yearly-based spiritual leadership training program for middle and
-            high school students. It begins with an international summer workshop (kick-off) and
-            continues through structured growth in the home and local field.
+            Jr. LTF is an ongoing spiritual leadership training program for middle and high school students. The program has the Jr.LTF´s International Challenger’s Course, which serves as the final evaluation before officially entering as Jr.LTF member. Selected members will continue their spiritual growth and raise the standard through their own homes and local fields, with the guidance and support of parents, chapter leaders (youth leaders), and the Jr.LTF program team at HQ.
           </p>
         </motion.div>
 
