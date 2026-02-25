@@ -122,6 +122,7 @@ export default function ApplyPage() {
               className="inline-flex items-center justify-center rounded-2xl bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-md hover:bg-slate-100"
             >
               Start Application Form →
+              (apply link will beactivated in Mar)
             </motion.a>
 
             <Link
