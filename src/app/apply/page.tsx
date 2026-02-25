@@ -121,8 +121,7 @@ export default function ApplyPage() {
               transition={{ duration: 0.25, ease: EASE }}
               className="inline-flex items-center justify-center rounded-2xl bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-md hover:bg-slate-100"
             >
-              Start Application Form →
-              (apply link will beactivated in Mar)
+              Start Application Form → (link will be activated in March)
             </motion.a>
 
             <Link
