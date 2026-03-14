@@ -129,8 +129,7 @@ export default function StandardsPage() {
           Program Standards
         </h1>
         <p className="mt-4 max-w-3xl text-slate-600">
-          Entrance standards clarify who this program is for. <strong>Candidates must meet the entrance standard in order to become Jr.LTF member.</strong> 
-          The Objectives describe who members are expected to become and achieve through the program.
+          Entrance standards clarify who this program is for. <strong>Candidates must meet the entrance standard in order to become Jr.LTF member.</strong> The Objectives describe who members are expected to become and achieve through the program.
         </p>
       </section>
 
