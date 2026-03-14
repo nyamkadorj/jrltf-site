@@ -8,12 +8,12 @@ import { motion } from "framer-motion";
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export default function ApplyPage() {
-  const APPLY_URL = "#";
+  const APPLY_URL = "https://forms.gle/9A7uoG5BtCq4wFP6A";
   const ANNOUNCEMENT_URL = "#";
 
   return (
     <div className="bg-white">
-      {/* HERO SECTION (unchanged) */}
+      {/* HERO SECTION */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-slate-200/50 blur-3xl" />
@@ -43,7 +43,7 @@ export default function ApplyPage() {
         </div>
       </section>
 
-      {/* FOR PARENTS / CANDIDATES (NOW DARK) */}
+      {/* FOR PARENTS / CANDIDATES */}
       <section className="mx-auto max-w-6xl px-6 pb-10">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
@@ -57,7 +57,7 @@ export default function ApplyPage() {
           </p>
 
           <div className="mt-4 flex items-center gap-3">
-            {/* Application Form Icon */}
+            {/* Section Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 text-white"
@@ -81,7 +81,6 @@ export default function ApplyPage() {
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             <div className="rounded-2xl bg-white/10 px-5 py-4">
               <div className="flex items-center gap-2">
-                {/* Parents Icon */}
                 <span className="text-lg">👨‍👩‍👧</span>
                 <p className="text-sm font-semibold">Parents section</p>
               </div>
@@ -92,7 +91,6 @@ export default function ApplyPage() {
 
             <div className="rounded-2xl bg-white/10 px-5 py-4">
               <div className="flex items-center gap-2">
-                {/* Family Icon */}
                 <span className="text-lg">🏠</span>
                 <p className="text-sm font-semibold">Family members section</p>
               </div>
@@ -103,7 +101,6 @@ export default function ApplyPage() {
 
             <div className="rounded-2xl bg-white/10 px-5 py-4">
               <div className="flex items-center gap-2">
-                {/* Candidate Icon */}
                 <span className="text-lg">🧑</span>
                 <p className="text-sm font-semibold">Candidate’s section</p>
               </div>
@@ -113,15 +110,28 @@ export default function ApplyPage() {
             </div>
           </div>
 
+          {/* Buttons */}
           <div className="mt-8 flex flex-wrap gap-3">
             <motion.a
               href={APPLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ y: -2, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.25, ease: EASE }}
-              className="inline-flex items-center justify-center rounded-2xl bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-md hover:bg-slate-100"
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-md hover:bg-slate-100"
             >
-              Start Application Form → (link will be activated in March)
+              {/* Google Form Icon */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M19 3H14.82C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 00-2 2v16a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 0a1 1 0 110 2 1 1 0 010-2zm5 16H7v-2h10v2zm0-4H7v-2h10v2zm0-4H7V9h10v2z" />
+              </svg>
+
+              Start Application Form →
             </motion.a>
 
             <Link
@@ -134,7 +144,7 @@ export default function ApplyPage() {
         </motion.div>
       </section>
 
-      {/* CHAPTER LEADER SECTION (NOW LIGHT) */}
+      {/* CHAPTER LEADER SECTION */}
       <section className="mx-auto max-w-6xl px-6 pb-16">
         <motion.section
           initial={{ opacity: 0, y: 20 }}
