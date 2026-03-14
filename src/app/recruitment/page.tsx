@@ -97,11 +97,11 @@ export default function RecruitmentPage() {
           >
             <ul className="list-disc space-y-2 pl-5 text-slate-700">
               <li>
-                Chapters select <strong>Jr.LTF challengers</strong>according to the fulfillment of the
+                Chapters select <strong>Jr.LTF challengers</strong> according to the fulfillment of the
                 joining requirements (1st assessment).
               </li>
               <li>
-                Then organizers select <strong>Jr.LTF Member</strong>according to fulfillment of Entrance standard after 2nd assessment Process.
+                Then organizers select <strong>Jr.LTF Member</strong> according to fulfillment of Entrance standard after 2nd assessment Process.
               </li>
               <li>
                 Allow candidates to reflect on their readiness (not simply pass
@@ -120,9 +120,9 @@ export default function RecruitmentPage() {
               qualified to join.
             </p>
             <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
-              <li>1st assessment - Screening process (70-day Spiritual Habit Tracker; Interview with chapter leader/representative)</li>
+              <li><strong>1st assessment</strong> - Screening process (70-day Spiritual Habit Tracker; Interview with chapter leader/representative)</li>
               <li>
-                2nd assessment - Summer Challengers' Course, direct input on motivation and
+                <strong>2nd assessment</strong> - Jr.LTF Summer Challengers' Course, direct input on motivation and
                 behavior
               </li>
             </ul>
