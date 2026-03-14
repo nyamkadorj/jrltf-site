@@ -116,15 +116,15 @@ export default function ApplyPage() {
               href={APPLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ y: -2, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ y: -2, scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.25, ease: EASE }}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-7 py-3.5 text-sm font-semibold text-slate-900 shadow-md hover:bg-slate-100"
+              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-10 py-5 text-base font-semibold text-slate-900 shadow-lg hover:bg-slate-100"
             >
               {/* Google Form Icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
+                className="h-5 w-5"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -141,6 +141,11 @@ export default function ApplyPage() {
               Review Recruitment Timeline
             </Link>
           </div>
+
+          {/* Notice */}
+          <p className="mt-4 text-sm font-semibold text-red-300">
+            Notice: Application form will be no longer available after March 25!
+          </p>
         </motion.div>
       </section>
 
