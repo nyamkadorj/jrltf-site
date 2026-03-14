@@ -61,6 +61,7 @@ function CountdownToMarch25() {
 
     updateCountdown();
     const timer = setInterval(updateCountdown, 1000);
+
     return () => clearInterval(timer);
   }, []);
 
@@ -84,7 +85,6 @@ function CountdownToMarch25() {
       <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
         Time Remaining
       </p>
-
       <div className="flex flex-wrap gap-2">
         {items.map((item) => (
           <div
@@ -108,7 +108,7 @@ export default function ApplyPage() {
 
   return (
     <div className="bg-white">
-      {/* HERO */}
+      {/* HERO SECTION */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-slate-200/50 blur-3xl" />
@@ -138,12 +138,12 @@ export default function ApplyPage() {
         </div>
       </section>
 
-      {/* MAIN CARD */}
+      {/* FOR PARENTS / CANDIDATES */}
       <section className="mx-auto max-w-6xl px-6 pb-10">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: EASE }}
           className="rounded-3xl bg-slate-900 p-8 text-white shadow-xl"
         >
@@ -151,9 +151,27 @@ export default function ApplyPage() {
             For Parents / Candidates
           </p>
 
-          <h2 className="mt-4 text-2xl font-bold">
-            Sections Included in the Application Form
-          </h2>
+          <div className="mt-4 flex items-center gap-3">
+            {/* Section Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.8}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 12h6m-6 4h6M7 4h10a2 2 0 012 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 012-2z"
+              />
+            </svg>
+
+            <h2 className="text-2xl font-bold">
+              Sections Included in the Application Form
+            </h2>
+          </div>
 
           <p className="mt-4 text-white/80">
             Please review what is included before submitting the application.
@@ -161,46 +179,50 @@ export default function ApplyPage() {
 
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             <div className="rounded-2xl bg-white/10 px-5 py-4">
-              <p className="text-sm font-semibold">👨‍👩‍👧 Parents section</p>
+              <div className="flex items-center gap-2">
+                <span className="text-lg">👨‍👩‍👧</span>
+                <p className="text-sm font-semibold">Parents section</p>
+              </div>
               <p className="mt-1 text-sm text-white/70">
                 Parent information and contacts
               </p>
             </div>
 
             <div className="rounded-2xl bg-white/10 px-5 py-4">
-              <p className="text-sm font-semibold">🏠 Family members section</p>
+              <div className="flex items-center gap-2">
+                <span className="text-lg">🏠</span>
+                <p className="text-sm font-semibold">Family members section</p>
+              </div>
               <p className="mt-1 text-sm text-white/70">
                 Basic family profile
               </p>
             </div>
 
             <div className="rounded-2xl bg-white/10 px-5 py-4">
-              <p className="text-sm font-semibold">🧑 Candidate’s section</p>
+              <div className="flex items-center gap-2">
+                <span className="text-lg">🧑</span>
+                <p className="text-sm font-semibold">Candidate’s section</p>
+              </div>
               <p className="mt-1 text-sm text-white/70">
                 Candidate background
               </p>
             </div>
           </div>
 
-          {/* BUTTONS */}
+          {/* Buttons */}
           <div className="mt-8 flex flex-wrap gap-3">
             <motion.a
               href={APPLY_URL}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ y: -2, scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: 0.98 }}
               animate={{
-                boxShadow: [
-                  "0 0 0px rgba(255,255,255,0)",
-                  "0 0 18px rgba(255,255,255,0.55)",
-                  "0 0 0px rgba(255,255,255,0)",
-                ],
+                scale: [1, 1.025, 1],
               }}
               transition={{
                 duration: 2.8,
                 repeat: Infinity,
-                repeatDelay: 3.2,
                 ease: "easeInOut",
               }}
               className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-10 py-5 text-base font-semibold text-slate-900 shadow-lg hover:bg-slate-100"
@@ -226,19 +248,23 @@ export default function ApplyPage() {
             </Link>
           </div>
 
+          {/* Notice */}
           <p className="mt-4 text-sm font-semibold text-red-300">
-            Notice: Application form will be no longer available after March 25!
+            Notice: Application form will be no longer available after March
+            25!
           </p>
 
+          {/* Countdown Timer */}
           <CountdownToMarch25 />
         </motion.div>
       </section>
 
-      {/* LEADERS SECTION */}
+      {/* CHAPTER LEADER SECTION */}
       <section className="mx-auto max-w-6xl px-6 pb-16">
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: EASE }}
           className="rounded-3xl border border-slate-200 bg-white px-8 py-12 shadow-sm"
         >
@@ -247,9 +273,26 @@ export default function ApplyPage() {
               For Chapter Leaders/Representatives
             </p>
 
-            <h2 className="mt-4 text-3xl font-bold text-slate-900">
-              Join the Jr.LTF Announcement Room
-            </h2>
+            <div className="mt-4 flex items-center gap-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-7 w-7 text-slate-900"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.8}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 11v2a2 2 0 002 2h2l4 4V5L7 9H5a2 2 0 00-2 2zM16 8v8m4-6v4"
+                />
+              </svg>
+
+              <h2 className="text-3xl font-bold text-slate-900">
+                Join the Jr.LTF Announcement Room
+              </h2>
+            </div>
 
             <p className="mt-6 leading-relaxed text-slate-600">
               All official Jr.LTF updates, recruitment announcements, selection
