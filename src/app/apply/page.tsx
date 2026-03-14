@@ -7,6 +7,101 @@ import { motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
+function CountdownToMarch25() {
+  const [timeLeft, setTimeLeft] = React.useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    expired: false,
+  });
+
+  React.useEffect(() => {
+    const getTargetDate = () => {
+      const now = new Date();
+      const year = now.getFullYear();
+      const target = new Date(year, 2, 25, 23, 59, 59); // March 25, 23:59:59
+
+      if (now > target) {
+        return new Date(year + 1, 2, 25, 23, 59, 59);
+      }
+
+      return target;
+    };
+
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const target = getTargetDate().getTime();
+      const distance = target - now;
+
+      if (distance <= 0) {
+        setTimeLeft({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+          expired: true,
+        });
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      setTimeLeft({
+        days,
+        hours,
+        minutes,
+        seconds,
+        expired: false,
+      });
+    };
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  if (timeLeft.expired) {
+    return (
+      <p className="mt-3 text-xs font-medium text-red-200">
+        Application deadline has passed.
+      </p>
+    );
+  }
+
+  const items = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: timeLeft.hours },
+    { label: "Min", value: timeLeft.minutes },
+    { label: "Sec", value: timeLeft.seconds },
+  ];
+
+  return (
+    <div className="mt-3">
+      <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+        Time Remaining
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {items.map((item) => (
+          <div
+            key={item.label}
+            className="min-w-[74px] rounded-2xl border border-white/15 bg-white/10 px-3 py-2 text-center backdrop-blur-sm"
+          >
+            <div className="text-lg font-bold text-white">{item.value}</div>
+            <div className="text-[11px] uppercase tracking-wide text-white/60">
+              {item.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function ApplyPage() {
   const APPLY_URL = "https://forms.gle/9A7uoG5BtCq4wFP6A";
   const ANNOUNCEMENT_URL = "#";
@@ -35,9 +130,9 @@ export default function ApplyPage() {
             </h1>
 
             <p className="mt-5 text-base leading-relaxed text-slate-600">
-              Sending the application form is a required first step to begin the recruitment
-              process. Submitting the form does not affect assessment results—it simply initiates
-              the process.
+              Sending the application form is a required first step to begin the
+              recruitment process. Submitting the form does not affect
+              assessment results—it simply initiates the process.
             </p>
           </motion.div>
         </div>
@@ -66,7 +161,11 @@ export default function ApplyPage() {
               stroke="currentColor"
               strokeWidth={1.8}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6M7 4h10a2 2 0 012 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 012-2z" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 12h6m-6 4h6M7 4h10a2 2 0 012 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 012-2z"
+              />
             </svg>
 
             <h2 className="text-2xl font-bold">
@@ -144,8 +243,12 @@ export default function ApplyPage() {
 
           {/* Notice */}
           <p className="mt-4 text-sm font-semibold text-red-300">
-            Notice: Application form will be no longer available after March 25!
+            Notice: Application form will be no longer available after March
+            25!
           </p>
+
+          {/* Countdown Timer */}
+          <CountdownToMarch25 />
         </motion.div>
       </section>
 
@@ -172,7 +275,11 @@ export default function ApplyPage() {
                 stroke="currentColor"
                 strokeWidth={1.8}
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 11v2a2 2 0 002 2h2l4 4V5L7 9H5a2 2 0 00-2 2zM16 8v8m4-6v4" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 11v2a2 2 0 002 2h2l4 4V5L7 9H5a2 2 0 00-2 2zM16 8v8m4-6v4"
+                />
               </svg>
 
               <h2 className="text-3xl font-bold text-slate-900">
@@ -181,9 +288,9 @@ export default function ApplyPage() {
             </div>
 
             <p className="mt-6 leading-relaxed text-slate-600">
-              All official Jr.LTF updates, recruitment announcements, selection process guidelines,
-              shared materials, files, and important communications will be posted in the
-              Announcement Room.
+              All official Jr.LTF updates, recruitment announcements, selection
+              process guidelines, shared materials, files, and important
+              communications will be posted in the Announcement Room.
             </p>
 
             <motion.a
@@ -193,7 +300,7 @@ export default function ApplyPage() {
               transition={{ duration: 0.25 }}
               className="mt-8 inline-block rounded-2xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-md hover:opacity-90"
             >
-              Leaders' Room
+              Leaders&apos; Room
             </motion.a>
           </div>
         </motion.section>
