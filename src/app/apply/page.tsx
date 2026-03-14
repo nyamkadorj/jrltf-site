@@ -20,12 +20,9 @@ function CountdownToMarch25() {
     const getTargetDate = () => {
       const now = new Date();
       const year = now.getFullYear();
-      const target = new Date(year, 2, 25, 23, 59, 59); // March 25, 23:59:59
+      const target = new Date(year, 2, 25, 23, 59, 59);
 
-      if (now > target) {
-        return new Date(year + 1, 2, 25, 23, 59, 59);
-      }
-
+      if (now > target) return new Date(year + 1, 2, 25, 23, 59, 59);
       return target;
     };
 
@@ -50,13 +47,7 @@ function CountdownToMarch25() {
       const minutes = Math.floor((distance / (1000 * 60)) % 60);
       const seconds = Math.floor((distance / 1000) % 60);
 
-      setTimeLeft({
-        days,
-        hours,
-        minutes,
-        seconds,
-        expired: false,
-      });
+      setTimeLeft({ days, hours, minutes, seconds, expired: false });
     };
 
     updateCountdown();
@@ -85,6 +76,7 @@ function CountdownToMarch25() {
       <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
         Time Remaining
       </p>
+
       <div className="flex flex-wrap gap-2">
         {items.map((item) => (
           <div
@@ -152,22 +144,6 @@ export default function ApplyPage() {
           </p>
 
           <div className="mt-4 flex items-center gap-3">
-            {/* Section Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.8}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M9 12h6m-6 4h6M7 4h10a2 2 0 012 2v14l-4-2-4 2-4-2-4 2V6a2 2 0 012-2z"
-              />
-            </svg>
-
             <h2 className="text-2xl font-bold">
               Sections Included in the Application Form
             </h2>
@@ -209,45 +185,50 @@ export default function ApplyPage() {
             </div>
           </div>
 
-          {/* Buttons */}
-          <div className="mt-8 flex flex-wrap gap-3">
+          {/* BUTTONS */}
+          <div className="mt-10 flex flex-wrap gap-4 items-center">
             <motion.a
               href={APPLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ y: -2, scale: 1.03 }}
+              whileHover={{ y: -3, scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.25, ease: EASE }}
-              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-10 py-5 text-base font-semibold text-slate-900 shadow-lg hover:bg-slate-100"
+              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-12 py-6 text-lg font-bold text-slate-900 shadow-xl hover:bg-slate-100"
             >
-              {/* Google Form Icon */}
+              {/* clickable / launch icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="h-7 w-7"
+                fill="none"
                 viewBox="0 0 24 24"
-                fill="currentColor"
+                stroke="currentColor"
+                strokeWidth={2}
               >
-                <path d="M19 3H14.82C14.4 1.84 13.3 1 12 1s-2.4.84-2.82 2H5a2 2 0 00-2 2v16a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 0a1 1 0 110 2 1 1 0 010-2zm5 16H7v-2h10v2zm0-4H7v-2h10v2zm0-4H7V9h10v2z" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M14 3h7m0 0v7m0-7L10 14"
+                />
               </svg>
 
-              Start Application Form →
+              Start Application Form
             </motion.a>
 
             <Link
               href="/recruitment"
-              className="inline-flex items-center justify-center rounded-2xl border border-white/30 bg-transparent px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10"
+              className="inline-flex items-center justify-center rounded-2xl border border-white/30 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10"
             >
               Review Recruitment Timeline
             </Link>
           </div>
 
-          {/* Notice */}
-          <p className="mt-4 text-sm font-semibold text-red-300">
-            Notice: Application form will be no longer available after March
-            25!
+          {/* NOTICE */}
+          <p className="mt-5 text-sm font-semibold text-red-300">
+            Notice: Application form will be no longer available after March 25!
           </p>
 
-          {/* Countdown Timer */}
+          {/* COUNTDOWN */}
           <CountdownToMarch25 />
         </motion.div>
       </section>
@@ -266,31 +247,14 @@ export default function ApplyPage() {
               For Chapter Leaders/Representatives
             </p>
 
-            <div className="mt-4 flex items-center gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-7 w-7 text-slate-900"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.8}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 11v2a2 2 0 002 2h2l4 4V5L7 9H5a2 2 0 00-2 2zM16 8v8m4-6v4"
-                />
-              </svg>
-
-              <h2 className="text-3xl font-bold text-slate-900">
-                Join the Jr.LTF Announcement Room
-              </h2>
-            </div>
+            <h2 className="mt-4 text-3xl font-bold text-slate-900">
+              Join the Jr.LTF Announcement Room
+            </h2>
 
             <p className="mt-6 leading-relaxed text-slate-600">
-              All official Jr.LTF updates, recruitment announcements, selection
-              process guidelines, shared materials, files, and important
-              communications will be posted in the Announcement Room.
+              All official Jr.LTF updates, recruitment announcements,
+              selection process guidelines, shared materials, files, and
+              important communications will be posted in the Announcement Room.
             </p>
 
             <motion.a
@@ -300,7 +264,7 @@ export default function ApplyPage() {
               transition={{ duration: 0.25 }}
               className="mt-8 inline-block rounded-2xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-md hover:opacity-90"
             >
-              Leaders&apos; Room
+              Leaders' Room
             </motion.a>
           </div>
         </motion.section>
