@@ -101,7 +101,7 @@ export default function RecruitmentPage() {
                 joining requirements (1st assessment).
               </li>
               <li>
-                Then organizers select <strong>Jr.LTF Member</strong> according to fulfillment of Entrance standard after 2nd assessment Process.
+                Then organizers select <strong>Jr.LTF Member</strong> according to fulfillment of Entrance standard after 2nd assessment process.
               </li>
               <li>
                 Allow candidates to reflect on their readiness (not simply pass
@@ -122,8 +122,7 @@ export default function RecruitmentPage() {
             <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
               <li><strong>1st assessment</strong> - Screening process (70-day Spiritual Habit Tracker; Interview with chapter leader/representative)</li>
               <li>
-                <strong>2nd assessment</strong> - Jr.LTF Summer Challengers' Course, direct input on motivation and
-                behavior
+                <strong>2nd assessment</strong> - Jr.LTF Summer Challengers' Course
               </li>
             </ul>
           </InfoCard>
