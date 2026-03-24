@@ -122,7 +122,8 @@ export default function RecruitmentPage() {
             <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
               <li><strong>1st assessment</strong> - Screening process (70-day Spiritual Habit Tracker; Interview with chapter leader/representative)</li>
               <li>
-                <strong>2nd assessment</strong> - Jr.LTF Summer Challengers' Course
+                <strong>2nd assessment</strong> - Jr.LTF Summer Challengers' Course, direct input on motivation and
+                behavior
               </li>
             </ul>
           </InfoCard>
