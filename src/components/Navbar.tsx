@@ -10,7 +10,7 @@ const navItems = [
   { label: "Framework", href: "/framework" },
   { label: "Standards", href: "/standards" },
   { label: "Recruitment", href: "/recruitment" },
-  { label: "1st Assessment", href: "/1st-assessment" },
+  { label: "1st Assessment", href: "/1st-assessment", highlight: true },
   { label: "Q&A", href: "/faq" },
 ];
 
@@ -41,13 +41,11 @@ function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-/* Reset to original English */
 function resetTranslateToEnglish() {
   document.cookie = "googtrans=/en/en;path=/";
   window.location.reload();
 }
 
-/* Trigger Google widget */
 function setGoogleTranslateLanguage(lang: string) {
   const select =
     document.querySelector<HTMLSelectElement>("select.goog-te-combo");
@@ -113,25 +111,41 @@ export default function Navbar() {
           Jr.LTF
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="relative hidden gap-8 text-sm md:flex">
+        <nav className="relative hidden gap-6 text-sm md:flex md:items-center">
           {navItems.map((item) => {
             const active = pathname === item.href;
+            const isHighlighted = item.highlight;
 
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative px-1 text-slate-600 transition-colors duration-200 hover:text-slate-900"
+                className={`relative px-1 transition-colors duration-200 ${
+                  isHighlighted
+                    ? "rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-slate-900 hover:bg-slate-200"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
               >
-                <span className={active ? "font-semibold text-slate-900" : ""}>
+                <span
+                  className={
+                    active
+                      ? "font-semibold text-slate-900"
+                      : isHighlighted
+                      ? "font-semibold text-slate-900"
+                      : ""
+                  }
+                >
                   {item.label}
                 </span>
 
                 {active && (
                   <motion.span
                     layoutId="nav-underline"
-                    className="absolute -bottom-1 left-0 h-[2px] w-full bg-slate-900"
+                    className={`absolute h-[2px] bg-slate-900 ${
+                      isHighlighted
+                        ? "left-3 right-3 -bottom-1"
+                        : "left-0 w-full -bottom-1"
+                    }`}
                     transition={{ type: "spring", stiffness: 500, damping: 35 }}
                   />
                 )}
@@ -141,7 +155,6 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* Desktop Flags Row */}
           <div className="hidden items-center gap-2 md:flex">
             <FlagsRow size="md" />
           </div>
@@ -153,7 +166,6 @@ export default function Navbar() {
             Apply
           </Link>
 
-          {/* Mobile Hamburger */}
           <button
             type="button"
             className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-slate-900 shadow-sm md:hidden"
@@ -182,7 +194,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${
           open ? "max-h-[560px] opacity-100" : "max-h-0 opacity-0"
@@ -197,16 +208,19 @@ export default function Navbar() {
             <nav className="flex flex-col p-2 pt-1">
               {navItems.map((item) => {
                 const active = pathname === item.href;
+                const isHighlighted = item.highlight;
 
                 return (
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="relative rounded-xl px-4 py-3 text-sm text-slate-700 transition-colors duration-200 hover:bg-slate-50"
+                    className={`relative rounded-xl px-4 py-3 text-sm transition-colors duration-200 ${
+                      isHighlighted
+                        ? "bg-slate-100 font-semibold text-slate-900 hover:bg-slate-200"
+                        : "text-slate-700 hover:bg-slate-50"
+                    }`}
                   >
-                    <span
-                      className={active ? "font-semibold text-slate-900" : ""}
-                    >
+                    <span className={active ? "font-semibold text-slate-900" : ""}>
                       {item.label}
                     </span>
 
@@ -236,7 +250,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Hidden Google mount */}
       <div id="google_translate_element" className="hidden" />
 
       <style jsx global>{`
