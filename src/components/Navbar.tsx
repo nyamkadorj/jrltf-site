@@ -10,7 +10,12 @@ const navItems = [
   { label: "Framework", href: "/framework" },
   { label: "Standards", href: "/standards" },
   { label: "Recruitment", href: "/recruitment" },
-  { label: "1st Assessment", href: "/1st-assessment", highlight: true },
+  {
+    label: "1st Assessment",
+    href: "/1st-assessment",
+    highlight: true,
+    badge: "New",
+  },
   { label: "Q&A", href: "/faq" },
 ];
 
@@ -37,6 +42,19 @@ function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
       <path d="M3 12h18" />
       <path d="M12 3a14 14 0 0 1 0 18" />
       <path d="M12 3a14 14 0 0 0 0 18" />
+    </svg>
+  );
+}
+
+function StarIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M12 3.75l2.47 5 5.53.8-4 3.9.94 5.5L12 16.35 7.06 18.95 8 13.45 4 9.55l5.53-.8L12 3.75z" />
     </svg>
   );
 }
@@ -120,22 +138,34 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-1 transition-colors duration-200 ${
+                className={`relative transition-colors duration-200 ${
                   isHighlighted
                     ? "rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-slate-900 hover:bg-slate-200"
-                    : "text-slate-600 hover:text-slate-900"
+                    : "px-1 text-slate-600 hover:text-slate-900"
                 }`}
               >
-                <span
-                  className={
-                    active
-                      ? "font-semibold text-slate-900"
-                      : isHighlighted
-                      ? "font-semibold text-slate-900"
-                      : ""
-                  }
-                >
-                  {item.label}
+                <span className="flex items-center gap-1.5">
+                  {isHighlighted && (
+                    <StarIcon className="h-3.5 w-3.5 text-slate-700" />
+                  )}
+
+                  <span
+                    className={
+                      active
+                        ? "font-semibold text-slate-900"
+                        : isHighlighted
+                        ? "font-semibold text-slate-900"
+                        : ""
+                    }
+                  >
+                    {item.label}
+                  </span>
+
+                  {item.badge && (
+                    <span className="ml-1 rounded-full bg-slate-900 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                      {item.badge}
+                    </span>
+                  )}
                 </span>
 
                 {active && (
@@ -216,12 +246,30 @@ export default function Navbar() {
                     href={item.href}
                     className={`relative rounded-xl px-4 py-3 text-sm transition-colors duration-200 ${
                       isHighlighted
-                        ? "bg-slate-100 font-semibold text-slate-900 hover:bg-slate-200"
+                        ? "bg-slate-100 text-slate-900 hover:bg-slate-200"
                         : "text-slate-700 hover:bg-slate-50"
                     }`}
                   >
-                    <span className={active ? "font-semibold text-slate-900" : ""}>
-                      {item.label}
+                    <span className="flex items-center gap-2">
+                      {isHighlighted && (
+                        <StarIcon className="h-4 w-4 text-slate-700" />
+                      )}
+
+                      <span
+                        className={
+                          active || isHighlighted
+                            ? "font-semibold text-slate-900"
+                            : ""
+                        }
+                      >
+                        {item.label}
+                      </span>
+
+                      {item.badge && (
+                        <span className="rounded-full bg-slate-900 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                          {item.badge}
+                        </span>
+                      )}
                     </span>
 
                     {active && (
