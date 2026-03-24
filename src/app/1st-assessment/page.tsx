@@ -2,75 +2,45 @@
 
 import Link from "next/link";
 
-const trackerLinks = [
-  {
-    lang: "EN",
-    title: "70 Days Spiritual Life Habit Tracker",
-    subtitle: "Guideline and Template",
-    href: "#",
-    icon: "📘",
-  },
-  {
-    lang: "KR",
-    title: "70 Days Spiritual Life Habit Tracker",
-    subtitle: "Guideline and Template",
-    href: "#",
-    icon: "📗",
-  },
-  {
-    lang: "JP",
-    title: "70 Days Spiritual Life Habit Tracker",
-    subtitle: "Guideline and Template",
-    href: "#",
-    icon: "📙",
-  },
-  {
-    lang: "MN",
-    title: "70 Days Spiritual Life Habit Tracker",
-    subtitle: "Guideline and Template",
-    href: "#",
-    icon: "📕",
-  },
-];
-
 function ResourceButton({
   href,
-  lang,
+  icon,
+  badge,
   title,
   subtitle,
-  icon,
 }: {
   href: string;
-  lang: string;
+  icon: string;
+  badge?: string;
   title: string;
   subtitle: string;
-  icon: string;
 }) {
   return (
     <Link
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex h-full items-center justify-between rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md"
+      className="group flex min-h-[132px] items-center justify-between rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md"
     >
       <div className="flex items-center gap-4">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-2xl">
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-3xl">
           <span>{icon}</span>
         </div>
 
         <div>
-          <div className="mb-1 flex items-center gap-2">
-            <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700">
-              {lang}
-            </span>
-            <span className="text-xs text-slate-500">Open resource</span>
-          </div>
-          <h3 className="text-base font-semibold text-slate-900">{title}</h3>
-          <p className="text-sm text-slate-600">{subtitle}</p>
+          {badge && (
+            <div className="mb-2">
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                {badge}
+              </span>
+            </div>
+          )}
+          <h3 className="text-lg font-semibold text-slate-900">{title}</h3>
+          <p className="mt-1 text-sm leading-6 text-slate-600">{subtitle}</p>
         </div>
       </div>
 
-      <span className="text-xl text-slate-400 transition group-hover:translate-x-1 group-hover:text-slate-700">
+      <span className="text-2xl text-slate-400 transition group-hover:translate-x-1 group-hover:text-slate-700">
         →
       </span>
     </Link>
@@ -185,51 +155,28 @@ export default function FirstAssessmentPage() {
                 <div className="flex items-start gap-3">
                   <span className="mt-0.5 text-lg">🌍</span>
                   <p className="text-sm leading-6 text-slate-600">
-                    Guideline and template are available in four languages.
-                    Choose the version most suitable for you.
+                    The 70 Days Spiritual Life Habit Tracker guideline and
+                    template are available in four languages:{" "}
+                    <span className="font-semibold">EN, KR, JP, MN</span>.
                   </p>
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
-                {trackerLinks.map((item) => (
-                  <ResourceButton
-                    key={item.lang}
-                    href={item.href}
-                    lang={item.lang}
-                    title={item.title}
-                    subtitle={item.subtitle}
-                    icon={item.icon}
-                  />
-                ))}
-              </div>
-
-              <div className="mt-5">
-                <Link
+              <div className="grid gap-4">
+                <ResourceButton
                   href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between rounded-3xl border border-slate-200 bg-slate-50 p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-2xl shadow-sm">
-                      <span>📤</span>
-                    </div>
+                  icon="📘"
+                  badge="EN · KR · JP · MN"
+                  title="70 Days Spiritual Life Habit Tracker"
+                  subtitle="Guideline and Template available in four languages"
+                />
 
-                    <div>
-                      <div className="mb-1 text-base font-semibold text-slate-900">
-                        Upload “Daily Reflection Sheet”
-                      </div>
-                      <div className="text-sm text-slate-600">
-                        Submit your completed daily reflection form
-                      </div>
-                    </div>
-                  </div>
-
-                  <span className="text-xl text-slate-400 transition group-hover:translate-x-1 group-hover:text-slate-700">
-                    →
-                  </span>
-                </Link>
+                <ResourceButton
+                  href="#"
+                  icon="📤"
+                  title='Upload "Daily Reflection Sheet"'
+                  subtitle="Submit your completed daily reflection form"
+                />
               </div>
             </aside>
           </div>
