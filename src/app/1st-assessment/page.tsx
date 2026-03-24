@@ -1,16 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Sparkles,
-  Target,
-  CalendarDays,
-  BookOpen,
-  Languages,
-  Upload,
-  ArrowRight,
-  ClipboardCheck,
-} from "lucide-react";
 
 const trackerLinks = [
   {
@@ -18,24 +8,28 @@ const trackerLinks = [
     title: "70 Days Spiritual Life Habit Tracker",
     subtitle: "Guideline and Template",
     href: "#",
+    icon: "📘",
   },
   {
     lang: "KR",
     title: "70 Days Spiritual Life Habit Tracker",
     subtitle: "Guideline and Template",
     href: "#",
+    icon: "📗",
   },
   {
     lang: "JP",
     title: "70 Days Spiritual Life Habit Tracker",
     subtitle: "Guideline and Template",
     href: "#",
+    icon: "📙",
   },
   {
     lang: "MN",
     title: "70 Days Spiritual Life Habit Tracker",
     subtitle: "Guideline and Template",
     href: "#",
+    icon: "📕",
   },
 ];
 
@@ -44,11 +38,13 @@ function ResourceButton({
   lang,
   title,
   subtitle,
+  icon,
 }: {
   href: string;
   lang: string;
   title: string;
   subtitle: string;
+  icon: string;
 }) {
   return (
     <Link
@@ -58,8 +54,8 @@ function ResourceButton({
       className="group flex h-full items-center justify-between rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md"
     >
       <div className="flex items-center gap-4">
-        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-100">
-          <BookOpen className="h-6 w-6 text-slate-700" />
+        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-slate-100 text-2xl">
+          <span>{icon}</span>
         </div>
 
         <div>
@@ -74,7 +70,9 @@ function ResourceButton({
         </div>
       </div>
 
-      <ArrowRight className="h-5 w-5 shrink-0 text-slate-400 transition group-hover:translate-x-1 group-hover:text-slate-700" />
+      <span className="text-xl text-slate-400 transition group-hover:translate-x-1 group-hover:text-slate-700">
+        →
+      </span>
     </Link>
   );
 }
@@ -86,7 +84,7 @@ export default function FirstAssessmentPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mx-auto max-w-3xl text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700">
-              <Sparkles className="h-4 w-4" />
+              <span>✨</span>
               Jr.LTF Assessment
             </div>
 
@@ -104,8 +102,8 @@ export default function FirstAssessmentPage() {
           <div className="mt-12 grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
             <section className="rounded-[2rem] border border-slate-200 bg-slate-50 p-7 shadow-sm sm:p-8">
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm">
-                  <Target className="h-5 w-5 text-slate-700" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl shadow-sm">
+                  <span>🎯</span>
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold tracking-tight">
@@ -141,7 +139,7 @@ export default function FirstAssessmentPage() {
 
                 <div>
                   <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-slate-900">
-                    <CalendarDays className="h-5 w-5 text-slate-700" />
+                    <span>🗓️</span>
                     Period
                   </h3>
 
@@ -170,8 +168,8 @@ export default function FirstAssessmentPage() {
 
             <aside className="rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-8">
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100">
-                  <ClipboardCheck className="h-5 w-5 text-slate-700" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-xl">
+                  <span>📝</span>
                 </div>
                 <div>
                   <h2 className="text-2xl font-bold tracking-tight">
@@ -185,7 +183,7 @@ export default function FirstAssessmentPage() {
 
               <div className="mb-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
                 <div className="flex items-start gap-3">
-                  <Languages className="mt-0.5 h-5 w-5 text-slate-700" />
+                  <span className="mt-0.5 text-lg">🌍</span>
                   <p className="text-sm leading-6 text-slate-600">
                     Guideline and template are available in four languages.
                     Choose the version most suitable for you.
@@ -201,6 +199,7 @@ export default function FirstAssessmentPage() {
                     lang={item.lang}
                     title={item.title}
                     subtitle={item.subtitle}
+                    icon={item.icon}
                   />
                 ))}
               </div>
@@ -213,8 +212,8 @@ export default function FirstAssessmentPage() {
                   className="group flex items-center justify-between rounded-3xl border border-slate-200 bg-slate-50 p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-md"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white shadow-sm">
-                      <Upload className="h-6 w-6 text-slate-700" />
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white text-2xl shadow-sm">
+                      <span>📤</span>
                     </div>
 
                     <div>
@@ -227,7 +226,9 @@ export default function FirstAssessmentPage() {
                     </div>
                   </div>
 
-                  <ArrowRight className="h-5 w-5 shrink-0 text-slate-400 transition group-hover:translate-x-1 group-hover:text-slate-700" />
+                  <span className="text-xl text-slate-400 transition group-hover:translate-x-1 group-hover:text-slate-700">
+                    →
+                  </span>
                 </Link>
               </div>
             </aside>
