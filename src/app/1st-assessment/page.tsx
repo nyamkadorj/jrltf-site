@@ -167,15 +167,15 @@ export default function FirstAssessmentPage() {
                   href="https://drive.google.com/drive/folders/1PgsU8sSMfGO5tSuNdvMo3jfZrz3L5BEc"
                   icon="📘"
                   badge="EN · KR · JP · MN"
-                  title="70 Days Spiritual Life Habit Tracker"
-                  subtitle="Guideline and Template available in four languages"
+                  title="Download: 70 Days Spiritual Life Habit Tracker"
+                  subtitle="File includes guideline and template"
                 />
 
                 <ResourceButton
                   href="https://docs.google.com/forms/d/e/1FAIpQLSc4EQ9c2BGStDTdXExrJzQ5FJXokvxkr-sKZBn2wEr2_tj_uw/viewform?usp=publish-editor"
                   icon="📤"
                   title='Upload "Daily Reflection Sheet"'
-                  subtitle="Submit your completed daily reflection form"
+                  subtitle="Submit habit definition sheet at the beginning once then everyday submit completed daily reflection sheet"
                 />
               </div>
             </aside>
