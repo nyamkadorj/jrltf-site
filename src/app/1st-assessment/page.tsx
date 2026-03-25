@@ -175,7 +175,8 @@ export default function FirstAssessmentPage() {
                   href="https://docs.google.com/forms/d/e/1FAIpQLSc4EQ9c2BGStDTdXExrJzQ5FJXokvxkr-sKZBn2wEr2_tj_uw/viewform?usp=publish-editor"
                   icon="📤"
                   title='Upload "Daily Reflection Sheet"'
-                  subtitle="Submit habit definition sheet at the beginning once then everyday submit completed daily reflection sheet"
+                  subtitle="1. Submit habit definition sheet at the beginning only once 
+                            2. Everyday submit completed daily reflection sheet"
                 />
               </div>
             </aside>
