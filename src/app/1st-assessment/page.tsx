@@ -146,7 +146,7 @@ export default function FirstAssessmentPage() {
                     Resources & Submission
                   </h2>
                   <p className="mt-1 text-sm text-slate-500">
-                    Open the files and submit reflections
+                    Download the files and submit reflections
                   </p>
                 </div>
               </div>
