@@ -164,7 +164,7 @@ export default function FirstAssessmentPage() {
 
               <div className="grid gap-4">
                 <ResourceButton
-                  href="#"
+                  href="https://drive.google.com/drive/folders/1PgsU8sSMfGO5tSuNdvMo3jfZrz3L5BEc"
                   icon="📘"
                   badge="EN · KR · JP · MN"
                   title="70 Days Spiritual Life Habit Tracker"
@@ -172,7 +172,7 @@ export default function FirstAssessmentPage() {
                 />
 
                 <ResourceButton
-                  href="#"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSc4EQ9c2BGStDTdXExrJzQ5FJXokvxkr-sKZBn2wEr2_tj_uw/viewform?usp=publish-editor"
                   icon="📤"
                   title='Upload "Daily Reflection Sheet"'
                   subtitle="Submit your completed daily reflection form"
