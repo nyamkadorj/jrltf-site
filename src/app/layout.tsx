@@ -1,3 +1,4 @@
+
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import Script from "next/script";
@@ -8,6 +9,13 @@ import Footer from "../components/Footer";
 export const metadata: Metadata = {
   title: "Junior.LTF",
   description: "Junior Leadership Task Force – Program & Recruitment",
+
+  // Jr.LTF official logo favicon
+  icons: {
+    icon: "/jrltf-favicon.png?v=1",
+    shortcut: "/jrltf-favicon.png?v=1",
+    apple: "/jrltf-favicon.png?v=1",
+  },
 };
 
 export default function RootLayout({
@@ -40,8 +48,13 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
 
+        {/* Navigation */}
         <Navbar />
+
+        {/* Page Content */}
         <main>{children}</main>
+
+        {/* Footer */}
         <Footer />
 
         {/* Vercel Web Analytics */}
