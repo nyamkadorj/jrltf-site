@@ -259,11 +259,12 @@ export default function HomePage() {
                 Recruitment process
               </Link>
 
+              {/* Updated Merit Badge System Button */}
               <Link
-                href="/apply"
+                href="/badges"
                 className="rounded-2xl border border-white/40 px-6 py-3 font-medium text-white transition-all hover:border-[#D4AF37] hover:bg-white/10"
               >
-                Fill application form
+                See 🏅 Merit Badge System
               </Link>
             </motion.div>
 

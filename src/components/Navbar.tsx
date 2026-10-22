@@ -3,8 +3,11 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+
+/* ---------------- Navigation ---------------- */
 
 const navItems = [
   { label: "Why Jr.LTF", href: "/" },
@@ -18,6 +21,8 @@ const navItems = [
     badge: "New",
   },
 ];
+
+/* ---------------- Languages ---------------- */
 
 const LANGS = [
   { code: "en", flag: "globe", title: "English (Reset)" },
@@ -48,7 +53,6 @@ function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-/* Gold Medal Icon */
 function MedalIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -125,9 +129,7 @@ function FlagsRow({
           {l.flag === "globe" ? (
             <GlobeIcon className="h-4 w-4" />
           ) : (
-            <span aria-hidden="true">
-              {l.flag}
-            </span>
+            <span aria-hidden="true">{l.flag}</span>
           )}
         </button>
       ))}
@@ -147,18 +149,27 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#DCE5ED] bg-white/95 shadow-sm backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-4">
 
-        {/* Brand */}
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+
+        {/* Jr.LTF Logo */}
         <Link
           href="/"
-          className="shrink-0 text-lg font-bold tracking-tight text-[#002040] transition-colors hover:text-[#A77D1E]"
+          className="flex shrink-0 items-center"
+          aria-label="Jr.LTF Home"
         >
-          Jr.LTF
+          <Image
+            src="/jrltf-logo.png"
+            alt="Jr.LTF - Junior Leadership Task Force"
+            width={115}
+            height={120}
+            priority
+            className="h-auto w-[65px] object-contain transition-opacity duration-200 hover:opacity-80 sm:w-[75px] lg:w-[85px]"
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="relative hidden items-center gap-4 text-sm md:flex">
+        <nav className="relative hidden items-center gap-3 text-sm lg:flex xl:gap-5">
           {navItems.map((item) => {
             const active = pathname === item.href;
             const isHighlighted = item.highlight;
@@ -220,7 +231,7 @@ export default function Navbar() {
         <div className="flex shrink-0 items-center gap-3">
 
           {/* Desktop Language Buttons */}
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-2 lg:flex">
             <FlagsRow size="md" />
           </div>
 
@@ -232,21 +243,19 @@ export default function Navbar() {
             Apply
           </Link>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile / Tablet Hamburger */}
           <button
             type="button"
-            className="grid h-10 w-10 place-items-center rounded-xl border border-[#DCE5ED] bg-white text-[#002040] shadow-sm md:hidden"
+            className="grid h-10 w-10 place-items-center rounded-xl border border-[#DCE5ED] bg-white text-[#002040] shadow-sm lg:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
+            aria-controls="jrltf-mobile-menu"
             onClick={() => setOpen((v) => !v)}
           >
             <span className="relative block h-4 w-5">
-
               <span
                 className={`absolute left-0 top-0 h-0.5 w-5 bg-[#002040] transition-transform duration-300 ${
-                  open
-                    ? "translate-y-[7px] rotate-45"
-                    : ""
+                  open ? "translate-y-[7px] rotate-45" : ""
                 }`}
               />
 
@@ -258,20 +267,18 @@ export default function Navbar() {
 
               <span
                 className={`absolute left-0 top-[14px] h-0.5 w-5 bg-[#002040] transition-transform duration-300 ${
-                  open
-                    ? "translate-y-[-7px] -rotate-45"
-                    : ""
+                  open ? "translate-y-[-7px] -rotate-45" : ""
                 }`}
               />
-
             </span>
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile / Tablet Menu */}
       <div
-        className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${
+        id="jrltf-mobile-menu"
+        className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden ${
           open
             ? "max-h-[560px] opacity-100"
             : "max-h-0 opacity-0"
@@ -295,9 +302,7 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    aria-current={
-                      active ? "page" : undefined
-                    }
+                    aria-current={active ? "page" : undefined}
                     className={`relative rounded-xl px-4 py-3 text-sm transition-all duration-200 ${
                       isHighlighted
                         ? "border border-[#D4AF37] bg-[#FFF8E7] text-[#002040] hover:bg-[#F4E5AE]"

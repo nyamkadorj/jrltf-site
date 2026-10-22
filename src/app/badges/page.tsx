@@ -17,7 +17,7 @@ export default function BadgesPage() {
           </div>
 
           <h1 className="text-3xl font-bold leading-tight tracking-tight text-[#002040] sm:text-4xl md:text-5xl">
-            Why Do We Need a Merit-Badge System?
+            🏅 Why Do We Need a Merit Badge System?
           </h1>
         </header>
 
