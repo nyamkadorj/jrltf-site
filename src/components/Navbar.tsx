@@ -12,7 +12,7 @@ const navItems = [
   { label: "Standards", href: "/standards" },
   { label: "Recruitment", href: "/recruitment" },
   {
-    label: "Badges",
+    label: "Merit Badge System",
     href: "/badges",
     highlight: true,
     badge: "New",
@@ -25,6 +25,8 @@ const LANGS = [
   { code: "ja", flag: "🇯🇵", title: "日本語 (Japanese)" },
   { code: "mn", flag: "🇲🇳", title: "Монгол (Mongolian)" },
 ];
+
+/* ---------------- Icons ---------------- */
 
 function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -46,26 +48,35 @@ function GlobeIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-function StarIcon(props: React.SVGProps<SVGSVGElement>) {
+/* Gold Medal Icon */
+function MedalIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.8}
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden="true"
       {...props}
     >
-      <path d="M12 3.75l2.47 5 5.53.8-4 3.9.94 5.5L12 16.35 7.06 18.95 8 13.45 4 9.55l5.53-.8L12 3.75z" />
+      <path d="M8 3H4l4 8" />
+      <path d="M16 3h4l-4 8" />
+      <path d="M9 3h6" />
+      <circle cx="12" cy="16" r="5" />
+      <path d="m12 13.5.8 1.7 1.9.3-1.4 1.3.3 1.9-1.6-.9-1.6.9.3-1.9-1.4-1.3 1.9-.3z" />
     </svg>
   );
 }
 
-/* Reset Google Translate to English */
+/* ---------------- Google Translate ---------------- */
+
 function resetTranslateToEnglish() {
   document.cookie = "googtrans=/en/en;path=/";
   window.location.reload();
 }
 
-/* Change Google Translate language */
 function setGoogleTranslateLanguage(lang: string) {
   const select =
     document.querySelector<HTMLSelectElement>(
@@ -77,6 +88,8 @@ function setGoogleTranslateLanguage(lang: string) {
   select.value = lang;
   select.dispatchEvent(new Event("change"));
 }
+
+/* ---------------- Language Buttons ---------------- */
 
 function FlagsRow({
   size = "md",
@@ -112,13 +125,17 @@ function FlagsRow({
           {l.flag === "globe" ? (
             <GlobeIcon className="h-4 w-4" />
           ) : (
-            <span aria-hidden="true">{l.flag}</span>
+            <span aria-hidden="true">
+              {l.flag}
+            </span>
           )}
         </button>
       ))}
     </div>
   );
 }
+
+/* ---------------- Navbar ---------------- */
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -141,7 +158,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="relative hidden items-center gap-5 text-sm md:flex">
+        <nav className="relative hidden items-center gap-4 text-sm md:flex">
           {navItems.map((item) => {
             const active = pathname === item.href;
             const isHighlighted = item.highlight;
@@ -159,7 +176,7 @@ export default function Navbar() {
               >
                 <span className="flex items-center gap-1.5">
                   {isHighlighted && (
-                    <StarIcon className="h-4 w-4 text-[#D4AF37]" />
+                    <MedalIcon className="h-4 w-4 text-[#D4AF37]" />
                   )}
 
                   <span
@@ -202,7 +219,7 @@ export default function Navbar() {
         {/* Right Controls */}
         <div className="flex shrink-0 items-center gap-3">
 
-          {/* Desktop Language Flags */}
+          {/* Desktop Language Buttons */}
           <div className="hidden items-center gap-2 md:flex">
             <FlagsRow size="md" />
           </div>
@@ -224,6 +241,7 @@ export default function Navbar() {
             onClick={() => setOpen((v) => !v)}
           >
             <span className="relative block h-4 w-5">
+
               <span
                 className={`absolute left-0 top-0 h-0.5 w-5 bg-[#002040] transition-transform duration-300 ${
                   open
@@ -231,11 +249,13 @@ export default function Navbar() {
                     : ""
                 }`}
               />
+
               <span
                 className={`absolute left-0 top-[7px] h-0.5 w-5 bg-[#002040] transition-opacity duration-200 ${
                   open ? "opacity-0" : "opacity-100"
                 }`}
               />
+
               <span
                 className={`absolute left-0 top-[14px] h-0.5 w-5 bg-[#002040] transition-transform duration-300 ${
                   open
@@ -243,6 +263,7 @@ export default function Navbar() {
                     : ""
                 }`}
               />
+
             </span>
           </button>
         </div>
@@ -259,12 +280,12 @@ export default function Navbar() {
         <div className="mx-auto max-w-6xl px-6 pb-5">
           <div className="rounded-2xl border border-[#DCE5ED] bg-white shadow-md">
 
-            {/* Mobile Languages */}
+            {/* Mobile Language Buttons */}
             <div className="flex justify-end p-3 pb-2">
               <FlagsRow size="lg" />
             </div>
 
-            {/* Mobile Navigation Links */}
+            {/* Mobile Navigation */}
             <nav className="flex flex-col p-2 pt-1">
               {navItems.map((item) => {
                 const active = pathname === item.href;
@@ -285,7 +306,7 @@ export default function Navbar() {
                   >
                     <span className="flex items-center gap-2">
                       {isHighlighted && (
-                        <StarIcon className="h-4 w-4 text-[#D4AF37]" />
+                        <MedalIcon className="h-4 w-4 text-[#D4AF37]" />
                       )}
 
                       <span
