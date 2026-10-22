@@ -1,4 +1,4 @@
-// src/app/apply/page.tsx
+
 "use client";
 
 import Link from "next/link";
@@ -6,6 +6,8 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+/* ---------------- Countdown ---------------- */
 
 function CountdownToMarch25() {
   const [timeLeft, setTimeLeft] = React.useState({
@@ -60,6 +62,7 @@ function CountdownToMarch25() {
     };
 
     updateCountdown();
+
     const timer = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(timer);
@@ -67,7 +70,7 @@ function CountdownToMarch25() {
 
   if (timeLeft.expired) {
     return (
-      <p className="mt-3 text-xs font-medium text-red-200">
+      <p className="mt-3 text-xs font-medium text-[#F4E5AE]">
         Application deadline has passed.
       </p>
     );
@@ -81,18 +84,22 @@ function CountdownToMarch25() {
   ];
 
   return (
-    <div className="mt-3">
-      <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+    <div className="mt-5">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#F4E5AE]">
         Time Remaining
       </p>
+
       <div className="flex flex-wrap gap-2">
         {items.map((item) => (
           <div
             key={item.label}
-            className="min-w-[74px] rounded-2xl border border-white/15 bg-white/10 px-3 py-2 text-center backdrop-blur-sm"
+            className="min-w-[74px] rounded-2xl border border-[#D4AF37]/35 bg-white/10 px-3 py-3 text-center backdrop-blur-sm"
           >
-            <div className="text-lg font-bold text-white">{item.value}</div>
-            <div className="text-[11px] uppercase tracking-wide text-white/60">
+            <div className="text-lg font-bold text-white">
+              {item.value}
+            </div>
+
+            <div className="text-[11px] uppercase tracking-wide text-[#D8E3ED]">
               {item.label}
             </div>
           </div>
@@ -102,16 +109,21 @@ function CountdownToMarch25() {
   );
 }
 
+/* ---------------- Apply Page ---------------- */
+
 export default function ApplyPage() {
   const APPLY_URL = "https://forms.gle/9A7uoG5BtCq4wFP6A";
   const ANNOUNCEMENT_URL = "#";
 
   return (
-    <div className="bg-white">
+    <div className="bg-white text-[#001530]">
+
       {/* HERO SECTION */}
       <section className="relative overflow-hidden">
+
+        {/* Subtle background glow */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-slate-200/50 blur-3xl" />
+          <div className="absolute -top-40 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[#F4E5AE]/35 blur-3xl" />
         </div>
 
         <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
@@ -121,15 +133,17 @@ export default function ApplyPage() {
             transition={{ duration: 0.75, ease: EASE }}
             className="max-w-3xl"
           >
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">
+            <div className="mb-5 h-1 w-12 rounded-full bg-[#D4AF37]" />
+
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#A77D1E]">
               Application
             </p>
 
-            <h1 className="mt-4 text-4xl font-bold text-slate-900 md:text-5xl">
+            <h1 className="mt-4 text-4xl font-bold text-[#002040] md:text-5xl">
               Start the Jr.LTF Recruitment Process
             </h1>
 
-            <p className="mt-5 text-base leading-relaxed text-slate-600">
+            <p className="mt-5 text-base leading-relaxed text-[#40536A]">
               Sending the application form is a required first step to begin the
               recruitment process. Submitting the form does not affect
               assessment results—it simply initiates the process.
@@ -145,9 +159,9 @@ export default function ApplyPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="rounded-3xl bg-slate-900 p-8 text-white shadow-xl"
+          className="rounded-3xl border border-[#D4AF37]/30 bg-[#002040] p-8 text-white shadow-xl"
         >
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/60">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#F4E5AE]">
             For Parents / Candidates
           </p>
 
@@ -155,7 +169,7 @@ export default function ApplyPage() {
             {/* Section Icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-white"
+              className="h-6 w-6 shrink-0 text-[#D4AF37]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -168,49 +182,62 @@ export default function ApplyPage() {
               />
             </svg>
 
-            <h2 className="text-2xl font-bold">
+            <h2 className="text-2xl font-bold text-white">
               Sections Included in the Application Form
             </h2>
           </div>
 
-          <p className="mt-4 text-white/80">
+          <p className="mt-4 leading-relaxed text-[#D8E3ED]">
             Please review what is included before submitting the application.
           </p>
 
+          {/* Application Sections */}
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl bg-white/10 px-5 py-4">
+
+            <div className="rounded-2xl border border-white/15 bg-white/10 px-5 py-4">
               <div className="flex items-center gap-2">
                 <span className="text-lg">👨‍👩‍👧</span>
-                <p className="text-sm font-semibold">Parents section</p>
+                <p className="text-sm font-semibold text-white">
+                  Parents section
+                </p>
               </div>
-              <p className="mt-1 text-sm text-white/70">
+
+              <p className="mt-1 text-sm text-[#D8E3ED]">
                 Parent information and contacts
               </p>
             </div>
 
-            <div className="rounded-2xl bg-white/10 px-5 py-4">
+            <div className="rounded-2xl border border-white/15 bg-white/10 px-5 py-4">
               <div className="flex items-center gap-2">
                 <span className="text-lg">🏠</span>
-                <p className="text-sm font-semibold">Family members section</p>
+                <p className="text-sm font-semibold text-white">
+                  Family members section
+                </p>
               </div>
-              <p className="mt-1 text-sm text-white/70">
+
+              <p className="mt-1 text-sm text-[#D8E3ED]">
                 Basic family profile
               </p>
             </div>
 
-            <div className="rounded-2xl bg-white/10 px-5 py-4">
+            <div className="rounded-2xl border border-white/15 bg-white/10 px-5 py-4">
               <div className="flex items-center gap-2">
                 <span className="text-lg">🧑</span>
-                <p className="text-sm font-semibold">Candidate’s section</p>
+                <p className="text-sm font-semibold text-white">
+                  Candidate’s section
+                </p>
               </div>
-              <p className="mt-1 text-sm text-white/70">
+
+              <p className="mt-1 text-sm text-[#D8E3ED]">
                 Candidate background
               </p>
             </div>
           </div>
 
-          {/* Buttons */}
+          {/* Action Buttons */}
           <div className="mt-8 flex flex-wrap gap-3">
+
+            {/* Application Form */}
             <motion.a
               href={APPLY_URL}
               target="_blank"
@@ -225,7 +252,7 @@ export default function ApplyPage() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-white px-10 py-5 text-base font-semibold text-slate-900 shadow-lg hover:bg-slate-100"
+              className="inline-flex items-center justify-center gap-3 rounded-2xl bg-[#D4AF37] px-10 py-5 text-base font-semibold text-[#002040] shadow-lg transition-colors hover:bg-[#E7C65C]"
             >
               {/* Google Form Icon */}
               <svg
@@ -240,16 +267,17 @@ export default function ApplyPage() {
               Start Application Form →
             </motion.a>
 
+            {/* Recruitment Timeline */}
             <Link
               href="/recruitment"
-              className="inline-flex items-center justify-center rounded-2xl border border-white/30 bg-transparent px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10"
+              className="inline-flex items-center justify-center rounded-2xl border border-[#D4AF37]/50 bg-transparent px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
             >
               Review Recruitment Timeline
             </Link>
           </div>
 
           {/* Notice */}
-          <p className="mt-4 text-sm font-semibold text-red-300">
+          <p className="mt-5 text-sm font-semibold text-[#F4E5AE]">
             Notice: Application form will be no longer available after March
             25!
           </p>
@@ -266,17 +294,22 @@ export default function ApplyPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="rounded-3xl border border-slate-200 bg-white px-8 py-12 shadow-sm"
+          className="rounded-3xl border border-[#DCE5ED] bg-white px-8 py-12 shadow-sm transition-all duration-300 hover:border-[#D4AF37]/50 hover:shadow-md"
         >
           <div className="max-w-4xl">
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-slate-500">
+
+            <div className="mb-5 h-1 w-12 rounded-full bg-[#D4AF37]" />
+
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#A77D1E]">
               For Chapter Leaders/Representatives
             </p>
 
             <div className="mt-4 flex items-center gap-3">
+
+              {/* Announcement Icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-7 w-7 text-slate-900"
+                className="h-7 w-7 shrink-0 text-[#A77D1E]"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -289,12 +322,12 @@ export default function ApplyPage() {
                 />
               </svg>
 
-              <h2 className="text-3xl font-bold text-slate-900">
+              <h2 className="text-3xl font-bold text-[#002040]">
                 Join the Jr.LTF Announcement Room
               </h2>
             </div>
 
-            <p className="mt-6 leading-relaxed text-slate-600">
+            <p className="mt-6 leading-relaxed text-[#40536A]">
               All official Jr.LTF updates, recruitment announcements, selection
               process guidelines, shared materials, files, and important
               communications will be posted in the Announcement Room.
@@ -305,7 +338,7 @@ export default function ApplyPage() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.25 }}
-              className="mt-8 inline-block rounded-2xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-md hover:opacity-90"
+              className="mt-8 inline-block rounded-2xl bg-[#002040] px-6 py-3 text-sm font-semibold text-white shadow-md transition-colors hover:bg-[#003764]"
             >
               Leaders&apos; Room
             </motion.a>
