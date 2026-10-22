@@ -1,3 +1,4 @@
+
 "use client";
 
 import React from "react";
@@ -11,8 +12,8 @@ const navItems = [
   { label: "Standards", href: "/standards" },
   { label: "Recruitment", href: "/recruitment" },
   {
-    label: "1st Assessment",
-    href: "/1st-assessment",
+    label: "Badges",
+    href: "/badges",
     highlight: true,
     badge: "New",
   },
@@ -66,14 +67,21 @@ function resetTranslateToEnglish() {
 
 function setGoogleTranslateLanguage(lang: string) {
   const select =
-    document.querySelector<HTMLSelectElement>("select.goog-te-combo");
+    document.querySelector<HTMLSelectElement>(
+      "select.goog-te-combo"
+    );
+
   if (!select) return;
 
   select.value = lang;
   select.dispatchEvent(new Event("change"));
 }
 
-function FlagsRow({ size = "md" }: { size?: "md" | "lg" }) {
+function FlagsRow({
+  size = "md",
+}: {
+  size?: "md" | "lg";
+}) {
   const btnClass =
     size === "md"
       ? "grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-[16px] leading-none shadow-sm transition-colors hover:bg-slate-50"
@@ -103,7 +111,9 @@ function FlagsRow({ size = "md" }: { size?: "md" | "lg" }) {
           {l.flag === "globe" ? (
             <GlobeIcon className="h-4 w-4" />
           ) : (
-            <span aria-hidden="true">{l.flag}</span>
+            <span aria-hidden="true">
+              {l.flag}
+            </span>
           )}
         </button>
       ))}
@@ -129,7 +139,8 @@ export default function Navbar() {
           Jr.LTF
         </Link>
 
-        <nav className="relative hidden gap-6 text-sm md:flex md:items-center">
+        {/* Desktop Navigation */}
+        <nav className="relative hidden gap-5 text-sm md:flex md:items-center">
           {navItems.map((item) => {
             const active = pathname === item.href;
             const isHighlighted = item.highlight;
@@ -138,7 +149,8 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative transition-colors duration-200 ${
+                aria-current={active ? "page" : undefined}
+                className={`relative whitespace-nowrap transition-colors duration-200 ${
                   isHighlighted
                     ? "rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-slate-900 hover:bg-slate-200"
                     : "px-1 text-slate-600 hover:text-slate-900"
@@ -151,9 +163,7 @@ export default function Navbar() {
 
                   <span
                     className={
-                      active
-                        ? "font-semibold text-slate-900"
-                        : isHighlighted
+                      active || isHighlighted
                         ? "font-semibold text-slate-900"
                         : ""
                     }
@@ -171,12 +181,16 @@ export default function Navbar() {
                 {active && (
                   <motion.span
                     layoutId="nav-underline"
-                    className={`absolute h-[2px] bg-slate-900 ${
+                    className={`absolute -bottom-1 h-[2px] bg-slate-900 ${
                       isHighlighted
-                        ? "left-3 right-3 -bottom-1"
-                        : "left-0 w-full -bottom-1"
+                        ? "left-3 right-3"
+                        : "left-0 w-full"
                     }`}
-                    transition={{ type: "spring", stiffness: 500, damping: 35 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 35,
+                    }}
                   />
                 )}
               </Link>
@@ -185,6 +199,7 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          {/* Desktop Language Flags */}
           <div className="hidden items-center gap-2 md:flex">
             <FlagsRow size="md" />
           </div>
@@ -196,17 +211,20 @@ export default function Navbar() {
             Apply
           </Link>
 
+          {/* Mobile Hamburger */}
           <button
             type="button"
             className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-slate-900 shadow-sm md:hidden"
-            aria-label="Open menu"
+            aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
             <span className="relative block h-4 w-5">
               <span
                 className={`absolute left-0 top-0 h-0.5 w-5 bg-slate-900 transition-transform duration-300 ${
-                  open ? "translate-y-[7px] rotate-45" : ""
+                  open
+                    ? "translate-y-[7px] rotate-45"
+                    : ""
                 }`}
               />
               <span
@@ -216,7 +234,9 @@ export default function Navbar() {
               />
               <span
                 className={`absolute left-0 top-[14px] h-0.5 w-5 bg-slate-900 transition-transform duration-300 ${
-                  open ? "translate-y-[-7px] -rotate-45" : ""
+                  open
+                    ? "translate-y-[-7px] -rotate-45"
+                    : ""
                 }`}
               />
             </span>
@@ -224,9 +244,12 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <div
         className={`overflow-hidden transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hidden ${
-          open ? "max-h-[560px] opacity-100" : "max-h-0 opacity-0"
+          open
+            ? "max-h-[560px] opacity-100"
+            : "max-h-0 opacity-0"
         }`}
       >
         <div className="mx-auto max-w-6xl px-6 pb-5">
@@ -244,6 +267,9 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
+                    aria-current={
+                      active ? "page" : undefined
+                    }
                     className={`relative rounded-xl px-4 py-3 text-sm transition-colors duration-200 ${
                       isHighlighted
                         ? "bg-slate-100 text-slate-900 hover:bg-slate-200"
@@ -298,15 +324,18 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Hidden Google Translate Mount */}
       <div id="google_translate_element" className="hidden" />
 
       <style jsx global>{`
         .goog-te-banner-frame.skiptranslate {
           display: none !important;
         }
+
         body {
           top: 0 !important;
         }
+
         .goog-te-gadget,
         .goog-te-gadget * {
           display: none !important;
@@ -315,3 +344,4 @@ export default function Navbar() {
     </header>
   );
 }
+  
