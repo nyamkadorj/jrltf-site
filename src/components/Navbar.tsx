@@ -17,7 +17,6 @@ const navItems = [
     highlight: true,
     badge: "New",
   },
-  { label: "Q&A", href: "/faq" },
 ];
 
 const LANGS = [
