@@ -1,4 +1,4 @@
-// src/app/recruitment/page.tsx
+
 "use client";
 
 import React from "react";
@@ -25,7 +25,11 @@ const container = {
 
 const item = {
   hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: EASE },
+  },
 };
 
 type Step = {
@@ -35,7 +39,10 @@ type Step = {
 };
 
 const TIMELINE: Step[] = [
-  { title: "HQ announcement of Jr.LTF Program", date: "By end of Feb" },
+  {
+    title: "HQ announcement of Jr.LTF Program",
+    date: "By end of Feb",
+  },
   {
     title:
       "HQ introduces the program to families in each chapter with chapter leader/representative",
@@ -50,13 +57,17 @@ const TIMELINE: Step[] = [
     date: "Before March 25",
     note: "Note: start saving and raising funds for summer course",
   },
-  { title: "Deadline for the application form", date: "By March 25" },
+  {
+    title: "Deadline for the application form",
+    date: "By March 25",
+  },
   {
     title: "Start and complete the 70-day track",
     date: "Start before April 1st, end by June 9th",
   },
   {
-    title: "Complete the **interview between days 60 and 70** of the track, with the Chapter Leader/Representative",
+    title:
+      "Complete the **interview between days 60 and 70** of the track, with the Chapter Leader/Representative",
     date: "May",
     note: "Interview conducted based on Evaluation sheet",
   },
@@ -69,39 +80,44 @@ const TIMELINE: Step[] = [
     title: "Jr. LTF’s International Challenger’s Course",
     date: "Tentative date July 27th – Aug 10th",
   },
-  { title: "Selection of Jr.LTF members", date: "At the end of WS" },
+  {
+    title: "Selection of Jr.LTF members",
+    date: "At the end of WS",
+  },
 ];
 
 export default function RecruitmentPage() {
   return (
-    <div className="bg-white">
+    <div className="bg-white text-[#001530]">
       <div className="mx-auto max-w-6xl px-6 py-16">
         {/* Header */}
         <motion.div {...fadeUp(0)} className="max-w-3xl">
-          <h1 className="text-4xl font-bold text-slate-900">
+          <div className="mb-4 h-1 w-12 rounded-full bg-[#D4AF37]" />
+
+          <h1 className="text-4xl font-bold text-[#002040]">
             Recruitment Process
           </h1>
-          <p className="mt-4 text-slate-600">
+
+          <p className="mt-4 leading-relaxed text-[#40536A]">
             The recruitment process is designed to support candidates’ spiritual
             growth, clarify readiness, and confirm alignment with the program
             standards.
           </p>
         </motion.div>
 
-        {/* Top cards */}
+        {/* Objectives and Method */}
         <div className="mt-10 grid gap-6 lg:grid-cols-2">
           <InfoCard
             title="Objectives"
             delay={0.05}
             icon={<TargetIcon />}
           >
-            <ul className="list-disc space-y-2 pl-5 text-slate-700">
+            <ul className="list-disc space-y-2 pl-5 leading-relaxed text-[#40536A] marker:text-[#C49A2C]">
               <li>
-                Chapters select <strong>Jr.LTF challengers</strong> according to the fulfillment of the
-                joining requirements (1st assessment).
+                Chapters select <strong className="text-[#002040]">Jr.LTF challengers</strong> according to the fulfillment of the joining requirements (1st assessment).
               </li>
               <li>
-                Then organizers select <strong>Jr.LTF Member</strong> according to fulfillment of Entrance standard after 2nd assessment process.
+                Then organizers select <strong className="text-[#002040]">Jr.LTF Member</strong> according to fulfillment of Entrance standard after 2nd assessment process.
               </li>
               <li>
                 Allow candidates to reflect on their readiness (not simply pass
@@ -115,14 +131,25 @@ export default function RecruitmentPage() {
             delay={0.08}
             icon={<ClipboardIcon />}
           >
-            <p className="text-slate-700">
+            <p className="leading-relaxed text-[#40536A]">
               Use two assessment steps to confirm whether candidates are
               qualified to join.
             </p>
-            <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
-              <li><strong>1st assessment</strong> - Screening process (70-day Spiritual Habit Tracker; Interview with chapter leader/representative)</li>
+
+            <ul className="mt-3 list-disc space-y-2 pl-5 leading-relaxed text-[#40536A] marker:text-[#C49A2C]">
               <li>
-                <strong>2nd assessment</strong> - Jr.LTF Summer Challengers' Course, direct input on motivation and
+                <strong className="text-[#002040]">
+                  1st assessment
+                </strong>{" "}
+                - Screening process (70-day Spiritual Habit Tracker;
+                Interview with chapter leader/representative)
+              </li>
+
+              <li>
+                <strong className="text-[#002040]">
+                  2nd assessment
+                </strong>{" "}
+                - Jr.LTF Summer Challengers' Course, direct input on motivation and
                 behavior
               </li>
             </ul>
@@ -132,13 +159,14 @@ export default function RecruitmentPage() {
         {/* Timeline */}
         <motion.div
           {...fadeUp(0.14)}
-          className="mt-14 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+          className="mt-14 rounded-3xl border border-[#DCE5ED] bg-white p-6 shadow-sm"
         >
           <div>
-            <h2 className="text-xl font-semibold text-slate-900">
+            <h2 className="text-xl font-semibold text-[#002040]">
               Recruitment Steps
             </h2>
-            <p className="mt-2 text-slate-600">
+
+            <p className="mt-2 text-[#40536A]">
               Follow the steps in order. Each step builds on the previous one.
             </p>
           </div>
@@ -168,13 +196,14 @@ function InfoCard({
   return (
     <motion.section
       {...fadeUp(delay)}
-      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+      className="rounded-3xl border border-[#DCE5ED] bg-white p-6 shadow-sm transition-all duration-300 hover:border-[#D4AF37]/60 hover:shadow-md"
     >
       <div className="flex items-center gap-3">
-        <div className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-slate-50 text-slate-700">
+        <div className="grid h-9 w-9 place-items-center rounded-xl border border-[#F4E5AE] bg-[#FFF8E7] text-[#A77D1E]">
           {icon}
         </div>
-        <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+
+        <p className="text-xs font-bold uppercase tracking-wider text-[#002040]">
           {title}
         </p>
       </div>
@@ -221,7 +250,7 @@ function ClipboardIcon() {
   );
 }
 
-/* ---------------- Timeline (unchanged) ---------------- */
+/* ---------------- Timeline ---------------- */
 
 function VerticalTimeline({ steps }: { steps: Step[] }) {
   return (
@@ -232,44 +261,63 @@ function VerticalTimeline({ steps }: { steps: Step[] }) {
       viewport={{ once: true, amount: 0.2 }}
       className="relative space-y-6"
     >
-      <div className="absolute left-5 top-0 h-full w-px bg-slate-200" />
+      {/* Gold timeline line */}
+      <div className="absolute left-5 top-0 h-full w-px bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/60 to-[#DCE5ED]" />
 
       {steps.map((s, i) => (
-        <motion.li key={`${i}-${s.title}`} variants={item} className="relative">
+        <motion.li
+          key={`${i}-${s.title}`}
+          variants={item}
+          className="relative"
+        >
           <div className="flex items-start gap-5">
+            {/* Step number */}
             <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center">
               <motion.div
                 initial={{ scale: 0.9, opacity: 0.75 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.8, ease: EASE }}
-                className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-white shadow-sm"
+                className={`grid h-10 w-10 place-items-center rounded-2xl border shadow-sm ${
+                  i === 0
+                    ? "border-[#002040] bg-[#002040]"
+                    : "border-[#D4AF37] bg-[#FFF8E7]"
+                }`}
               >
-                <span className="text-sm font-semibold text-slate-700">
+                <span
+                  className={`text-sm font-semibold ${
+                    i === 0
+                      ? "text-white"
+                      : "text-[#002040]"
+                  }`}
+                >
                   {i + 1}
                 </span>
               </motion.div>
             </div>
 
+            {/* Step content */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.75, ease: EASE }}
-              className="w-full rounded-3xl border border-slate-200 bg-white p-5 shadow-sm"
+              className="w-full rounded-3xl border border-[#DCE5ED] bg-white p-5 shadow-sm transition-all duration-300 hover:border-[#D4AF37]/60 hover:shadow-md"
             >
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                <h3 className="text-base font-semibold text-slate-900 md:text-lg">
+                <h3 className="text-base font-semibold text-[#002040] md:text-lg">
                   {s.title}
                 </h3>
 
-                <span className="inline-flex items-center rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-800 shadow-sm">
+                <span className="inline-flex shrink-0 items-center rounded-2xl border border-[#F4E5AE] bg-[#FFF8E7] px-4 py-2 text-sm font-bold text-[#002040] shadow-sm">
                   {s.date}
                 </span>
               </div>
 
               {s.note ? (
-                <p className="mt-3 text-sm text-slate-600">{s.note}</p>
+                <p className="mt-3 text-sm leading-relaxed text-[#40536A]">
+                  {s.note}
+                </p>
               ) : null}
             </motion.div>
           </div>

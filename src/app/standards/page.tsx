@@ -1,4 +1,4 @@
-// src/app/standards/page.tsx
+
 import React from "react";
 
 type StandardItem = {
@@ -111,9 +111,11 @@ const STANDARDS: StandardItem[] = [
   },
 ];
 
+/* ---------------- List Component ---------------- */
+
 function List({ items }: { items: string[] }) {
   return (
-    <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-700">
+    <ul className="mt-4 list-disc space-y-2.5 pl-5 leading-relaxed text-[#40536A] marker:text-[#C49A2C]">
       {items.map((t, i) => (
         <li key={i}>{t}</li>
       ))}
@@ -121,62 +123,90 @@ function List({ items }: { items: string[] }) {
   );
 }
 
+/* ---------------- Standards Page ---------------- */
+
 export default function StandardsPage() {
   return (
-    <div className="bg-white">
-      <section className="mx-auto max-w-6xl px-6 pt-16 pb-10">
-        <h1 className="text-3xl font-bold text-slate-900 md:text-4xl">
+    <div className="bg-white text-[#001530]">
+      {/* Header */}
+      <section className="mx-auto max-w-6xl px-6 pb-10 pt-16">
+        <div className="mb-4 h-1 w-12 rounded-full bg-[#D4AF37]" />
+
+        <h1 className="text-3xl font-bold text-[#002040] md:text-4xl">
           Program Standards
         </h1>
-        <p className="mt-4 max-w-3xl text-slate-600">
-          Entrance standards clarify who this program is for. <strong>Candidates must meet the entrance standard in order to become Jr.LTF member.</strong> The Objectives describe who members are expected to become and achieve through the program.
+
+        <p className="mt-4 max-w-3xl leading-relaxed text-[#40536A]">
+          Entrance standards clarify who this program is for.{" "}
+          <strong className="font-semibold text-[#002040]">
+            Candidates must meet the entrance standard in order to become
+            Jr.LTF member.
+          </strong>{" "}
+          The Objectives describe who members are expected to become and
+          achieve through the program.
         </p>
       </section>
 
+      {/* Standards Accordion */}
       <section className="mx-auto max-w-6xl px-6 pb-16">
         <div className="space-y-5">
           {STANDARDS.map((s, idx) => (
             <details
               key={s.title}
-              className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
+              className="group rounded-3xl border border-[#DCE5ED] bg-white p-6 shadow-sm transition-all duration-300 hover:border-[#D4AF37]/60 open:border-[#D4AF37]/60 open:shadow-md"
               open={idx === 0}
             >
-              <summary className="cursor-pointer list-none">
+              <summary className="cursor-pointer list-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37] focus-visible:ring-offset-4 [&::-webkit-details-marker]:hidden">
                 <div className="flex items-center justify-between gap-4">
-                  <h2 className="text-lg font-semibold text-slate-900 md:text-xl">
+                  <h2 className="text-lg font-semibold text-[#002040] md:text-xl">
                     {s.title}
                   </h2>
 
-                  <span className="grid h-10 w-10 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-700 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-open:bg-white group-open:shadow-sm">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl border border-[#DCE5ED] bg-[#EFF5F9] text-[#002040] transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-open:border-[#D4AF37] group-open:bg-[#FFF8E7] group-open:text-[#A77D1E] group-open:shadow-sm">
                     <span className="text-xl leading-none transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-open:rotate-45">
                       +
                     </span>
                   </span>
                 </div>
+
+                <div className="mt-4 h-px w-full bg-[#DCE5ED] group-open:bg-[#D4AF37]/40" />
               </summary>
 
+              {/* Animated Content */}
               <div className="grid grid-rows-[0fr] transition-[grid-template-rows] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-open:grid-rows-[1fr]">
                 <div className="overflow-hidden">
                   <div className="mt-6 grid translate-y-6 gap-6 opacity-0 transition-all duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-open:translate-y-0 group-open:opacity-100 md:grid-cols-2">
-                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+
+                    {/* Entrance Standard */}
+                    <div className="rounded-2xl border border-[#DCE5ED] bg-[#EFF5F9] p-5">
+                      <div className="mb-4 h-1 w-10 rounded-full bg-[#002040]" />
+
+                      <p className="text-xs font-semibold uppercase tracking-wider text-[#40536A]">
                         Entrance Standard
                       </p>
-                      <h3 className="mt-2 text-base font-semibold text-slate-900">
+
+                      <h3 className="mt-2 text-base font-semibold leading-relaxed text-[#002040]">
                         {s.entranceTitle}
                       </h3>
+
                       <List items={s.entrance} />
                     </div>
 
-                    <div className="rounded-2xl border border-slate-200 bg-white p-5">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    {/* Objectives */}
+                    <div className="rounded-2xl border border-[#F4E5AE] bg-[#FFF8E7] p-5">
+                      <div className="mb-4 h-1 w-10 rounded-full bg-[#D4AF37]" />
+
+                      <p className="text-xs font-semibold uppercase tracking-wider text-[#A77D1E]">
                         Objectives on Program Standard
                       </p>
-                      <h3 className="mt-2 text-base font-semibold text-slate-900">
+
+                      <h3 className="mt-2 text-base font-semibold leading-relaxed text-[#002040]">
                         {s.objectiveTitle}
                       </h3>
+
                       <List items={s.objectives} />
                     </div>
+
                   </div>
                 </div>
               </div>
