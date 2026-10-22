@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -113,8 +114,6 @@ function IconCharacteristics(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-/* --- Characteristic Icons (meaningful) --- */
-
 function IconOwner(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -131,7 +130,6 @@ function IconOwner(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-/** Parents icon (for Family growth bullet) */
 function IconParents(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -143,10 +141,8 @@ function IconParents(props: React.SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      {/* left parent */}
       <circle cx="8" cy="8" r="2.5" />
       <path d="M3.5 20c0-3.2 2.4-5.7 5.5-5.7s5.5 2.5 5.5 5.7" />
-      {/* right parent */}
       <circle cx="17" cy="8.5" r="2.2" />
       <path d="M14.4 20c.2-2.6 1.9-4.6 4.6-4.6 1.3 0 2.4.4 3.2 1.2" />
     </svg>
@@ -186,7 +182,6 @@ function IconDiscipline(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-/** Day-to-day life icon (calendar) */
 function IconCalendar(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -208,28 +203,31 @@ function IconCalendar(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-/* ---------------- Page ---------------- */
+/* ---------------- Homepage ---------------- */
 
 export default function HomePage() {
   return (
-    <div>
-      {/* HERO unchanged */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-white" />
+    <div className="bg-white text-[#001530]">
 
+      {/* HERO - NAVY & GOLD */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#001530] via-[#002040] to-white" />
+
+        {/* Subtle gold glow */}
         <motion.div
           aria-hidden
-          className="absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-white/10 blur-3xl"
+          className="pointer-events-none absolute -top-24 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-[#D4AF37]/15 blur-3xl"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: EASE }}
         />
 
-        <div className="relative mx-auto max-w-6xl px-6 pt-20 pb-36">
+        <div className="relative mx-auto max-w-6xl px-6 pb-36 pt-20">
           <div className="max-w-3xl text-white">
+
             <motion.p
               {...fadeUp(0)}
-              className="text-xs uppercase tracking-[0.25em] text-white/70"
+              className="text-xs font-medium uppercase tracking-[0.25em] text-[#F4E5AE]"
             >
               Spiritual Growth • Leadership • Ownership
             </motion.p>
@@ -243,50 +241,61 @@ export default function HomePage() {
 
             <motion.p
               {...fadeUp(0.16)}
-              className="mt-5 text-lg text-white/80 md:text-xl"
+              className="mt-5 text-lg leading-relaxed text-white/85 md:text-xl"
             >
-              Raising true sons and daughters of Heavenly Father who take ownership in realizing
-              God's dream— One Family under God, one family at a time.
+              Raising true sons and daughters of Heavenly Father
+              who take ownership in realizing God's dream—
+              One Family under God, one family at a time.
             </motion.p>
 
-            <motion.div {...fadeUp(0.24)} className="mt-8 flex flex-wrap gap-3">
+            <motion.div
+              {...fadeUp(0.24)}
+              className="mt-8 flex flex-wrap gap-3"
+            >
               <Link
                 href="/recruitment"
-                className="rounded-2xl bg-white px-6 py-3 font-medium text-slate-900 hover:opacity-90"
+                className="rounded-2xl bg-[#D4AF37] px-6 py-3 font-semibold text-[#002040] shadow-sm transition-all hover:bg-[#E7C65C] hover:shadow-md"
               >
                 Recruitment process
               </Link>
+
               <Link
                 href="/apply"
-                className="rounded-2xl border border-white/35 px-6 py-3 text-white hover:bg-white/10"
+                className="rounded-2xl border border-white/40 px-6 py-3 font-medium text-white transition-all hover:border-[#D4AF37] hover:bg-white/10"
               >
                 Fill application form
               </Link>
             </motion.div>
+
           </div>
         </div>
       </section>
 
       {/* CONTENT */}
       <section className="mx-auto max-w-6xl px-6 py-16">
-        {/* Program Definition unchanged */}
+
+        {/* Program Definition */}
         <motion.div
           {...fadeUpView(0)}
-          className="rounded-3xl bg-slate-900 p-8 text-white shadow-sm ring-1 ring-white/10"
+          className="rounded-3xl border border-[#DCE5ED] bg-[#002040] p-8 text-white shadow-sm"
         >
           <div className="flex items-center gap-3">
-            <span className="grid h-9 w-9 place-items-center rounded-2xl border border-white/20 bg-white/10">
+
+            <span className="grid h-9 w-9 place-items-center rounded-2xl border border-[#D4AF37]/40 bg-white/10 text-[#F4E5AE]">
               <IconDefinition className="h-5 w-5" />
             </span>
-            <h2 className="text-xl font-semibold">Program Definition</h2>
+
+            <h2 className="text-xl font-semibold">
+              Program Definition
+            </h2>
           </div>
 
-          <p className="mt-3 text-white/80">
+          <p className="mt-3 leading-relaxed text-white/85">
             Jr. LTF is an ongoing spiritual leadership training program for middle and high school students. The program has the Jr.LTF´s International Challenger’s Course, which serves as the final evaluation before officially entering as Jr.LTF member. Selected members will continue their spiritual growth and raise the standard through their own homes and local fields, with the guidance and support of parents, chapter leaders (youth leaders), and the Jr.LTF program team at HQ.
           </p>
         </motion.div>
 
-        {/* divider unchanged */}
+        {/* Divider */}
         <motion.div
           initial={{ opacity: 0, y: 6 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -298,25 +307,39 @@ export default function HomePage() {
             initial={{ scaleX: 0.92, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
             viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.05 }}
-            className="origin-center h-px w-full bg-gradient-to-r from-transparent via-slate-200 to-transparent"
+            transition={{
+              duration: 0.8,
+              ease: EASE,
+              delay: 0.05,
+            }}
+            className="h-px w-full origin-center bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"
           />
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          <Card title="Vision" icon={<IconVision className="h-5 w-5" />}>
+
+          <Card
+            title="Vision"
+            icon={<IconVision className="h-5 w-5" />}
+          >
             We envision a generation of true sons and daughters of God who embody and spread a
             culture of heart, taking ownership in realizing God’s dream of One God-centered Family,
             building a world filled with peace and true love.
           </Card>
 
-          <Card title="Purpose / Mission" icon={<IconMission className="h-5 w-5" />}>
+          <Card
+            title="Purpose / Mission"
+            icon={<IconMission className="h-5 w-5" />}
+          >
             Jr.LTF guides and raises young leaders (ages 12–17) to become role models for God’s
             Providence—young people who represent God’s Ideal and set the standard of true
             leadership.
           </Card>
 
-          <Card title="Educational Goal" icon={<IconGoal className="h-5 w-5" />}>
+          <Card
+            title="Educational Goal"
+            icon={<IconGoal className="h-5 w-5" />}
+          >
             To enhance and deepen true leadership through a rigorous training program that
             challenges participants in all dimensions to become young leaders who are owners in
             fulfilling God’s dream.
@@ -325,29 +348,35 @@ export default function HomePage() {
           {/* Program Characteristics */}
           <motion.div
             {...fadeUpView(0)}
-            className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
+            className="rounded-3xl border border-[#DCE5ED] bg-white p-6 shadow-sm transition-all duration-300 hover:border-[#D4AF37]/50 hover:shadow-md"
           >
             <div className="flex items-center gap-3">
-              <span className="grid h-9 w-9 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-900">
+              <span className="grid h-9 w-9 place-items-center rounded-2xl border border-[#F4E5AE] bg-[#FFF8E7] text-[#A77D1E]">
                 <IconCharacteristics className="h-5 w-5" />
               </span>
-              <h2 className="text-xl font-semibold">Program Characteristics</h2>
+
+              <h2 className="text-xl font-semibold text-[#002040]">
+                Program Characteristics
+              </h2>
             </div>
 
-            {/* NOTE: increased left padding so bullet text aligns to title */}
-            <ul className="mt-4 space-y-3 pl-[52px] text-slate-700">
+            <ul className="mt-4 space-y-3 pl-[52px] text-[#40536A]">
               <Bullet icon={<IconOwner className="h-4 w-4" />}>
                 Becoming the Owner of God's Providence.
               </Bullet>
+
               <Bullet icon={<IconParents className="h-4 w-4" />}>
                 Continuous commitment to spiritual growth in the Family.
               </Bullet>
+
               <Bullet icon={<IconMerit className="h-4 w-4" />}>
                 Earn the merit based on their own commitment.
               </Bullet>
+
               <Bullet icon={<IconDiscipline className="h-4 w-4" />}>
                 Rigorous training &amp; Self-discipline.
               </Bullet>
+
               <Bullet icon={<IconCalendar className="h-4 w-4" />}>
                 Integrate to “day-to-day” life.
               </Bullet>
@@ -373,16 +402,21 @@ function Card({
   return (
     <motion.div
       {...fadeUpView(0)}
-      className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md"
+      className="rounded-3xl border border-[#DCE5ED] bg-white p-6 shadow-sm transition-all duration-300 hover:border-[#D4AF37]/50 hover:shadow-md"
     >
       <div className="flex items-center gap-3">
-        <span className="grid h-9 w-9 place-items-center rounded-2xl border border-slate-200 bg-slate-50 text-slate-900">
+        <span className="grid h-9 w-9 place-items-center rounded-2xl border border-[#F4E5AE] bg-[#FFF8E7] text-[#A77D1E]">
           {icon}
         </span>
-        <h2 className="text-xl font-semibold">{title}</h2>
+
+        <h2 className="text-xl font-semibold text-[#002040]">
+          {title}
+        </h2>
       </div>
 
-      <p className="mt-3 text-slate-700">{children}</p>
+      <p className="mt-3 leading-relaxed text-[#40536A]">
+        {children}
+      </p>
     </motion.div>
   );
 }
@@ -396,10 +430,13 @@ function Bullet({
 }) {
   return (
     <li className="flex items-start gap-3">
-      <span className="mt-0.5 grid h-7 w-7 place-items-center rounded-xl border border-slate-200 bg-slate-50 text-slate-900">
+      <span className="mt-0.5 grid h-7 w-7 place-items-center rounded-xl border border-[#F4E5AE] bg-[#FFF8E7] text-[#A77D1E]">
         {icon}
       </span>
-      <span className="leading-relaxed">{children}</span>
+
+      <span className="leading-relaxed">
+        {children}
+      </span>
     </li>
   );
 }

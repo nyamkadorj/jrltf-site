@@ -60,11 +60,13 @@ function StarIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+/* Reset Google Translate to English */
 function resetTranslateToEnglish() {
   document.cookie = "googtrans=/en/en;path=/";
   window.location.reload();
 }
 
+/* Change Google Translate language */
 function setGoogleTranslateLanguage(lang: string) {
   const select =
     document.querySelector<HTMLSelectElement>(
@@ -84,8 +86,8 @@ function FlagsRow({
 }) {
   const btnClass =
     size === "md"
-      ? "grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-[16px] leading-none shadow-sm transition-colors hover:bg-slate-50"
-      : "grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-[18px] leading-none shadow-sm transition-colors hover:bg-slate-50";
+      ? "grid h-9 w-9 place-items-center rounded-xl border border-[#DCE5ED] bg-white text-[16px] leading-none text-[#002040] shadow-sm transition-all duration-200 hover:border-[#D4AF37] hover:bg-[#FFF8E7]"
+      : "grid h-10 w-10 place-items-center rounded-xl border border-[#DCE5ED] bg-white text-[18px] leading-none text-[#002040] shadow-sm transition-all duration-200 hover:border-[#D4AF37] hover:bg-[#FFF8E7]";
 
   return (
     <div className="flex items-center gap-2">
@@ -111,9 +113,7 @@ function FlagsRow({
           {l.flag === "globe" ? (
             <GlobeIcon className="h-4 w-4" />
           ) : (
-            <span aria-hidden="true">
-              {l.flag}
-            </span>
+            <span aria-hidden="true">{l.flag}</span>
           )}
         </button>
       ))}
@@ -130,17 +130,19 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <header className="sticky top-0 z-50 border-b border-[#DCE5ED] bg-white/95 shadow-sm backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 py-4">
+
+        {/* Brand */}
         <Link
           href="/"
-          className="font-semibold tracking-tight text-slate-900"
+          className="shrink-0 text-lg font-bold tracking-tight text-[#002040] transition-colors hover:text-[#A77D1E]"
         >
           Jr.LTF
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="relative hidden gap-5 text-sm md:flex md:items-center">
+        <nav className="relative hidden items-center gap-5 text-sm md:flex">
           {navItems.map((item) => {
             const active = pathname === item.href;
             const isHighlighted = item.highlight;
@@ -150,21 +152,21 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                className={`relative whitespace-nowrap transition-colors duration-200 ${
+                className={`relative whitespace-nowrap transition-all duration-200 ${
                   isHighlighted
-                    ? "rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 text-slate-900 hover:bg-slate-200"
-                    : "px-1 text-slate-600 hover:text-slate-900"
+                    ? "rounded-full border border-[#D4AF37] bg-[#FFF8E7] px-3 py-1.5 text-[#002040] hover:bg-[#F4E5AE]"
+                    : "px-1 text-[#40536A] hover:text-[#A77D1E]"
                 }`}
               >
                 <span className="flex items-center gap-1.5">
                   {isHighlighted && (
-                    <StarIcon className="h-3.5 w-3.5 text-slate-700" />
+                    <StarIcon className="h-4 w-4 text-[#D4AF37]" />
                   )}
 
                   <span
                     className={
                       active || isHighlighted
-                        ? "font-semibold text-slate-900"
+                        ? "font-semibold text-[#002040]"
                         : ""
                     }
                   >
@@ -172,7 +174,7 @@ export default function Navbar() {
                   </span>
 
                   {item.badge && (
-                    <span className="ml-1 rounded-full bg-slate-900 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                    <span className="ml-1 rounded-full bg-[#002040] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
                       {item.badge}
                     </span>
                   )}
@@ -181,7 +183,7 @@ export default function Navbar() {
                 {active && (
                   <motion.span
                     layoutId="nav-underline"
-                    className={`absolute -bottom-1 h-[2px] bg-slate-900 ${
+                    className={`absolute -bottom-1 h-[2px] bg-[#D4AF37] ${
                       isHighlighted
                         ? "left-3 right-3"
                         : "left-0 w-full"
@@ -198,15 +200,18 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        {/* Right Controls */}
+        <div className="flex shrink-0 items-center gap-3">
+
           {/* Desktop Language Flags */}
           <div className="hidden items-center gap-2 md:flex">
             <FlagsRow size="md" />
           </div>
 
+          {/* Apply Button */}
           <Link
             href="/apply"
-            className="rounded-xl bg-slate-900 px-4 py-2 text-sm text-white transition-opacity duration-200 hover:opacity-90"
+            className="rounded-xl bg-[#002040] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#003764] hover:shadow-md"
           >
             Apply
           </Link>
@@ -214,26 +219,26 @@ export default function Navbar() {
           {/* Mobile Hamburger */}
           <button
             type="button"
-            className="grid h-10 w-10 place-items-center rounded-xl border border-slate-200 bg-white text-slate-900 shadow-sm md:hidden"
+            className="grid h-10 w-10 place-items-center rounded-xl border border-[#DCE5ED] bg-white text-[#002040] shadow-sm md:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
           >
             <span className="relative block h-4 w-5">
               <span
-                className={`absolute left-0 top-0 h-0.5 w-5 bg-slate-900 transition-transform duration-300 ${
+                className={`absolute left-0 top-0 h-0.5 w-5 bg-[#002040] transition-transform duration-300 ${
                   open
                     ? "translate-y-[7px] rotate-45"
                     : ""
                 }`}
               />
               <span
-                className={`absolute left-0 top-[7px] h-0.5 w-5 bg-slate-900 transition-opacity duration-200 ${
+                className={`absolute left-0 top-[7px] h-0.5 w-5 bg-[#002040] transition-opacity duration-200 ${
                   open ? "opacity-0" : "opacity-100"
                 }`}
               />
               <span
-                className={`absolute left-0 top-[14px] h-0.5 w-5 bg-slate-900 transition-transform duration-300 ${
+                className={`absolute left-0 top-[14px] h-0.5 w-5 bg-[#002040] transition-transform duration-300 ${
                   open
                     ? "translate-y-[-7px] -rotate-45"
                     : ""
@@ -253,11 +258,14 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto max-w-6xl px-6 pb-5">
-          <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div className="rounded-2xl border border-[#DCE5ED] bg-white shadow-md">
+
+            {/* Mobile Languages */}
             <div className="flex justify-end p-3 pb-2">
               <FlagsRow size="lg" />
             </div>
 
+            {/* Mobile Navigation Links */}
             <nav className="flex flex-col p-2 pt-1">
               {navItems.map((item) => {
                 const active = pathname === item.href;
@@ -270,21 +278,21 @@ export default function Navbar() {
                     aria-current={
                       active ? "page" : undefined
                     }
-                    className={`relative rounded-xl px-4 py-3 text-sm transition-colors duration-200 ${
+                    className={`relative rounded-xl px-4 py-3 text-sm transition-all duration-200 ${
                       isHighlighted
-                        ? "bg-slate-100 text-slate-900 hover:bg-slate-200"
-                        : "text-slate-700 hover:bg-slate-50"
+                        ? "border border-[#D4AF37] bg-[#FFF8E7] text-[#002040] hover:bg-[#F4E5AE]"
+                        : "text-[#40536A] hover:bg-[#EFF5F9] hover:text-[#002040]"
                     }`}
                   >
                     <span className="flex items-center gap-2">
                       {isHighlighted && (
-                        <StarIcon className="h-4 w-4 text-slate-700" />
+                        <StarIcon className="h-4 w-4 text-[#D4AF37]" />
                       )}
 
                       <span
                         className={
                           active || isHighlighted
-                            ? "font-semibold text-slate-900"
+                            ? "font-semibold text-[#002040]"
                             : ""
                         }
                       >
@@ -292,7 +300,7 @@ export default function Navbar() {
                       </span>
 
                       {item.badge && (
-                        <span className="rounded-full bg-slate-900 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                        <span className="rounded-full bg-[#002040] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
                           {item.badge}
                         </span>
                       )}
@@ -301,7 +309,7 @@ export default function Navbar() {
                     {active && (
                       <motion.span
                         layoutId="nav-underline-mobile"
-                        className="absolute bottom-2 left-4 right-4 h-[2px] bg-slate-900"
+                        className="absolute bottom-2 left-4 right-4 h-[2px] bg-[#D4AF37]"
                         transition={{
                           type: "spring",
                           stiffness: 500,
@@ -313,9 +321,10 @@ export default function Navbar() {
                 );
               })}
 
+              {/* Mobile Apply Button */}
               <Link
                 href="/apply"
-                className="mt-2 rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white hover:opacity-90"
+                className="mt-2 rounded-xl bg-[#002040] px-4 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#003764]"
               >
                 Apply
               </Link>
@@ -344,4 +353,3 @@ export default function Navbar() {
     </header>
   );
 }
-  
